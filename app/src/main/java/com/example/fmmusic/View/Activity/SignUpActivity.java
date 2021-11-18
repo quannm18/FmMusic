@@ -14,7 +14,7 @@ import com.example.fmmusic.R;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class SignUpActivity extends AppCompatActivity {
-    private AppCompatButton button;
+    private AppCompatButton btnSignUp;
     private TextInputLayout tilUserName;
     private TextInputLayout tilFullName;
     private TextInputLayout tilUserPass;
@@ -26,13 +26,13 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         viewGroup = findViewById(R.id.containerSignUp);
-        button = (AppCompatButton) findViewById(R.id.button);
+        btnSignUp = (AppCompatButton) findViewById(R.id.btnSignUp);
         tilUserName = (TextInputLayout) findViewById(R.id.tilUserName);
         tilFullName = (TextInputLayout) findViewById(R.id.tilFullName);
         tilUserPass = (TextInputLayout) findViewById(R.id.tilUserPass);
         tilRePass = (TextInputLayout) findViewById(R.id.tilRePass);
 
-        button.setVisibility(View.GONE);
+        btnSignUp.setVisibility(View.GONE);
         tilUserName.setVisibility(View.GONE);
         tilFullName.setVisibility(View.GONE);
         tilUserPass.setVisibility(View.GONE);
@@ -47,7 +47,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 TransitionManager.beginDelayedTransition(viewGroup);
-                button.setVisibility(View.VISIBLE);
+                btnSignUp.setVisibility(View.VISIBLE);
                 tilUserName.setVisibility(View.VISIBLE);
                 tilFullName.setVisibility(View.VISIBLE);
                 tilUserPass.setVisibility(View.VISIBLE);

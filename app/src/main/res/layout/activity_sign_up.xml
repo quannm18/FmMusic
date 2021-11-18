@@ -9,7 +9,7 @@
     tools:context=".View.Activity.SignUpActivity">
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
+        android:id="@+id/btnSignUp"
         android:layout_width="112dp"
         android:layout_height="51dp"
         android:background="@drawable/custom_button_color"
@@ -64,7 +64,7 @@
         app:boxStrokeColor="#FFFFFF"
         app:endIconMode="password_toggle"
         app:hintTextColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
