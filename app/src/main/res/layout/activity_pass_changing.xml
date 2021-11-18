@@ -4,6 +4,174 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/changepassword"
     tools:context=".View.Activity.PassChangingActivity">
+
+    <TextView
+        android:id="@+id/tvChangPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginBottom="15dp"
+        android:text="Đổi mật khẩu"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imgFm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.008"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgFm"
+        android:layout_width="300dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="399dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvChangPass"
+        app:srcCompat="@drawable/fmwwhite" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilUserName"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="330dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="50dp"
+        android:textColorHint="#FFFFFF"
+        app:hintTextColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgFm"
+        app:boxCornerRadiusBottomEnd="24dp"
+        app:boxCornerRadiusBottomStart="24dp"
+        app:boxCornerRadiusTopEnd="24dp"
+        app:boxCornerRadiusTopStart="24dp"
+        app:boxStrokeColor="#FFFFFF">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="UserName"
+            android:textColor="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilOldPass"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="330dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="120dp"
+        android:textColorHint="#FFFFFF"
+        app:boxStrokeColor="#FFFFFF"
+        app:endIconMode="password_toggle"
+        app:hintTextColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgFm"
+        app:placeholderTextColor="#FFFFFF"
+        app:boxCornerRadiusBottomEnd="24dp"
+        app:boxCornerRadiusBottomStart="24dp"
+        app:boxCornerRadiusTopEnd="24dp"
+        app:boxCornerRadiusTopStart="24dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Old Password"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            tools:ignore="TouchTargetSizeCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilNewPass"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="330dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="190dp"
+        android:textColorHint="#FFFFFF"
+        app:boxStrokeColor="#FFFFFF"
+        app:endIconMode="password_toggle"
+        app:hintTextColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgFm"
+        app:placeholderTextColor="#FFFFFF"
+        app:boxCornerRadiusBottomEnd="24dp"
+        app:boxCornerRadiusBottomStart="24dp"
+        app:boxCornerRadiusTopEnd="24dp"
+        app:boxCornerRadiusTopStart="24dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="New Password"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            tools:ignore="TouchTargetSizeCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilRePass"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="330dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="260dp"
+        android:textColorHint="#FFFFFF"
+        app:boxStrokeColor="#FFFFFF"
+        app:endIconMode="password_toggle"
+        app:hintTextColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgFm"
+        app:placeholderTextColor="#FFFFFF"
+        app:boxCornerRadiusBottomEnd="24dp"
+        app:boxCornerRadiusBottomStart="24dp"
+        app:boxCornerRadiusTopEnd="24dp"
+        app:boxCornerRadiusTopStart="24dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Retype-Password"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            android:layout_marginLeft="15dp"
+            android:id="@+id/tvFocusedPass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Focused Password"
+            android:textColor="#6200EE" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnChangePass"
+        android:layout_width="117dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="153dp"
+        android:layout_marginBottom="26dp"
+        android:background="@drawable/custom_button"
+        android:text="Đổi mật khẩu"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilRePass"
+        android:shadowColor="#707070"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
