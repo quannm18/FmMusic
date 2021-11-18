@@ -10,6 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FmMusic">
         <activity
+            android:name=".View.Activity.HomeActivity"
+            android:theme="@style/Theme.FmMusic.NoActionBar"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".View.Activity.SongDetailActivity"
             android:exported="true" />
         <activity
@@ -33,11 +43,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
