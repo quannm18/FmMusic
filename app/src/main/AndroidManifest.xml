@@ -10,6 +10,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FmMusic">
         <activity
+            android:name=".View.Activity.SongDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".View.Activity.PassChangingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".View.Activity.SignUpActivity"
+            android:exported="true" />
+        <activity
+            android:name=".View.Activity.MusicPlayingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".View.Activity.ProfileActivity"
+            android:exported="true" />
+        <activity
+            android:name=".View.Activity.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".View.Activity.SplashActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
