@@ -7,7 +7,7 @@ import android.os.Bundle;
 import com.example.fmmusic.R;
 
 public class PassChangingActivity extends AppCompatActivity {
-
+//Nguyễn Hoài Nam đảm nhận thằng này
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
