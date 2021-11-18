@@ -26,18 +26,21 @@
             android:exported="true" />
         <activity
             android:name=".View.Activity.LoginActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".View.Activity.SplashActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
