@@ -20,4 +20,9 @@
         <item name="android:windowTranslucentNavigation">true</item>
         <item name="android:fitsSystemWindows">true</item>
     </style>
+    <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">#fff</item>
+        <item name="boxStrokeWidth">2dp</item>
+    </style>
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#fff</color>
 </resources>
