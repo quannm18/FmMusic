@@ -7,11 +7,13 @@
     android:id="@+id/containerLogIn"
     android:background="@drawable/background_login"
     tools:context=".View.Activity.LoginActivity">
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilPassword"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="307dp"
         android:layout_height="82dp"
+        android:layout_marginTop="16dp"
         android:animateLayoutChanges="true"
         android:textColorHint="@color/white"
         app:boxCornerRadiusBottomEnd="24dp"
@@ -25,9 +27,10 @@
         app:hintTextColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.57"
+        app:layout_constraintTop_toBottomOf="@+id/tilUserLogIn"
+        app:layout_constraintVertical_bias="0.0"
         app:placeholderTextColor="@color/white"
         app:prefixTextColor="@color/white"
         app:startIconDrawable="@drawable/ic_baseline_vpn_key_24_white">
@@ -47,6 +50,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="307dp"
         android:layout_height="82dp"
+        android:layout_marginTop="8dp"
         android:animateLayoutChanges="true"
         android:textColorHint="#F3EEEE"
         app:boxBackgroundColor="#00FFFFFF"
@@ -60,10 +64,9 @@
         app:hintTextColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.424"
+        app:layout_constraintTop_toBottomOf="@+id/tvQuotes"
+        app:layout_constraintVertical_bias="0.002"
         app:startIconDrawable="@drawable/ic_baseline_person_24_white"
         app:suffixTextColor="#F1E5E5">
 
@@ -77,8 +80,7 @@
             android:textColor="@color/white"
             android:textColorHint="#EFEDED"
             android:topLeftRadius="24dp"
-            android:topRightRadius="24dp"
-            />
+            android:topRightRadius="24dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
