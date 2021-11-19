@@ -195,14 +195,14 @@
         android:id="@+id/tvQuotes"
         android:layout_width="289dp"
         android:layout_height="41dp"
-        android:textSize="15sp"
         android:animateLayoutChanges="true"
         android:text="Chào mừng đến với Music"
         android:textAlignment="center"
         android:textColor="@color/white"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.342" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_DesText"
+        app:layout_constraintVertical_bias="0.07999998" />
 </androidx.constraintlayout.widget.ConstraintLayout>
