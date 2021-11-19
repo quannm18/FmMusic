@@ -11,9 +11,11 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilPassword"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="307dp"
+        android:layout_width="0dp"
         android:layout_height="82dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:animateLayoutChanges="true"
         android:textColorHint="@color/white"
         app:boxCornerRadiusBottomEnd="24dp"
@@ -48,9 +50,11 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilUserLogIn"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="307dp"
+        android:layout_width="0dp"
         android:layout_height="82dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
         android:animateLayoutChanges="true"
         android:textColorHint="#F3EEEE"
         app:boxBackgroundColor="#00FFFFFF"
@@ -178,7 +182,7 @@
 
     <TextView
         android:id="@+id/tv_DesText"
-        android:layout_width="288dp"
+        android:layout_width="280dp"
         android:layout_height="46dp"
         android:animateLayoutChanges="true"
         android:text="Chào mừng bạn đến với ứng dụng nghe nhạc của chúng tôi"
@@ -194,6 +198,7 @@
         android:id="@+id/tvQuotes"
         android:layout_width="289dp"
         android:layout_height="41dp"
+        android:textSize="15sp"
         android:animateLayoutChanges="true"
         android:text="Chào mừng đến với Music"
         android:textAlignment="center"
