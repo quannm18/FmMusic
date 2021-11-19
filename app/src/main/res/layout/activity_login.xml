@@ -45,8 +45,8 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilUserLogIn"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="306dp"
-        android:layout_height="78dp"
+        android:layout_width="307dp"
+        android:layout_height="82dp"
         android:animateLayoutChanges="true"
         android:textColorHint="#F3EEEE"
         app:boxBackgroundColor="#00FFFFFF"
@@ -77,22 +77,21 @@
             android:textColor="@color/white"
             android:textColorHint="#EFEDED"
             android:topLeftRadius="24dp"
-            android:topRightRadius="24dp" />
+            android:topRightRadius="24dp"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSignIn"
         android:layout_width="125dp"
         android:layout_height="48dp"
         android:animateLayoutChanges="true"
         android:background="@drawable/custom_button_color"
-        android:bottomLeftRadius="24dp"
-        android:bottomRightRadius="24dp"
+        app:backgroundTint="@null"
+        app:cornerRadius="24dp"
         android:text="Đăng Nhập"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:topLeftRadius="24dp"
-        android:topRightRadius="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -126,19 +125,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.765" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSkipLogIn"
-        android:layout_width="75dp"
+        android:layout_width="96dp"
         android:layout_height="48dp"
         android:animateLayoutChanges="true"
+        app:backgroundTint="@null"
         android:background="@drawable/custom_button_color"
-        android:bottomLeftRadius="24dp"
-        android:bottomRightRadius="24dp"
         android:text="Bỏ Qua"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:topLeftRadius="24dp"
-        android:topRightRadius="24dp"
+        app:cornerRadius="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.952"

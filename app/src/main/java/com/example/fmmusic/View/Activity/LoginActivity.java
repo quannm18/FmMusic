@@ -19,16 +19,17 @@ import android.widget.Toast;
 
 import com.example.fmmusic.MainActivity;
 import com.example.fmmusic.R;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginActivity extends AppCompatActivity {
 
     private TextInputLayout tilPassword;
     private TextInputLayout tilUserLogIn;
-    private AppCompatButton btnSignIn;
+    private MaterialButton btnSignIn;
     private TextView tvDangKy;
     private TextView tvTextNull;
-    private AppCompatButton btnSkipLogIn;
+    private MaterialButton btnSkipLogIn;
     private TextView tvLostPass;
     private TextView tvXinChao;
     private TextView tvDesText;
@@ -44,10 +45,10 @@ public class LoginActivity extends AppCompatActivity {
         viewGroup = findViewById(R.id.containerLogIn);
         tilPassword = (TextInputLayout) findViewById(R.id.tilPassword);
         tilUserLogIn = (TextInputLayout) findViewById(R.id.tilUserLogIn);
-        btnSignIn = (AppCompatButton) findViewById(R.id.btnSignIn);
+        btnSignIn =  findViewById(R.id.btnSignIn);
         tvDangKy = (TextView) findViewById(R.id.tvDangKy);
         tvTextNull = (TextView) findViewById(R.id.tvTextNull);
-        btnSkipLogIn = (AppCompatButton) findViewById(R.id.btnSkipLogIn);
+        btnSkipLogIn =  findViewById(R.id.btnSkipLogIn);
         tvLostPass = (TextView) findViewById(R.id.tvLostPass);
         tvXinChao = (TextView) findViewById(R.id.tvXinChao);
         tvDesText = (TextView) findViewById(R.id.tv_DesText);
