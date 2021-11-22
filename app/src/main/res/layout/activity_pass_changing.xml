@@ -26,7 +26,7 @@
     <ImageView
         android:id="@+id/imgFm"
         android:layout_width="300dp"
-        android:layout_height="0dp"
+        android:layout_height="200dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -40,7 +40,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="32dp"
         android:textColorHint="#FFFFFF"
         app:boxCornerRadiusBottomEnd="24dp"
@@ -48,14 +48,14 @@
         app:boxCornerRadiusTopEnd="24dp"
         app:boxCornerRadiusTopStart="24dp"
         app:boxStrokeColor="@color/white"
-        app:counterEnabled="true"
         app:hintTextColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgFm"
-        app:layout_constraintVertical_bias="0.120000005">
+        app:layout_constraintVertical_bias="0.0"
+        app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -78,14 +78,16 @@
         app:boxCornerRadiusTopEnd="24dp"
         app:boxCornerRadiusTopStart="24dp"
         app:boxStrokeColor="#FFFFFF"
-        app:counterEnabled="true"
-        app:endIconMode="password_toggle"
+        app:passwordToggleContentDescription="Hiển thị mật khẩu"
+        app:passwordToggleTint="@color/mtrl_textinput_default_box_stroke_color"
+        app:passwordToggleEnabled="true"
         app:hintTextColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilUserName"
-        app:placeholderTextColor="#FFFFFF">
+        app:placeholderTextColor="#FFFFFF"
+        app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -110,14 +112,16 @@
         app:boxCornerRadiusTopEnd="24dp"
         app:boxCornerRadiusTopStart="24dp"
         app:boxStrokeColor="#FFFFFF"
-        app:counterEnabled="true"
-        app:endIconMode="password_toggle"
+        app:passwordToggleContentDescription="Hiển thị mật khẩu"
+        app:passwordToggleTint="@color/mtrl_textinput_default_box_stroke_color"
+        app:passwordToggleEnabled="true"
         app:hintTextColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilOldPass"
-        app:placeholderTextColor="#FFFFFF">
+        app:placeholderTextColor="#FFFFFF"
+        app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -142,14 +146,16 @@
         app:boxCornerRadiusTopEnd="24dp"
         app:boxCornerRadiusTopStart="24dp"
         app:boxStrokeColor="#FFFFFF"
-        app:counterEnabled="true"
-        app:endIconMode="password_toggle"
+        app:passwordToggleContentDescription="Hiển thị mật khẩu"
+        app:passwordToggleTint="@color/mtrl_textinput_default_box_stroke_color"
+        app:passwordToggleEnabled="true"
         app:hintTextColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilNewPass"
-        app:placeholderTextColor="#FFFFFF">
+        app:placeholderTextColor="#FFFFFF"
+        app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -164,18 +170,19 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnChangePass"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_height="56dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="24dp"
         android:backgroundTint="#E05CDC"
         android:shadowColor="#707070"
         android:text="Đổi mật khẩu"
-        app:cornerRadius="24dp"
         android:textColor="@color/white"
+        app:cornerRadius="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilRePass" />
+        app:layout_constraintTop_toBottomOf="@+id/tilRePass"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
