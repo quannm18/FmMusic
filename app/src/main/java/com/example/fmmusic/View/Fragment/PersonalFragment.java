@@ -17,24 +17,10 @@ import com.example.fmmusic.R;
 
 
 public class PersonalFragment extends Fragment {
-    private CardView cvThuVien;
-    private CardView cvPlayList;
-    private CardView cvCaSi;
-    private RecyclerView rcvBaiHatGoiY;
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        cvThuVien = (CardView) view.findViewById(R.id.cvBaiHat);
-        cvPlayList = (CardView) view.findViewById(R.id.cvYeuThich);
-        cvCaSi = (CardView) view.findViewById(R.id.cvPlaylist);
-        rcvBaiHatGoiY = (RecyclerView) view.findViewById(R.id.rcvBaiHatGoiY);
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_personal, container, false);
     }
 }

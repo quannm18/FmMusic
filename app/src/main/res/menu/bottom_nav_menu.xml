@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:icon="@drawable/ic_baseline_home_24"
+        android:id="@+id/homeFragment"
+        android:title="Trang Chủ">
+    </item>
+    <item
+        android:icon="@drawable/ic_baseline_playlist_play_24"
+        android:id="@+id/playListFragment"
+        android:title="PlayList">
+    </item>
+    <item
+        android:icon="@drawable/ic_baseline_bar_chart_24"
+        android:id="@+id/topFragment"
+        android:title="Bảng Xếp Hạng">
+    </item>
+
+</menu>
