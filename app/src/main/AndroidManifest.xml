@@ -39,12 +39,21 @@
             android:exported="true" />
         <activity
             android:name=".View.Activity.SplashActivity"
+<<<<<<< HEAD
             android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
+=======
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+>>>>>>> origin/quan
 
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
