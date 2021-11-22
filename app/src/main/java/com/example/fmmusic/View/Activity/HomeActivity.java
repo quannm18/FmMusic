@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.fmmusic.Adapter.ViewPagerAdapter_Home;
+import com.example.fmmusic.Adapter.ViewPagerAdapterHome;
 import com.example.fmmusic.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputLayout;
@@ -88,7 +88,7 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
     private void setViewPager(){
-        ViewPagerAdapter_Home viewPagerAdapter_Home = new ViewPagerAdapter_Home(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        ViewPagerAdapterHome viewPagerAdapter_Home = new ViewPagerAdapterHome(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(viewPagerAdapter_Home);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

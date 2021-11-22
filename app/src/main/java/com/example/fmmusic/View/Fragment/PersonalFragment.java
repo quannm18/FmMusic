@@ -1,17 +1,13 @@
 package com.example.fmmusic.View.Fragment;
 
 import android.os.Bundle;
-<<<<<<< HEAD
-=======
 
 import androidx.fragment.app.Fragment;
-
->>>>>>> origin/quan
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-<<<<<<< HEAD
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
@@ -40,20 +36,5 @@ public class PersonalFragment extends Fragment {
         cvCaSi = (CardView) view.findViewById(R.id.cvPlaylist);
         rcvBaiHatGoiY = (RecyclerView) view.findViewById(R.id.rcvBaiHatGoiY);
 
-    }
-=======
-import com.example.fmmusic.R;
-
-public class PersonalFragment extends Fragment {
->>>>>>> origin/quan
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-<<<<<<< HEAD
-=======
-        // Inflate the layout for this fragment
->>>>>>> origin/quan
-        return inflater.inflate(R.layout.fragment_personal, container, false);
     }
 }

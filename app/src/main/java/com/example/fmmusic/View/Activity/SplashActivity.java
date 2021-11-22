@@ -2,7 +2,9 @@ package com.example.fmmusic.View.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -34,5 +36,12 @@ public class SplashActivity extends AppCompatActivity {
         Animation scale = AnimationUtils.loadAnimation(SplashActivity.this,R.anim.translate_to_left);
         ltSplashMain.startAnimation(scale);
         ltSplashProgress.startAnimation(alpha);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(SplashActivity.this,LoginActivity.class));
+                finish();
+            }
+        },3000);
     }
 }
