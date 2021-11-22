@@ -41,12 +41,12 @@ public class HomeActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.vpHome);
         tilFind = (TextInputLayout) findViewById(R.id.tilFind);
         cvBottomPlayBars = (CardView) findViewById(R.id.cvBottomPlayBars);
-        imgAnhBaiHatPlayBars = (ImageView) findViewById(R.id.imgAnhBaiHat_PlayBars);
+        imgAnhBaiHatPlayBars = (ImageView) findViewById(R.id.imgThumbnail);
         imgPlay = (ImageView) findViewById(R.id.imgPlay);
         imgPrevious = (ImageView) findViewById(R.id.imgPrevious);
         imgNext = (ImageView) findViewById(R.id.imgNext);
         imgPause = (ImageView) findViewById(R.id.imgPause);
-        tvTenBaiHatPlayBars = (TextView) findViewById(R.id.tvTenBaiHat_PlayBars);
+        tvTenBaiHatPlayBars = (TextView) findViewById(R.id.tvNameSong);
         cvProfileUser = (CardView) findViewById(R.id.cvProfileUser);
 
         cvProfileUser.setOnClickListener(new View.OnClickListener() {
