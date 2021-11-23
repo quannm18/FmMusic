@@ -10,34 +10,44 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FmMusic">
         <activity
+            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar"
             android:name=".View.Activity.Persional.SingersLibActivity"
             android:exported="true" />
         <activity
+            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar"
             android:name=".View.Activity.Persional.PlaylistActivity"
             android:exported="true" />
         <activity
+            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar"
             android:name=".View.Activity.Persional.FavoritesLibActivity"
             android:exported="true" />
         <activity
+            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar"
             android:name=".View.Activity.Persional.SongsLibActivity"
             android:exported="true" />
         <activity
+
             android:name=".View.Activity.HomeActivity"
             android:exported="true"
             android:theme="@style/Theme.FmMusic.NoActionBar" />
         <activity
+            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar"
             android:name=".View.Activity.SongDetailActivity"
             android:exported="true" />
         <activity
+            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar"
             android:name=".View.Activity.PassChangingActivity"
             android:exported="true" />
         <activity
+            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar"
             android:name=".View.Activity.SignUpActivity"
             android:exported="true" />
         <activity
+            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar"
             android:name=".View.Activity.MusicPlayingActivity"
             android:exported="true" />
         <activity
+            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar"
             android:name=".View.Activity.ProfileActivity"
             android:exported="true" />
         <activity
@@ -45,6 +55,7 @@
             android:exported="true"
             android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar" />
         <activity
+            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar"
             android:name=".View.Activity.SplashActivity"
             android:exported="true">
             <intent-filter>
