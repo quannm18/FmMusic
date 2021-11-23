@@ -12,7 +12,6 @@ import android.os.CountDownTimer;
 import android.transition.TransitionManager;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -158,7 +157,7 @@ public class LoginActivity extends AppCompatActivity {
         btnSkipLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openSkipSigup();
+                openSkipSignup();
             }
         });
 
@@ -169,7 +168,7 @@ public class LoginActivity extends AppCompatActivity {
     private AppCompatButton btnCancelLogin;
     private AppCompatButton btnYesLogIn;
 
-    public void openSkipSigup() {
+    public void openSkipSignup() {
         dialog = new Dialog(LoginActivity.this);
         dialog.setContentView(R.layout.skiplogin_dialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -191,6 +190,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();
+                dialog.dismiss();
             }
         });
         dialog.show();
