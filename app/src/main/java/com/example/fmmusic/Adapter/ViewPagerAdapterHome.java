@@ -9,8 +9,8 @@ import com.example.fmmusic.View.Fragment.HomeFragment;
 import com.example.fmmusic.View.Fragment.PersonalFragment;
 import com.example.fmmusic.View.Fragment.RankingsFragment;
 
-public class ViewPagerAdapter_Home extends FragmentStatePagerAdapter {
-    public ViewPagerAdapter_Home(@NonNull FragmentManager fm, int behavior) {
+public class ViewPagerAdapterHome extends FragmentStatePagerAdapter {
+    public ViewPagerAdapterHome(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
     }
 

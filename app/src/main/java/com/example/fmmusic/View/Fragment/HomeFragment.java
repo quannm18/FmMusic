@@ -1,7 +1,6 @@
 package com.example.fmmusic.View.Fragment;
 
 import android.os.Bundle;
-<<<<<<< HEAD
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,9 +24,10 @@ public class HomeFragment extends Fragment {
     private ScrollView scrollViewHome;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
     @Override
@@ -41,26 +41,5 @@ public class HomeFragment extends Fragment {
         scrollViewHome = (ScrollView) view.findViewById(R.id.scrollViewHome);
 
     }
-=======
 
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.example.fmmusic.R;
-
-public class HomeFragment extends Fragment {
->>>>>>> origin/quan
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-<<<<<<< HEAD
-=======
-        // Inflate the layout for this fragment
->>>>>>> origin/quan
-        return inflater.inflate(R.layout.fragment_home, container, false);
-    }
 }
