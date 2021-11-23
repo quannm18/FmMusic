@@ -84,7 +84,7 @@
                     android:layout_height="match_parent">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cvPlaylist"
+                        android:id="@+id/cvPlaylistLibLib"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_marginStart="16dp"
@@ -98,12 +98,11 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
+
                             <TextView
                                 android:id="@+id/tvPlaylist"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="50dp"
-                                android:layout_marginEnd="50dp"
                                 android:layout_marginBottom="16dp"
                                 android:text="Playlist"
                                 android:textColor="#FFFFFF"
@@ -147,8 +146,6 @@
                                 android:id="@+id/tvSongs"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="48dp"
-                                android:layout_marginEnd="47dp"
                                 android:layout_marginBottom="16dp"
                                 android:text="Bài hát"
                                 android:textColor="#FFFFFF"
@@ -192,8 +189,6 @@
                                 android:id="@+id/tvFavorites"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="59dp"
-                                android:layout_marginEnd="58dp"
                                 android:layout_marginBottom="16dp"
                                 android:text="Yêu thích"
                                 android:textColor="#FFFFFF"
@@ -217,7 +212,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cvSinger"
+                        android:id="@+id/cvSingerLib"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_marginEnd="24dp"
@@ -236,8 +231,6 @@
                                 android:id="@+id/tvSingers"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="63dp"
-                                android:layout_marginEnd="63dp"
                                 android:layout_marginBottom="16dp"
                                 android:text="Ca sĩ"
                                 android:textColor="#FFFFFF"
