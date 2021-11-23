@@ -13,6 +13,11 @@
             android:name=".View.Activity.HomeActivity"
             android:theme="@style/Theme.FmMusic.NoActionBar"
             android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".View.Activity.SongDetailActivity"
@@ -22,7 +27,15 @@
             android:exported="true" />
         <activity
             android:name=".View.Activity.SignUpActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".View.Activity.MusicPlayingActivity"
             android:exported="true" />
@@ -33,11 +46,6 @@
             android:name=".View.Activity.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar">
-
-        </activity>
-        <activity
-            android:name=".View.Activity.SplashActivity"
-            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,11 +53,34 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".View.Activity.SplashActivity"
+<<<<<<< HEAD
+<<<<<<< HEAD
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
+<<<<<<< HEAD
+=======
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+>>>>>>> origin/quan
+=======
+            android:exported="true" >
 
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+>>>>>>> origin/tho
+=======
+>>>>>>> AnhHuyDepTrai
 
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

@@ -27,12 +27,12 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputLayout tilPassword;
     private TextInputLayout tilUserLogIn;
     private MaterialButton btnSignIn;
-    private TextView tvSignUp;
+    private TextView tvDangKy;
     private TextView tvTextNull;
     private MaterialButton btnSkipLogIn;
     private TextView tvLostPass;
-    private TextView tvHello;
-    private TextView tvDescription;
+    private TextView tvXinChao;
+    private TextView tvDesText;
     private TextView tvQuotes;
     private int count = 0;
     private Dialog dialog;
@@ -46,12 +46,12 @@ public class LoginActivity extends AppCompatActivity {
         tilPassword = (TextInputLayout) findViewById(R.id.tilPassword);
         tilUserLogIn = (TextInputLayout) findViewById(R.id.tilUserLogIn);
         btnSignIn =  findViewById(R.id.btnSignIn);
-        tvSignUp = (TextView) findViewById(R.id.tvSignUp);
+        tvDangKy = (TextView) findViewById(R.id.tvDangKy);
         tvTextNull = (TextView) findViewById(R.id.tvTextNull);
         btnSkipLogIn =  findViewById(R.id.btnSkipLogIn);
         tvLostPass = (TextView) findViewById(R.id.tvLostPass);
-        tvHello = (TextView) findViewById(R.id.tvHello);
-        tvDescription = (TextView) findViewById(R.id.tvDescription);
+        tvXinChao = (TextView) findViewById(R.id.tvXinChao);
+        tvDesText = (TextView) findViewById(R.id.tv_DesText);
         tvQuotes = (TextView) findViewById(R.id.tvQuotes);
 
         tvQuotes.setVisibility(View.INVISIBLE);
@@ -59,10 +59,10 @@ public class LoginActivity extends AppCompatActivity {
         tilPassword.setVisibility(View.GONE);
         btnSignIn.setVisibility(View.GONE);
         tvLostPass.setVisibility(View.GONE);
-        tvHello.setVisibility(View.GONE);
-        tvDescription.setVisibility(View.GONE);
+        tvXinChao.setVisibility(View.GONE);
+        tvDesText.setVisibility(View.GONE);
         btnSkipLogIn.setVisibility(View.GONE);
-        tvSignUp.setVisibility(View.GONE);
+        tvDangKy.setVisibility(View.GONE);
         tvTextNull.setVisibility(View.GONE);
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
@@ -147,11 +147,11 @@ public class LoginActivity extends AppCompatActivity {
                 tilPassword.setVisibility(View.VISIBLE);
                 btnSignIn.setVisibility(View.VISIBLE);
                 tvLostPass.setVisibility(View.VISIBLE);
-                tvHello.setVisibility(View.VISIBLE);
-                tvDescription.setVisibility(View.VISIBLE);
+                tvXinChao.setVisibility(View.VISIBLE);
+                tvDesText.setVisibility(View.VISIBLE);
                 tvQuotes.setVisibility(View.VISIBLE);
                 btnSkipLogIn.setVisibility(View.VISIBLE);
-                tvSignUp.setVisibility(View.VISIBLE);
+                tvDangKy.setVisibility(View.VISIBLE);
                 tvTextNull.setVisibility(View.VISIBLE);
             }
         }.start();
@@ -159,13 +159,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openSkipSigup();
-            }
-        });
-        tvSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
-
             }
         });
 
@@ -195,10 +188,9 @@ public class LoginActivity extends AppCompatActivity {
         btnYesLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
-                dialog.dismiss();
             }
         });
         dialog.show();
