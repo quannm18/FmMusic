@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.fmmusic.Adapter.ViewPagerAdapter_Home;
+import com.example.fmmusic.Adapter.ViewPagerAdapterHome;
 import com.example.fmmusic.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputLayout;
@@ -41,12 +41,12 @@ public class HomeActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.vpHome);
         tilFind = (TextInputLayout) findViewById(R.id.tilFind);
         cvBottomPlayBars = (CardView) findViewById(R.id.cvBottomPlayBars);
-        imgAnhBaiHatPlayBars = (ImageView) findViewById(R.id.imgAnhBaiHat_PlayBars);
+        imgAnhBaiHatPlayBars = (ImageView) findViewById(R.id.imgThumbnail);
         imgPlay = (ImageView) findViewById(R.id.imgPlay);
         imgPrevious = (ImageView) findViewById(R.id.imgPrevious);
         imgNext = (ImageView) findViewById(R.id.imgNext);
         imgPause = (ImageView) findViewById(R.id.imgPause);
-        tvTenBaiHatPlayBars = (TextView) findViewById(R.id.tvTenBaiHat_PlayBars);
+        tvTenBaiHatPlayBars = (TextView) findViewById(R.id.tvNameSong);
         cvProfileUser = (CardView) findViewById(R.id.cvProfileUser);
 
         cvProfileUser.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +88,7 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
     private void setViewPager(){
-        ViewPagerAdapter_Home viewPagerAdapter_Home = new ViewPagerAdapter_Home(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        ViewPagerAdapterHome viewPagerAdapter_Home = new ViewPagerAdapterHome(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(viewPagerAdapter_Home);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentMusic.TopFragment" >
+    tools:context=".View.Fragment.RankingsFragment"
+    android:background="@drawable/background_all">
 
     <ScrollView
         android:layout_width="match_parent"
