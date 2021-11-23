@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_loading"
-    tools:context=".MainActivity">
-
+    tools:context=".View.Activity.Persional.PlaylistActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>
