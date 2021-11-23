@@ -10,43 +10,57 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FmMusic">
         <activity
+            android:name=".View.Activity.FindingMusicActivity"
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBar" />
+        <activity
             android:name=".View.Activity.Persional.SingersLibActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBar" />
         <activity
             android:name=".View.Activity.Persional.PlaylistActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBar" />
         <activity
             android:name=".View.Activity.Persional.FavoritesLibActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBar"/>
         <activity
             android:name=".View.Activity.Persional.SongsLibActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBar" />
         <activity
             android:name=".View.Activity.HomeActivity"
             android:exported="true"
             android:theme="@style/Theme.FmMusic.NoActionBar" />
         <activity
             android:name=".View.Activity.SongDetailActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBar" />
         <activity
             android:name=".View.Activity.PassChangingActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBar"/>
         <activity
             android:name=".View.Activity.SignUpActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBar"/>
         <activity
             android:name=".View.Activity.MusicPlayingActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBar"/>
         <activity
             android:name=".View.Activity.ProfileActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBar"/>
         <activity
             android:name=".View.Activity.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar" />
         <activity
             android:name=".View.Activity.SplashActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
