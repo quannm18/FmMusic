@@ -34,11 +34,14 @@
         <entry key="..\:/FmMusic/app/src/main/res/drawable/custom_botnavigation_color.xml" value="0.2703125" />
         <entry key="..\:/FmMusic/app/src/main/res/layout/activity_favorites_lib.xml" value="0.264" />
         <entry key="..\:/FmMusic/app/src/main/res/layout/activity_home.xml" value="0.25416666666666665" />
+        <entry key="..\:/FmMusic/app/src/main/res/layout/activity_singers_lib.xml" value="0.25416666666666665" />
         <entry key="..\:/FmMusic/app/src/main/res/layout/activity_songs_lib.xml" value="0.25416666666666665" />
+        <entry key="..\:/FmMusic/app/src/main/res/layout/fragment_rankings.xml" value="0.11676798378926039" />
+        <entry key="..\:/FmMusic/app/src/main/res/layout/row_top.xml" value="0.2" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
