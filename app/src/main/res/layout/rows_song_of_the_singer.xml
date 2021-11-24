@@ -37,7 +37,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.13999999" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/imgIconFavorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,7 +46,9 @@
             app:layout_constraintHorizontal_bias="0.95"
             app:layout_constraintStart_toEndOf="@+id/imgRowSongOfTheSinger"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/icon_favorite" />
+            app:srcCompat="@drawable/icon_favorite"
+            tools:ignore="SpeakableTextPresentCheck"
+            android:background="@null"/>
 
         <TextView
             android:id="@+id/tvNameSingerInRow"
