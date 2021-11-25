@@ -10,25 +10,26 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/cvBottomPlayBars"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilFindPlaylist"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="32dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/corner_searchbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:textColorHint="#CF40E8"
                 app:boxCornerRadiusBottomEnd="24dp"
                 app:boxCornerRadiusBottomStart="24dp"
@@ -38,7 +39,7 @@
                 app:hintEnabled="false"
                 app:hintTextColor="#CF40E8"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.49"
+                app:layout_constraintHorizontal_bias="0.95"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:placeholderTextColor="#CF40E8"
@@ -48,12 +49,11 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/corner_searchbar"
                     android:hint="Tìm kiếm bài hát, bảng..."
                     android:textColor="@color/black"
-                    android:textColorHint="#CF40E8"
                     app:textInputLayoutFocusedRectEnabled="false" />
-
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -71,11 +71,13 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcvPlaylist"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="32dp"
                 android:background="@drawable/corner_recycleview"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvtPlaylist" />
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,8 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="160dp"
     app:cardCornerRadius="16dp"
+    android:layout_marginTop="32dp"
+    android:layout_marginLeft="32dp"
+    android:layout_marginRight="32dp"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent">>
+    app:layout_constraintStart_toStartOf="parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,7 +20,13 @@
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/test" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/hoatran"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvtRecyclerPlaylist"
