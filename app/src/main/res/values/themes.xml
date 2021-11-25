@@ -13,7 +13,6 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-
     <style name="Theme.FmMusic.NoActionBarAndStatusBar">
         <item name="windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
@@ -33,4 +32,8 @@
         <item name="boxStrokeWidth">2dp</item>
     </style>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#fff</color>
+    <style name="Transparent">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 </resources>
