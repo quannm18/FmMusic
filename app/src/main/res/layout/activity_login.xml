@@ -12,8 +12,7 @@
         android:id="@+id/tilPassword"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:errorEnabled="true"
+        android:layout_height="82dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
@@ -25,9 +24,7 @@
         app:boxCornerRadiusTopStart="24dp"
         app:boxStrokeColor="@color/white"
         app:boxStrokeErrorColor="#650808"
-        app:passwordToggleContentDescription="Hiển thị mật khẩu"
-        app:passwordToggleTint="@color/mtrl_textinput_default_box_stroke_color"
-        app:passwordToggleEnabled="true"
+        app:endIconMode="password_toggle"
         app:errorTextColor="#650808"
         app:hintTextColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,10 +34,10 @@
         app:layout_constraintTop_toBottomOf="@+id/tilUserLogIn"
         app:layout_constraintVertical_bias="0.0"
         app:placeholderTextColor="@color/white"
-        app:prefixTextColor="@color/white">
+        app:prefixTextColor="@color/white"
+        app:startIconDrawable="@drawable/ic_baseline_vpn_key_24_white">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:drawableStart="@drawable/ic_baseline_vpn_key_24_white"
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:animateLayoutChanges="true"
@@ -54,8 +51,7 @@
         android:id="@+id/tilUserLogIn"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:errorEnabled="true"
+        android:layout_height="82dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
@@ -75,12 +71,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvQuotes"
         app:layout_constraintVertical_bias="0.04000002"
+        app:startIconDrawable="@drawable/ic_baseline_person_24_white"
         app:suffixTextColor="#F1E5E5">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:drawableStart="@drawable/ic_baseline_person_24_white"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="57dp"
             android:animateLayoutChanges="true"
             android:bottomLeftRadius="24dp"
             android:bottomRightRadius="24dp"
@@ -108,11 +104,11 @@
         app:layout_constraintTop_toBottomOf="@+id/tilPassword" />
 
     <TextView
-        android:id="@+id/tvSignUp"
+        android:id="@+id/tvDangKy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Đăng Ký"
-        android:textColor="#D17EBF"
+        android:textColor="#F493DF"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -129,6 +125,7 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSignIn" />
 
@@ -166,13 +163,13 @@
         app:layout_constraintVertical_bias="0.977" />
 
     <TextView
-        android:id="@+id/tvHello"
+        android:id="@+id/tvXinChao"
         android:layout_width="198dp"
         android:layout_height="61dp"
         android:animateLayoutChanges="true"
         android:text="Xin Chào!"
         android:textColor="@color/white"
-        android:textSize="44sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -182,7 +179,7 @@
         app:layout_constraintVertical_bias="0.132" />
 
     <TextView
-        android:id="@+id/tvDescription"
+        android:id="@+id/tv_DesText"
         android:layout_width="280dp"
         android:layout_height="46dp"
         android:animateLayoutChanges="true"
@@ -192,13 +189,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.116"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvHello"
+        app:layout_constraintTop_toBottomOf="@+id/tvXinChao"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tvQuotes"
         android:layout_width="289dp"
-        android:layout_height="60dp"
+        android:layout_height="41dp"
         android:animateLayoutChanges="true"
         android:text="Chào mừng đến với Music"
         android:textAlignment="center"
@@ -207,6 +204,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescription"
+        app:layout_constraintTop_toBottomOf="@+id/tv_DesText"
         app:layout_constraintVertical_bias="0.07999998" />
 </androidx.constraintlayout.widget.ConstraintLayout>
