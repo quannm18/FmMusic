@@ -1,4 +1,4 @@
-package com.example.fmmusic.View.Activity;
+package com.example.fmmusic.View.Activity.Persional;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,12 +6,11 @@ import android.os.Bundle;
 
 import com.example.fmmusic.R;
 
-public class ProfileActivity extends AppCompatActivity {
+public class PlayListScreenActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
-        //test
+        setContentView(R.layout.activity_playlist_screen);
     }
 }

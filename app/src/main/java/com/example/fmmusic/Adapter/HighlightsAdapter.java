@@ -1,6 +1,7 @@
 package com.example.fmmusic.Adapter;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,40 +10,38 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.fmmusic.Model.Songs.Top;
 import com.example.fmmusic.R;
 import com.example.fmmusic.View.Activity.MusicPlayingActivity;
-import com.example.fmmusic.View.Fragment.SongsDetailFragment;
-import com.example.fmmusic.View.Fragment.SongsPlayingFragment;
 
 import java.util.List;
 
-public class SuggestedAdapter extends RecyclerView.Adapter<SuggestedAdapter.TopHolder> {
+public class HighlightsAdapter extends RecyclerView.Adapter<HighlightsAdapter.HighlightHolder> {
     private List<Top> topList;
 
-    public SuggestedAdapter(List<Top> topList) {
+    public HighlightsAdapter(List<Top> topList) {
         this.topList = topList;
     }
 
     @NonNull
     @Override
-    public TopHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_suggested_song,parent,false);
-        return new TopHolder(view);
+    public HighlightHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_highlight,parent,false);
+        return new HighlightHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TopHolder holder, int position) {
+    public void onBindViewHolder(@NonNull HighlightHolder holder, int position) {
         final Top top = topList.get(position);
         Glide.with(holder.itemView.getContext())
                 .load(top.getThumbnail())
                 .centerCrop()
-                .into(holder.imgThumbTopRow);
-        holder.tvNameTopRow.setText(top.getName());
-        holder.tvSingerTopRow.setText(top.getSinger().getName());
+                .into(holder.imgHighlights);
+        holder.tvHighlights.setText(top.getName());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,9 +56,6 @@ public class SuggestedAdapter extends RecyclerView.Adapter<SuggestedAdapter.TopH
                 bundle.putString("duration",top.getDuration()+"");
 
                 intent.putExtra("song_suggested",bundle);
-                SongsPlayingFragment songsPlayingFragment = SongsPlayingFragment.newInstance();
-                songsPlayingFragment.setArguments(bundle);
-
                 v.getContext().startActivity(intent);
             }
         });
@@ -70,17 +66,13 @@ public class SuggestedAdapter extends RecyclerView.Adapter<SuggestedAdapter.TopH
         return topList.size();
     }
 
-    public class TopHolder extends RecyclerView.ViewHolder {
-        private ImageView imgThumbTopRow;
-        private TextView tvNameTopRow;
-        private TextView tvSingerTopRow;
-
-        public TopHolder(@NonNull View itemView) {
+    public class HighlightHolder extends RecyclerView.ViewHolder {
+        private ImageView imgHighlights;
+        private TextView tvHighlights;
+        public HighlightHolder(@NonNull View itemView) {
             super(itemView);
-
-            imgThumbTopRow = (ImageView) itemView.findViewById(R.id.imgThumbTopRow);
-            tvNameTopRow = (TextView) itemView.findViewById(R.id.tvNameTopRow);
-            tvSingerTopRow = (TextView) itemView.findViewById(R.id.tvSingerTopRow);
+            imgHighlights = (ImageView) itemView.findViewById(R.id.imgHighlights);
+            tvHighlights = (TextView) itemView.findViewById(R.id.tvHighlights);
 
         }
     }
