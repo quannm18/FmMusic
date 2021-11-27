@@ -90,7 +90,6 @@
                 app:cornerRadius="28dp"
                 android:text="Phát Ngẫu nhiên"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart="@+id/rcvPlaylist"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvtPlaylistSinger" />
 
