@@ -4,6 +4,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_all"
     tools:context=".View.Activity.MusicPlayingActivity">
 
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vpMusicPlaying"
+        android:layout_width="match_parent"
+        android:layout_height="560dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/playingBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="SpeakableTextPresentCheck"></androidx.viewpager.widget.ViewPager>
+
+    <SeekBar
+        android:id="@+id/playingBar"
+        android:layout_width="269dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vpMusicPlaying" />
+
+    <ImageView
+        android:id="@+id/imbPlay"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playingBar"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/play_button_musicplayer" />
+
+    <ImageView
+        android:id="@+id/imbPrevious"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="36dp"
+        android:rotation="180"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.249"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playingBar"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/next_button_musicplayer" />
+
+    <ImageView
+        android:id="@+id/imbNext"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playingBar"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/next_button_musicplayer" />
+
+    <TextView
+        android:id="@+id/tvMinutePerSong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="0:00"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.901"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vpMusicPlaying" />
+
+    <ImageView
+        android:id="@+id/imbFavorite"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imbPrevious"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playingBar"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/favorite_button" />
+
+    <ImageView
+        android:id="@+id/imbLoop"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toEndOf="@+id/imbNext"
+        app:layout_constraintTop_toBottomOf="@+id/playingBar"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/loop_button" />
+
+    <ImageView
+        android:id="@+id/imbPause"
+        android:layout_width="115dp"
+        android:layout_height="115dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playingBar"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/pause_button_musicplayer" />
 </androidx.constraintlayout.widget.ConstraintLayout>
