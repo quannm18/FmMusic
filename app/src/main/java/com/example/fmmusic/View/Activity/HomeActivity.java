@@ -9,6 +9,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -84,6 +86,17 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                 }
                 return true;
+            }
+        });
+        tilFind.getEditText().setEnabled(true);
+        tilFind.getEditText().setTextIsSelectable(true);
+        tilFind.getEditText().setFocusable(false);
+        tilFind.getEditText().setFocusableInTouchMode(false);
+        tilFind.getEditText().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this,FindingMusicActivity.class);
+                startActivity(intent);
             }
         });
     }

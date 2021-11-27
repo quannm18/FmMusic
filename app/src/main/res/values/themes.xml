@@ -32,4 +32,8 @@
         <item name="boxStrokeWidth">2dp</item>
     </style>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#fff</color>
+    <style name="Transparent">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 </resources>
