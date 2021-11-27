@@ -80,8 +80,9 @@ public class LoginActivity extends AppCompatActivity {
                     tilPassword.setErrorEnabled(false);
                 }
                 if (username.equalsIgnoreCase("admin") && pass.equalsIgnoreCase("admin")) {
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
                     startActivity(intent);
+                    finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
                 }

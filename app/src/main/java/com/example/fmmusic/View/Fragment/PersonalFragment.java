@@ -120,7 +120,8 @@ public class PersonalFragment extends Fragment {
                                 String artists_names = obOfItems.getString("artists_names");
                                 String performer = obOfItems.getString("performer");
                                 String link = obOfItems.getString("link");
-                                String thumbnail = obOfItems.getString("thumbnail");
+                                String thumbnail_0 = obOfItems.getString("thumbnail");
+                                String thumbnail = thumbnail_0.substring(0,33)+((thumbnail_0.substring(47,thumbnail_0.indexOf("?"))));
 
                                 int duration = Integer.parseInt(obOfItems.getString("duration"));
                                 singer = new Singer();

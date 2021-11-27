@@ -98,6 +98,7 @@
         android:textColor="@color/white"
         app:backgroundTint="@null"
         app:cornerRadius="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvTextNull"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilPassword" />
@@ -113,7 +114,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTextNull"
-        app:layout_constraintVertical_bias="0.13999999" />
+        app:layout_constraintVertical_bias="0.07999998" />
 
     <TextView
         android:id="@+id/tvTextNull"

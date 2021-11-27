@@ -1,6 +1,7 @@
 package com.example.fmmusic.Adapter;
 
-import android.graphics.Color;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.fmmusic.Model.Songs.Top;
 import com.example.fmmusic.R;
+import com.example.fmmusic.View.Activity.MusicPlayingActivity;
+import com.example.fmmusic.View.Fragment.SongsDetailFragment;
+import com.example.fmmusic.View.Fragment.SongsPlayingFragment;
 
 import java.util.List;
 
@@ -40,6 +44,25 @@ public class SuggestedAdapter extends RecyclerView.Adapter<SuggestedAdapter.TopH
         holder.tvNameTopRow.setText(top.getName());
         holder.tvSingerTopRow.setText(top.getSinger().getName());
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), MusicPlayingActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("id",top.getId());
+                bundle.putString("name",top.getName());
+                bundle.putString("artist_names",top.getSinger().getName());
+                bundle.putString("performer",top.getPerformer());
+                bundle.putString("thumbnail",top.getThumbnail());
+                bundle.putString("duration",top.getDuration()+"");
+
+                intent.putExtra("song_suggested",bundle);
+                SongsPlayingFragment songsPlayingFragment = SongsPlayingFragment.newInstance();
+                songsPlayingFragment.setArguments(bundle);
+
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

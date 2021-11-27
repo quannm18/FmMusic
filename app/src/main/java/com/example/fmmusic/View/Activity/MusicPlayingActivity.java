@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -29,8 +31,12 @@ public class MusicPlayingActivity extends AppCompatActivity {
     private ImageView imbFavorite;
     private ImageView imbLoop;
     private ImageView imbPause;
-
-
+    private Bundle bundle;
+    public String id;
+    public String nameSong;
+    public String artist_name;
+    public String thumbnail;
+    public String performer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,9 +51,17 @@ public class MusicPlayingActivity extends AppCompatActivity {
         imbPause = (ImageView) findViewById(R.id.imbPause);
         viewPager = findViewById(R.id.vpMusicPlaying);
 
+        Intent intent = getIntent();
+        bundle = intent.getBundleExtra("song_suggested");
+        Log.e("bundle",bundle.getString("id"));
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new SongsPlayingFragment());
         fragmentList.add(new SongsDetailFragment());
+
+        SongsPlayingFragment fragmentPlaying = new SongsPlayingFragment();
+        fragmentPlaying.setArguments(bundle);
+        SongsDetailFragment fragmentDetail = new SongsDetailFragment();
+        fragmentDetail.setArguments(bundle);
 
         viewPagerAdapterMusicPlaying = new ViewPagerAdapterMusicPlaying(getSupportFragmentManager(), fragmentList);
         viewPager.setAdapter(viewPagerAdapterMusicPlaying);
@@ -67,5 +81,10 @@ public class MusicPlayingActivity extends AppCompatActivity {
                 imbPlay.setVisibility(View.VISIBLE);
             }
         });
+        id = bundle.getString("id");
+        nameSong = bundle.getString("name");
+        artist_name = bundle.getString("artist_names");
+        thumbnail = bundle.getString("thumbnail");
+        performer = bundle.getString("performer");
     }
 }
