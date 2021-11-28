@@ -56,7 +56,13 @@ public class SongsPlayingFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        tvTitlePlaying.setText(((MusicPlayingActivity)getActivity()).nameSong+" - "+((MusicPlayingActivity)getActivity()).artist_name);
+        String title = ((MusicPlayingActivity)getActivity()).nameSong+" - "+((MusicPlayingActivity)getActivity()).artist_name;
+        if (title.length()>35){
+            tvTitlePlaying.setText(((MusicPlayingActivity)getActivity()).nameSong.substring(0,20)+"..."+" - "+((MusicPlayingActivity)getActivity()).artist_name);
+        }
+        else {
+            tvTitlePlaying.setText(title);
+        }
         tvSubTitlePlaylistOfSiger.setText("Danh sách phát - "+((MusicPlayingActivity)getActivity()).artist_name);
         Glide.with(getContext())
                 .load(((MusicPlayingActivity)getActivity()).thumbnail)

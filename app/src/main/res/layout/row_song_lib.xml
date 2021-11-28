@@ -62,12 +62,12 @@
                 app:layout_constraintStart_toEndOf="@+id/cardView5"
                 app:layout_constraintTop_toBottomOf="@+id/tvNameSongLibRow" />
 
-            <TextView
-                android:id="@+id/tvStatusTopRow"
+            <ImageView
+                android:id="@+id/imgMoreSongLibsRow"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginEnd="8dp"
-                android:text="l"
+                android:src="@drawable/ic_baseline_more_vert_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

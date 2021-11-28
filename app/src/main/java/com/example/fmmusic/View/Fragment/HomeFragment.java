@@ -22,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.fmmusic.Adapter.HighlightsAdapter;
+import com.example.fmmusic.Adapter.NewSongHomeAdapter;
 import com.example.fmmusic.Adapter.SingerHomeAdapter;
 import com.example.fmmusic.Adapter.SliderAdapter;
 import com.example.fmmusic.Model.SingerModel.Singer;
@@ -47,13 +48,13 @@ public class HomeFragment extends Fragment {
     private ScrollView scrollViewHome;
 
     private String[] sliderList;
-    private List<Top> topList;
-    private List<Top> songNewList;
+    public static List<Top> topList;
+    public static List<Top> songNewList;
     private List<Singer> singerList;
 
     private SliderAdapter sliderAdapter;
     private HighlightsAdapter highlightsAdapter;
-    private HighlightsAdapter songNewsAdapter;
+    private NewSongHomeAdapter songNewsAdapter;
     private SingerHomeAdapter singerHomeAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,7 +82,7 @@ public class HomeFragment extends Fragment {
         imgSliderThumbail.setAutoCycle(true);
 
         highlightsAdapter = new HighlightsAdapter(topList);
-        songNewsAdapter = new HighlightsAdapter(songNewList);
+        songNewsAdapter = new NewSongHomeAdapter(songNewList);
         singerHomeAdapter = new SingerHomeAdapter(singerList);
 
         RecyclerView.LayoutManager layoutManagerHighlights = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
@@ -108,7 +109,7 @@ public class HomeFragment extends Fragment {
                             Singer singer;
                             JSONObject data = response.getJSONObject("data");
                             JSONArray items = data.getJSONArray("song");
-                            for (int i = 0; i < 20; i++) {
+                            for (int i = 0; i < 30; i++) {
                                 JSONObject obOfItems = (JSONObject) items.get(i);
                                 String id = obOfItems.getString("id");
                                 String name = obOfItems.getString("name");
@@ -149,16 +150,15 @@ public class HomeFragment extends Fragment {
                                 }
 
                                 Top top = new Top(id,name,code,singer,artists_names,performer,link,thumbnail,duration,total,position,rankStatus);
-                                if (top.getRankStatus().equals("up")){
+                                if (i>20){
                                     songNewList.add(top);
                                     songNewsAdapter.notifyDataSetChanged();
                                 }
-                                if (top.getRankStatus().equals("stand")){
-
+                                if (i<10){
                                     topList.add(top);
-                                    sliderAdapter.notifyDataSetChanged();
+                                    highlightsAdapter.notifyDataSetChanged();
                                 }
-                                highlightsAdapter.notifyDataSetChanged();
+                                sliderAdapter.notifyDataSetChanged();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -182,6 +182,6 @@ public class HomeFragment extends Fragment {
         singerList.add(new Singer("https://photo-resize-zmp3.zadn.vn/avatars/1/3/d/9/13d91c5df0cc3c5ff6536b611cd00b83.jpg","Quân A.P"));
         singerList.add(new Singer("https://photo-resize-zmp3.zadn.vn/avatars/8/3/9/9/8399a5082648b18af768c1d1db87804a.jpg","Amee"));
         singerList.add(new Singer("https://photo-resize-zmp3.zadn.vn/avatars/2/1/3/0/2130334d4358f2727fbd721274791421.jpg","Mr Siro"));
-        singerList.add(new Singer("https://photo-resize-zmp3.zadn.vn/avatars/c/0/3/f/c03f60341b00fdc0492dc0469020fcf9.jpg","Hiền Hồ"));
+        singerList.add(new Singer("https://photo-resize-zmp3.zadn.vn/avatars/7/8/c/6/78c685396dedfb3c6aef19588ea584c4.jpg","MIN"));
     }
 }

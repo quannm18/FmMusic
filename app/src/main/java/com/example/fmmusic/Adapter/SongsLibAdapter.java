@@ -54,6 +54,8 @@ public class SongsLibAdapter extends RecyclerView.Adapter<SongsLibAdapter.SongsL
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), MusicPlayingActivity.class);
                 Bundle bundle = new Bundle();
+                bundle.putInt("position",holder.getAdapterPosition());
+                bundle.putString("from","SongLibsAdapter");
                 bundle.putString("id",audioModel.getId());
                 bundle.putString("name",audioModel.getName());
                 bundle.putString("artist_names",audioModel.getArtist());

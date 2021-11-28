@@ -43,7 +43,6 @@ public class SignUpActivity extends AppCompatActivity {
             public void onTick(long l) {
 
             }
-
             @Override
             public void onFinish() {
                 TransitionManager.beginDelayedTransition(viewGroup);

@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.example.fmmusic.Model.Songs.Top;
 import com.example.fmmusic.R;
 import com.example.fmmusic.View.Activity.MusicPlayingActivity;
+import com.example.fmmusic.View.Activity.Persional.PlaylistActivity;
 
 import java.util.List;
 
@@ -36,6 +37,7 @@ public class TopAdapter extends RecyclerView.Adapter<TopAdapter.TopHolder> {
     @Override
     public void onBindViewHolder(@NonNull TopHolder holder, int position) {
         final Top top = topList.get(position);
+
         Glide.with(holder.itemView.getContext())
                 .load(top.getThumbnail())
                 .centerCrop()
@@ -43,6 +45,7 @@ public class TopAdapter extends RecyclerView.Adapter<TopAdapter.TopHolder> {
         holder.tvNameTopRow.setText(top.getName());
         holder.tvPositionTopRow.setText(top.getPosition()+"");
         holder.tvSingerTopRow.setText(top.getSinger().getName());
+
         if (top.getRankStatus().equalsIgnoreCase("stand")){
             holder.tvStatusTopRow.setBackgroundColor(Color.GRAY);
             holder.tvStatusTopRow.setTextColor(Color.GRAY);
@@ -60,14 +63,16 @@ public class TopAdapter extends RecyclerView.Adapter<TopAdapter.TopHolder> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), MusicPlayingActivity.class);
+
                 Bundle bundle = new Bundle();
+                bundle.putString("from","TopAdapter");
+                bundle.putInt("position",holder.getAdapterPosition());
                 bundle.putString("id",top.getId());
                 bundle.putString("name",top.getName());
                 bundle.putString("artist_names",top.getSinger().getName());
                 bundle.putString("performer",top.getPerformer());
                 bundle.putString("thumbnail",top.getThumbnail());
                 bundle.putString("duration",top.getDuration()+"");
-
                 intent.putExtra("song_suggested",bundle);
                 v.getContext().startActivity(intent);
             }

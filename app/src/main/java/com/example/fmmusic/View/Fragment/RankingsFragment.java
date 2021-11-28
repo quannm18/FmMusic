@@ -40,7 +40,7 @@ public class RankingsFragment extends Fragment {
     private TopAdapter topAdapter;
     private SliderAdapter sliderAdapter;
     private String[] sliderList;
-    private List<Top> topList;
+    public static List<Top> topList;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
