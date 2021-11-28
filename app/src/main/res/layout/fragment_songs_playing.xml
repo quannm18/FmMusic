@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:id="@+id/song_playing">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -16,6 +17,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView9">
 
         <ImageView
+            android:id="@+id/imgThumbnailPlaying"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -37,15 +39,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:background="#59BB86FC"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/tvTitlePlaying"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="106dp"
                 android:layout_marginTop="9dp"
-                android:layout_marginEnd="106dp"
                 android:layout_marginBottom="8dp"
                 android:shadowColor="#000000"
                 android:shadowRadius="1"
@@ -80,10 +81,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSubTitlePlaylistOfSiger" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/tvSubTitlePlaylistOfSiger"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"

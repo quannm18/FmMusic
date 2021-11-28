@@ -23,6 +23,7 @@
             android:id="@+id/imgSingerLib"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleType="centerCrop"
             app:srcCompat="@drawable/img_singer_bich_phuong" />
     </androidx.cardview.widget.CardView>
 

@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                                     tvQuotes.setVisibility(View.INVISIBLE);
                                 } else if (count == 6) {
                                     tvQuotes.setVisibility(View.VISIBLE);
-                                    tvQuotes.setText("Cùng khám phá bảng xếp hạng các bản nhạc \n được yêu thích");
+                                    tvQuotes.setText("Cùng khám phá bảng xếp hạng các bản nhạc được yêu thích");
                                 } else if (count == 11) {
                                     tvQuotes.setVisibility(View.INVISIBLE);
                                 } else if (count == 12) {
