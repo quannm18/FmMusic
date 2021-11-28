@@ -61,13 +61,14 @@ public class TopAdapter extends RecyclerView.Adapter<TopAdapter.TopHolder> {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), MusicPlayingActivity.class);
                 Bundle bundle = new Bundle();
+                bundle.putString("from","TopAdapter");
+                bundle.putInt("position",holder.getAdapterPosition());
                 bundle.putString("id",top.getId());
                 bundle.putString("name",top.getName());
                 bundle.putString("artist_names",top.getSinger().getName());
                 bundle.putString("performer",top.getPerformer());
                 bundle.putString("thumbnail",top.getThumbnail());
                 bundle.putString("duration",top.getDuration()+"");
-
                 intent.putExtra("song_suggested",bundle);
                 v.getContext().startActivity(intent);
             }

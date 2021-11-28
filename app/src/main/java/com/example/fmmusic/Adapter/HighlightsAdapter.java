@@ -48,6 +48,8 @@ public class HighlightsAdapter extends RecyclerView.Adapter<HighlightsAdapter.Hi
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), MusicPlayingActivity.class);
                 Bundle bundle = new Bundle();
+                bundle.putInt("position",holder.getAdapterPosition());
+                bundle.putString("from","HighlightAdapter");
                 bundle.putString("id",top.getId());
                 bundle.putString("name",top.getName());
                 bundle.putString("artist_names",top.getSinger().getName());

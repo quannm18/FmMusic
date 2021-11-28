@@ -48,7 +48,7 @@ public class PersonalFragment extends Fragment {
     private CardView cvFavotitesLib;
     private CardView cvSingerLib;
     private SuggestedAdapter suggestedAdapter;
-    private List<Top> suggestedList;
+    public static List<Top> suggestedList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
