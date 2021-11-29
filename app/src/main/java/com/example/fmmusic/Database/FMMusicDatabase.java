@@ -14,7 +14,7 @@ public class FMMusicDatabase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // table user
-        String TABLE_USER = "CREATE TABLE USER(IDUser INTERGE  PRIMARY KEY AUTOINCREMENT, UserName TEXT, FullName TEXT, Password TEXT)";
+        String TABLE_USER = "CREATE TABLE USER( UserName TEXT PRIMARY KEY, FullName TEXT NOT NULL, Password TEXT NOT NULL,rePass text not null)";
         db.execSQL(TABLE_USER);
         db.execSQL("INSERT INTO USER VALUES(null,\"doquochuy\",\"Do Quoc Huy\",\"123456\")");
 

@@ -25,10 +25,11 @@ public class UserDAO {
         cursor.moveToFirst();
         while (cursor.isAfterLast() == false){
             Users users = new Users();
-            users.setIdUser(Integer.parseInt(cursor.getString(cursor.getColumnIndex("IDUser"))));
+          //  users.setIdUser(Integer.parseInt(cursor.getString(cursor.getColumnIndex("IDUser"))));
             users.setUserName(String.valueOf(cursor.getString(cursor.getColumnIndex("UserName"))));
             users.setFullName(String.valueOf(cursor.getString(cursor.getColumnIndex("FullName"))));
             users.setPassWord(String.valueOf(cursor.getString(cursor.getColumnIndex("Password"))));
+            users.setPassWord(String.valueOf(cursor.getString(cursor.getColumnIndex("rePass"))));
             usersList.add(users);
             cursor.moveToNext();
         }
@@ -39,21 +40,23 @@ public class UserDAO {
     public long insertUser(Users users){
         SQLiteDatabase sqLiteDatabase = fmMusicDatabase.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("IDUser",users.getIdUser());
+       // contentValues.put("IDUser",users.getIdUser());
         contentValues.put("UserName",users.getUserName());
         contentValues.put("FullName",users.getFullName());
         contentValues.put("Password",users.getPassWord());
+        contentValues.put("rePass",users.getRePass());
         long row = sqLiteDatabase.insert("USER",null,contentValues);
         return row;
     }
     public long updatetUser(Users users){
         SQLiteDatabase sqLiteDatabase = fmMusicDatabase.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("IDUser",users.getIdUser());
+       // contentValues.put("IDUser",users.getIdUser());
         contentValues.put("UserName",users.getUserName());
         contentValues.put("FullName",users.getFullName());
         contentValues.put("Password",users.getPassWord());
-        long row = sqLiteDatabase.update("USER",contentValues,"IDUser=?",new String[]{String.valueOf(users.getIdUser())});
+        contentValues.put("rePass",users.getRePass());
+        long row = sqLiteDatabase.update("USER",contentValues,"UserName=?",new String[]{String.valueOf(users.getIdUser())});
         return row;
     }
     private List<Users> getData(String sql, String...selectionArgs){
@@ -62,7 +65,7 @@ public class UserDAO {
         Cursor cursor = database.rawQuery(sql,selectionArgs);
         while (cursor.moveToNext()){
             Users users = new Users();
-            users.setIdUser(Integer.parseInt(cursor.getString(cursor.getColumnIndex("IDUser"))));
+           // users.setIdUser(Integer.parseInt(cursor.getString(cursor.getColumnIndex("IDUser"))));
             users.setUserName(String.valueOf(cursor.getString(cursor.getColumnIndex("UserName"))));
             users.setFullName(String.valueOf(cursor.getString(cursor.getColumnIndex("FullName"))));
             users.setPassWord(String.valueOf(cursor.getString(cursor.getColumnIndex("Password"))));
@@ -73,7 +76,7 @@ public class UserDAO {
     }
 
     public  int checkLogin(String taiKhoan,String matKhau){
-        String sql = "SELECT * FROM ThuThu WHERE maTT=? AND matKhau=?";
+        String sql = "SELECT * FROM USER WHERE UserName=? AND Password=?";
         List<Users> thuThuList = getData(sql,taiKhoan,matKhau);
         if (thuThuList.size()==0){
             return -1;
