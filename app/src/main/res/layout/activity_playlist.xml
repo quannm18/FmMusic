@@ -10,12 +10,13 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/cvBottomPlayBars"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -64,6 +65,7 @@
                 android:text="Playlist của bạn"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tilFindPlaylist" />
@@ -71,14 +73,38 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcvPlaylist"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="150dp"
                 android:layout_marginTop="32dp"
-                android:background="@drawable/corner_recycleview_playlist"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/textView14"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvtPlaylist" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Playlist của FmMusic"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rcvPlaylist" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvFmMusicPlaylist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="32dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView14" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
