@@ -15,34 +15,31 @@ import com.bumptech.glide.Glide;
 import com.example.fmmusic.Model.Songs.Top;
 import com.example.fmmusic.R;
 import com.example.fmmusic.View.Activity.MusicPlayingActivity;
-import com.example.fmmusic.View.Fragment.SongsDetailFragment;
-import com.example.fmmusic.View.Fragment.SongsPlayingFragment;
 
 import java.util.List;
 
-public class SuggestedAdapter extends RecyclerView.Adapter<SuggestedAdapter.TopHolder> {
+public class NewSongHomeAdapter extends RecyclerView.Adapter<NewSongHomeAdapter.NewSongHomeHolder> {
     private List<Top> topList;
 
-    public SuggestedAdapter(List<Top> topList) {
+    public NewSongHomeAdapter(List<Top> topList) {
         this.topList = topList;
     }
 
     @NonNull
     @Override
-    public TopHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_suggested_song,parent,false);
-        return new TopHolder(view);
+    public NewSongHomeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_highlight,parent,false);
+        return new NewSongHomeHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TopHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NewSongHomeHolder holder, int position) {
         final Top top = topList.get(position);
         Glide.with(holder.itemView.getContext())
                 .load(top.getThumbnail())
                 .centerCrop()
-                .into(holder.imgThumbTopRow);
-        holder.tvNameTopRow.setText(top.getName());
-        holder.tvSingerTopRow.setText(top.getSinger().getName());
+                .into(holder.imgHighlights);
+        holder.tvHighlights.setText(top.getName());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +47,7 @@ public class SuggestedAdapter extends RecyclerView.Adapter<SuggestedAdapter.TopH
                 Intent intent = new Intent(v.getContext(), MusicPlayingActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("position",holder.getAdapterPosition());
-                bundle.putString("from","SuggestAdapter");
+                bundle.putString("from","HighlightAdapter");
                 bundle.putString("id",top.getId());
                 bundle.putString("name",top.getName());
                 bundle.putString("artist_names",top.getSinger().getName());
@@ -59,9 +56,6 @@ public class SuggestedAdapter extends RecyclerView.Adapter<SuggestedAdapter.TopH
                 bundle.putString("duration",top.getDuration()+"");
 
                 intent.putExtra("song_suggested",bundle);
-                SongsPlayingFragment songsPlayingFragment = SongsPlayingFragment.newInstance();
-                songsPlayingFragment.setArguments(bundle);
-
                 v.getContext().startActivity(intent);
             }
         });
@@ -72,17 +66,13 @@ public class SuggestedAdapter extends RecyclerView.Adapter<SuggestedAdapter.TopH
         return topList.size();
     }
 
-    public class TopHolder extends RecyclerView.ViewHolder {
-        private ImageView imgThumbTopRow;
-        private TextView tvNameTopRow;
-        private TextView tvSingerTopRow;
-
-        public TopHolder(@NonNull View itemView) {
+    public class NewSongHomeHolder extends RecyclerView.ViewHolder {
+        private ImageView imgHighlights;
+        private TextView tvHighlights;
+        public NewSongHomeHolder(@NonNull View itemView) {
             super(itemView);
-
-            imgThumbTopRow = (ImageView) itemView.findViewById(R.id.imgThumbTopRow);
-            tvNameTopRow = (TextView) itemView.findViewById(R.id.tvNameTopRow);
-            tvSingerTopRow = (TextView) itemView.findViewById(R.id.tvSingerTopRow);
+            imgHighlights = (ImageView) itemView.findViewById(R.id.imgHighlights);
+            tvHighlights = (TextView) itemView.findViewById(R.id.tvHighlights);
 
         }
     }

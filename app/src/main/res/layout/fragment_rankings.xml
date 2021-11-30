@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.Fragment.RankingsFragment"
-    android:background="@drawable/background_all">
+    tools:context=".View.Fragment.RankingsFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -90,6 +89,4 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

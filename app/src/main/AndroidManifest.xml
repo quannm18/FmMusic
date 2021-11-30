@@ -1,58 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.fmmusic">
-    <uses-permission android:name="android.permission.INTERNET"/>
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="28"/>
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FmMusic">
+        android:theme="@style/Theme.FmMusic"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".View.Activity.DownLoadActivity"
+            android:exported="true" />
+        <activity
+            android:name=".View.Activity.FindingMusicActivity"
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBar" />
         <activity
             android:name=".View.Activity.Persional.SingersLibActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBar" />
         <activity
             android:name=".View.Activity.Persional.PlaylistActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBar" />
         <activity
             android:name=".View.Activity.Persional.FavoritesLibActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBar" />
         <activity
             android:name=".View.Activity.Persional.SongsLibActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBar" />
         <activity
             android:name=".View.Activity.HomeActivity"
             android:exported="true"
             android:theme="@style/Theme.FmMusic.NoActionBar" />
         <activity
             android:name=".View.Activity.SongDetailActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBar" />
         <activity
             android:name=".View.Activity.PassChangingActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBar" />
         <activity
             android:name=".View.Activity.SignUpActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBar" />
         <activity
             android:name=".View.Activity.MusicPlayingActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBar" />
         <activity
             android:name=".View.Activity.ProfileActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBar" />
         <activity
             android:name=".View.Activity.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar" />
         <activity
             android:name=".View.Activity.SplashActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

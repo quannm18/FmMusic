@@ -12,19 +12,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.fmmusic.Model.Songs.Song;
 import com.example.fmmusic.Model.Songs.Top;
 import com.example.fmmusic.R;
 import com.example.fmmusic.View.Activity.MusicPlayingActivity;
-import com.example.fmmusic.View.Fragment.SongsDetailFragment;
 import com.example.fmmusic.View.Fragment.SongsPlayingFragment;
 
 import java.util.List;
 
-public class SuggestedAdapter extends RecyclerView.Adapter<SuggestedAdapter.TopHolder> {
-    private List<Top> topList;
+public class FindingAdapter extends RecyclerView.Adapter<FindingAdapter.TopHolder> {
+    private List<Song> songList;
 
-    public SuggestedAdapter(List<Top> topList) {
-        this.topList = topList;
+    public FindingAdapter(List<Song> songList) {
+        this.songList = songList;
     }
 
     @NonNull
@@ -36,13 +36,14 @@ public class SuggestedAdapter extends RecyclerView.Adapter<SuggestedAdapter.TopH
 
     @Override
     public void onBindViewHolder(@NonNull TopHolder holder, int position) {
-        final Top top = topList.get(position);
+        final Song song = songList.get(position);
         Glide.with(holder.itemView.getContext())
-                .load(top.getThumbnail())
+                .load(song.getThumbnail())
                 .centerCrop()
                 .into(holder.imgThumbTopRow);
-        holder.tvNameTopRow.setText(top.getName());
-        holder.tvSingerTopRow.setText(top.getSinger().getName());
+        holder.tvNameTopRow.setText(song.getName());
+        holder.tvSingerTopRow.setText(song.getSinger().getName());
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,13 +51,13 @@ public class SuggestedAdapter extends RecyclerView.Adapter<SuggestedAdapter.TopH
                 Intent intent = new Intent(v.getContext(), MusicPlayingActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("position",holder.getAdapterPosition());
-                bundle.putString("from","SuggestAdapter");
-                bundle.putString("id",top.getId());
-                bundle.putString("name",top.getName());
-                bundle.putString("artist_names",top.getSinger().getName());
-                bundle.putString("performer",top.getPerformer());
-                bundle.putString("thumbnail",top.getThumbnail());
-                bundle.putString("duration",top.getDuration()+"");
+                bundle.putString("from","FindingAdapter");
+                bundle.putString("id",song.getId());
+                bundle.putString("name",song.getName());
+                bundle.putString("artist_names",song.getSinger().getName());
+                bundle.putString("performer",song.getSinger().getName());
+                bundle.putString("thumbnail",song.getThumbnail());
+                bundle.putString("duration",song.getDuration()+"");
 
                 intent.putExtra("song_suggested",bundle);
                 SongsPlayingFragment songsPlayingFragment = SongsPlayingFragment.newInstance();
@@ -69,7 +70,7 @@ public class SuggestedAdapter extends RecyclerView.Adapter<SuggestedAdapter.TopH
 
     @Override
     public int getItemCount() {
-        return topList.size();
+        return songList.size();
     }
 
     public class TopHolder extends RecyclerView.ViewHolder {

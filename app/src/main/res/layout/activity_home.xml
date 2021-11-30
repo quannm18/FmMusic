@@ -32,12 +32,12 @@
         app:suffixTextColor="#CF40E8">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/corner_searchbar"
             android:hint="Tìm kiếm bài hát, bảng..."
-            android:textColor="@color/black"
-            app:textInputLayoutFocusedRectEnabled="false" />
+            android:textColor="@color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

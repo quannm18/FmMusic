@@ -2,8 +2,12 @@ package com.example.fmmusic.Adapter;
 
 import android.content.ContentUris;
 import android.content.Context;
+
+import android.content.Intent;
+
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -21,6 +25,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.fmmusic.Model.Songs.AudioModel;
 import com.example.fmmusic.R;
+import com.example.fmmusic.View.Activity.MusicPlayingActivity;
+
 
 import java.io.File;
 import java.util.List;
@@ -53,6 +59,7 @@ public class SongsLibAdapter extends RecyclerView.Adapter<SongsLibAdapter.SongsL
                         .getImgPath()))
                 .centerCrop()
                 .into(holder.imgRowSongLib);
+
         holder.imgPopupmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,6 +98,29 @@ public class SongsLibAdapter extends RecyclerView.Adapter<SongsLibAdapter.SongsL
             }
         });
 
+
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(v.getContext(), MusicPlayingActivity.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putInt("position",holder.getAdapterPosition());
+//                bundle.putString("from","SongLibsAdapter");
+//                bundle.putString("id",audioModel.getId());
+//                bundle.putString("name",audioModel.getName());
+//                bundle.putString("artist_names",audioModel.getArtist());
+//                bundle.putString("performer",audioModel.getArtist());
+//                bundle.putString("thumbnail",audioModel.getImgPath());
+//                bundle.putString("duration",audioModel.getDuration()+"");
+//
+//                intent.putExtra("song_suggested",bundle);
+//                SongsPlayingFragment songsPlayingFragment = SongsPlayingFragment.newInstance();
+//                songsPlayingFragment.setArguments(bundle);
+//
+//                v.getContext().startActivity(intent);
+//            }
+//        });
+//>>>>>>> origin/quan
     }
 
     @Override
