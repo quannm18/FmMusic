@@ -85,8 +85,8 @@ public class SongsLibAdapter extends RecyclerView.Adapter<SongsLibAdapter.SongsL
         public SongsLibViewHolder(@NonNull View itemView) {
             super(itemView);
             imgRowSongLib = (ImageView) itemView.findViewById(R.id.imgThumbSongLibRow);
-            tvRowSongLib = (TextView) itemView.findViewById(R.id.tvNameSongLibRow);
-            tvRowArtistSongLib = (TextView) itemView.findViewById(R.id.tvSingerSongLibRow);
+            tvRowSongLib = (TextView) itemView.findViewById(R.id.tvNameSongPLRow);
+            tvRowArtistSongLib = (TextView) itemView.findViewById(R.id.tvSingerSongPLRow);
 
 
         }
