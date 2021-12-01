@@ -26,7 +26,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.airbnb.lottie.L;
+import com.airbnb.lottie.Lottie;
 import com.example.fmmusic.Adapter.SongsLibAdapter;
 import com.example.fmmusic.MainActivity;
 import com.example.fmmusic.Model.Songs.AudioModel;

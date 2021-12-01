@@ -14,6 +14,7 @@ import android.transition.TransitionManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView tvXinChao;
     private TextView tvDesText;
     private TextView tvQuotes;
+    private CheckBox checkBox;
     private int count = 0;
     private Dialog dialog;
     private ViewGroup viewGroup;
@@ -56,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         tvXinChao = (TextView) findViewById(R.id.tvXinChao);
         tvDesText = (TextView) findViewById(R.id.tv_DesText);
         tvQuotes = (TextView) findViewById(R.id.tvQuotes);
+        checkBox = findViewById(R.id.checkBox);
 
         tvQuotes.setVisibility(View.INVISIBLE);
         tilUserLogIn.setVisibility(View.GONE);
@@ -75,27 +78,6 @@ public class LoginActivity extends AppCompatActivity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                String username = tilUserLogIn.getEditText().getText().toString();
-//                String pass = tilPassword.getEditText().getText().toString();
-//                //chạy thử rồi check lại hàm checkLogin cho đúng;
-//                checkLogin();
-//                if (username.trim().isEmpty()) {
-//                    tilUserLogIn.setError("Vui lòng nhập Tài khoản người dùng");
-//                } else {
-//                    tilUserLogIn.setErrorEnabled(false);
-//                }
-//                if (pass.trim().isEmpty()) {
-//                    tilPassword.setError("Vui lòng nhập mật khẩu");
-//                } else {
-//                    tilPassword.setErrorEnabled(false);
-//                }
-//                if (username.equalsIgnoreCase("admin") && pass.equalsIgnoreCase("admin")) {
-//                    Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
-//                    startActivity(intent);
-//                    finish();
-//                } else {
-//                    Toast.makeText(getApplicationContext(), "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
-//                }
                 checkLogin();
             }
         });
@@ -219,6 +201,7 @@ public class LoginActivity extends AppCompatActivity {
         userdao = new UserDAO(LoginActivity.this);
         String username = tilUserLogIn.getEditText().getText().toString();
         String pass = tilPassword.getEditText().getText().toString();
+        boolean checked = checkBox.isChecked();
         if (username.trim().isEmpty()) {
             tilUserLogIn.setError("Vui lòng nhập Tài khoản người dùng");
             return;
@@ -235,6 +218,7 @@ public class LoginActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sdf.edit();
                 editor.putString("PASSWORD", pass);
                 editor.commit();
+                luuThongTinDangNhap(username,pass,checked);
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 intent.putExtra("user", username);
                 startActivity(intent);
@@ -243,5 +227,17 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Mật khẩu và tài khoản của bạn Sai vui lòng nhập ", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+    public void luuThongTinDangNhap(String userName, String passWord, boolean remember){
+        SharedPreferences sharedPreferences = getSharedPreferences("USER_FILE",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        if (remember == false){
+            editor.clear();
+        }else {
+            editor.putString("USERNAME",userName);
+            editor.putString("PASSWORD",passWord);
+            editor.putBoolean("USERNAME",remember);
+        }
+        editor.commit();
     }
 }
