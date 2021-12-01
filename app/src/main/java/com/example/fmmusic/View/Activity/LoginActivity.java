@@ -5,6 +5,7 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fmmusic.DAO.UserDAO;
 import com.example.fmmusic.MainActivity;
 import com.example.fmmusic.R;
 import com.google.android.material.button.MaterialButton;
@@ -36,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
     private int count = 0;
     private Dialog dialog;
     private ViewGroup viewGroup;
+    private UserDAO userdao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +48,10 @@ public class LoginActivity extends AppCompatActivity {
         viewGroup = findViewById(R.id.containerLogIn);
         tilPassword = (TextInputLayout) findViewById(R.id.tilPassword);
         tilUserLogIn = (TextInputLayout) findViewById(R.id.tilUserLogIn);
-        btnSignIn =  findViewById(R.id.btnSignIn);
+        btnSignIn = findViewById(R.id.btnSignIn);
         tvDangKy = (TextView) findViewById(R.id.tvDangKy);
         tvTextNull = (TextView) findViewById(R.id.tvTextNull);
-        btnSkipLogIn =  findViewById(R.id.btnSkipLogIn);
+        btnSkipLogIn = findViewById(R.id.btnSkipLogIn);
         tvLostPass = (TextView) findViewById(R.id.tvLostPass);
         tvXinChao = (TextView) findViewById(R.id.tvXinChao);
         tvDesText = (TextView) findViewById(R.id.tv_DesText);
@@ -64,36 +68,50 @@ public class LoginActivity extends AppCompatActivity {
         tvDangKy.setVisibility(View.GONE);
         tvTextNull.setVisibility(View.GONE);
 
+        SharedPreferences sdf = getSharedPreferences("USER_FILE", MODE_PRIVATE);
+        tilUserLogIn.getEditText().setText(sdf.getString("USERNAME", ""));
+        tilPassword.getEditText().setText(sdf.getString("PASSWORD", ""));
+
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = tilUserLogIn.getEditText().getText().toString();
-                String pass = tilPassword.getEditText().getText().toString();
-                if (username.trim().isEmpty()) {
-                    tilUserLogIn.setError("Vui lòng nhập Tài khoản người dùng");
-                } else {
-                    tilUserLogIn.setErrorEnabled(false);
-                }
-                if (pass.trim().isEmpty()) {
-                    tilPassword.setError("Vui lòng nhập mật khẩu");
-                } else {
-                    tilPassword.setErrorEnabled(false);
-                }
-                if (username.equalsIgnoreCase("admin") && pass.equalsIgnoreCase("admin")) {
-                    Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
-                }
+//                String username = tilUserLogIn.getEditText().getText().toString();
+//                String pass = tilPassword.getEditText().getText().toString();
+//                //chạy thử rồi check lại hàm checkLogin cho đúng;
+//                checkLogin();
+//                if (username.trim().isEmpty()) {
+//                    tilUserLogIn.setError("Vui lòng nhập Tài khoản người dùng");
+//                } else {
+//                    tilUserLogIn.setErrorEnabled(false);
+//                }
+//                if (pass.trim().isEmpty()) {
+//                    tilPassword.setError("Vui lòng nhập mật khẩu");
+//                } else {
+//                    tilPassword.setErrorEnabled(false);
+//                }
+//                if (username.equalsIgnoreCase("admin") && pass.equalsIgnoreCase("admin")) {
+//                    Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+//                    startActivity(intent);
+//                    finish();
+//                } else {
+//                    Toast.makeText(getApplicationContext(), "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+//                }
+                checkLogin();
+            }
+        });
+        tvDangKy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                startActivity(intent);
             }
         });
 
-        Thread thread = new Thread(){
+        Thread thread = new Thread() {
             @Override
             public void run() {
                 super.run();
-                while (!isInterrupted()){
+                while (!isInterrupted()) {
                     try {
                         Thread.sleep(1000);
                         runOnUiThread(new Runnable() {
@@ -101,7 +119,7 @@ public class LoginActivity extends AppCompatActivity {
                             public void run() {
                                 count++;
                                 TransitionManager.beginDelayedTransition(viewGroup);
-                                if (count == 5){
+                                if (count == 5) {
                                     tvQuotes.setVisibility(View.INVISIBLE);
                                 } else if (count == 6) {
                                     tvQuotes.setVisibility(View.VISIBLE);
@@ -132,8 +150,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         };
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-         thread.start();
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        thread.start();
         CountDownTimer countDownTimer = new CountDownTimer(1000, 100) {
             @Override
             public void onTick(long l) {
@@ -195,5 +213,35 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         dialog.show();
+    }
+
+    public void checkLogin() {
+        userdao = new UserDAO(LoginActivity.this);
+        String username = tilUserLogIn.getEditText().getText().toString();
+        String pass = tilPassword.getEditText().getText().toString();
+        if (username.trim().isEmpty()) {
+            tilUserLogIn.setError("Vui lòng nhập Tài khoản người dùng");
+            return;
+        } else {
+            tilUserLogIn.setErrorEnabled(false);
+            if (pass.trim().isEmpty()) {
+                tilPassword.setError("Vui lòng nhập mật khẩu người dùng");
+                return;
+            } else {
+                tilPassword.setErrorEnabled(false);
+            }
+            if (userdao.checkLogin(username, pass) > 0 || (username.equalsIgnoreCase("admin") && pass.equalsIgnoreCase("admin"))) {
+                SharedPreferences sdf = getSharedPreferences("USER_FILE", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sdf.edit();
+                editor.putString("PASSWORD", pass);
+                editor.commit();
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                intent.putExtra("user", username);
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(getApplicationContext(), "Mật khẩu và tài khoản của bạn Sai vui lòng nhập ", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
