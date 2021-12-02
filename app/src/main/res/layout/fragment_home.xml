@@ -26,9 +26,8 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView2"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_margin="8dp"
-                app:cardCornerRadius="24dp"
+                android:layout_height="201dp"
+                android:layout_margin="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5">
@@ -37,7 +36,7 @@
                     android:id="@+id/imgSliderThumbail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:sliderAnimationDuration="1000"
+                    app:sliderAnimationDuration="2000"
                     app:sliderAutoCycleDirection="back_and_forth"
                     app:sliderAutoCycleEnabled="true"
                     app:sliderIndicatorAnimationDuration="1000"
@@ -49,7 +48,7 @@
                     app:sliderIndicatorSelectedColor="#B124DA"
                     app:sliderIndicatorUnselectedColor="#FFF"
                     app:sliderScrollTimeInSec="2"
-                    app:sliderStartAutoCycle="true"/>
+                    app:sliderStartAutoCycle="true" />
 
             </androidx.cardview.widget.CardView>
 
@@ -68,7 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginBottom="140dp"
+                android:layout_marginBottom="100dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

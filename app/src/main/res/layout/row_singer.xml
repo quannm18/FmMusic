@@ -7,14 +7,14 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"
-        android:layout_width="160dp"
-        android:layout_height="150dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        app:cardCornerRadius="100dp"
         app:cardElevation="8dp"
-        app:cardCornerRadius="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.088"

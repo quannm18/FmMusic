@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                                     tvQuotes.setVisibility(View.INVISIBLE);
                                 } else if (count == 6) {
                                     tvQuotes.setVisibility(View.VISIBLE);
-                                    tvQuotes.setText("Cùng khám phá bảng xếp hạng các bản nhạc \n được yêu thích");
+                                    tvQuotes.setText("Cùng khám phá bảng xếp hạng các bản nhạc được yêu thích");
                                 } else if (count == 11) {
                                     tvQuotes.setVisibility(View.INVISIBLE);
                                 } else if (count == 12) {
@@ -198,45 +198,84 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void checkLogin() {
+//        userdao = new UserDAO(LoginActivity.this);
+//        String username = tilUserLogIn.getEditText().getText().toString();
+//        String pass = tilPassword.getEditText().getText().toString();
+//        boolean checked = checkBox.isChecked();
+//        if (username.trim().isEmpty()) {
+//            tilUserLogIn.setError("Vui lòng nhập Tài khoản người dùng");
+//            return;
+//        } else {
+//            tilUserLogIn.setErrorEnabled(false);
+//            if (pass.trim().isEmpty()) {
+//                tilPassword.setError("Vui lòng nhập mật khẩu người dùng");
+//                return;
+//            } else {
+//                tilPassword.setErrorEnabled(false);
+//            }
+//            if (userdao.checkLogin(username,pass) > 0 || (username.equalsIgnoreCase("admin") && pass.equalsIgnoreCase("admin"))) {
+//                SharedPreferences sdf = getSharedPreferences("USER_FILE",MODE_PRIVATE);
+//                SharedPreferences.Editor editor = sdf.edit();
+//                editor.putString("PASSWORD",pass);
+//                editor.commit();
+//                luuThongTinDangNhap(username,pass,checked);
+//                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+//                intent.putExtra("user", username);
+//                startActivity(intent);
+//                finish();
+//            } else {
+//                Toast.makeText(getApplicationContext(), "Mật khẩu và tài khoản của bạn Sai vui lòng nhập ", Toast.LENGTH_SHORT).show();
+//            }
+//        }
         userdao = new UserDAO(LoginActivity.this);
-        String username = tilUserLogIn.getEditText().getText().toString();
-        String pass = tilPassword.getEditText().getText().toString();
+        String userName = tilUserLogIn.getEditText().getText().toString();
+        String password = tilPassword.getEditText().getText().toString();
         boolean checked = checkBox.isChecked();
-        if (username.trim().isEmpty()) {
+        if (userName.trim().isEmpty()) {
             tilUserLogIn.setError("Vui lòng nhập Tài khoản người dùng");
             return;
         } else {
             tilUserLogIn.setErrorEnabled(false);
-            if (pass.trim().isEmpty()) {
+            if (password.trim().isEmpty()) {
                 tilPassword.setError("Vui lòng nhập mật khẩu người dùng");
                 return;
             } else {
                 tilPassword.setErrorEnabled(false);
             }
-            if (userdao.checkLogin(username, pass) > 0 || (username.equalsIgnoreCase("admin") && pass.equalsIgnoreCase("admin"))) {
-                SharedPreferences sdf = getSharedPreferences("USER_FILE", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sdf.edit();
-                editor.putString("PASSWORD", pass);
+            if (userdao.checkSigin(userName,password)>0 ||(userName.equalsIgnoreCase("admin")&&password.equalsIgnoreCase("admin"))){
+                SharedPreferences sharedPreferences = getSharedPreferences("USER_FILE",MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("PASSWORD",password);
                 editor.commit();
-                luuThongTinDangNhap(username,pass,checked);
+                luuThongTinDangNhap(userName,password,checked);
+                //
+                SharedPreferences sdf = getSharedPreferences("USER_CURRENT",MODE_PRIVATE);
+                SharedPreferences.Editor setUser =sdf.edit();
+                setUser.clear();
+                setUser.putString("USERNAME",userName);
+                setUser.putString("GETPASSWORD",password);
+                setUser.commit();
+                //
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                intent.putExtra("user", username);
+                intent.putExtra("user", userName);
                 startActivity(intent);
                 finish();
-            } else {
-                Toast.makeText(getApplicationContext(), "Mật khẩu và tài khoản của bạn Sai vui lòng nhập ", Toast.LENGTH_SHORT).show();
             }
+
         }
+
     }
-    public void luuThongTinDangNhap(String userName, String passWord, boolean remember){
-        SharedPreferences sharedPreferences = getSharedPreferences("USER_FILE",MODE_PRIVATE);
+
+
+    public void luuThongTinDangNhap(String taiKhoan, String matkhau, boolean remember) {
+        SharedPreferences sharedPreferences = getSharedPreferences("USER_FILE", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        if (remember == false){
+        if (remember == false) {
             editor.clear();
-        }else {
-            editor.putString("USERNAME",userName);
-            editor.putString("PASSWORD",passWord);
-            editor.putBoolean("USERNAME",remember);
+        } else {
+            editor.putString("USERNAME", taiKhoan);
+            editor.putString("PASSWORD", matkhau);
+            editor.putBoolean("REMEMBER", remember);
         }
         editor.commit();
     }
