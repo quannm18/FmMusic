@@ -52,7 +52,7 @@
         <activity
             android:name=".View.Activity.PassChangingActivity"
             android:exported="true"
-            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar" />
+            android:theme="@style/Theme.FmMusic.NoActionBar" />
         <activity
             android:name=".View.Activity.SignUpActivity"
             android:exported="true"
@@ -64,19 +64,15 @@
         <activity
             android:name=".View.Activity.ProfileActivity"
             android:exported="true"
-            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar" />
+            android:theme="@style/Theme.FmMusic.NoActionBar" />
         <activity
             android:name=".View.Activity.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar" />
         <activity
-            android:name=".View.Activity.Persional.PlayListScreenActivity"
-            android:exported="true"
-            android:theme="@style/Theme.FmMusic.NoActionBar" />
-        <activity
             android:name=".View.Activity.SplashActivity"
             android:exported="true"
-            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar">
+            android:theme="@style/Theme.FmMusic.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
