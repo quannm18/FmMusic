@@ -182,6 +182,6 @@ public class HomeFragment extends Fragment {
         singerList.add(new Singer("https://photo-resize-zmp3.zadn.vn/avatars/1/3/d/9/13d91c5df0cc3c5ff6536b611cd00b83.jpg","Quân A.P"));
         singerList.add(new Singer("https://photo-resize-zmp3.zadn.vn/avatars/8/3/9/9/8399a5082648b18af768c1d1db87804a.jpg","Amee"));
         singerList.add(new Singer("https://photo-resize-zmp3.zadn.vn/avatars/2/1/3/0/2130334d4358f2727fbd721274791421.jpg","Mr Siro"));
-        singerList.add(new Singer("https://photo-resize-zmp3.zadn.vn/avatars/c/0/3/f/c03f60341b00fdc0492dc0469020fcf9.jpg","Hiền Hồ"));
+        singerList.add(new Singer("https://photo-resize-zmp3.zadn.vn/avatars/7/8/c/6/78c685396dedfb3c6aef19588ea584c4.jpg","MIN"));
     }
 }
