@@ -50,12 +50,11 @@ public class SignUpActivity extends AppCompatActivity {
         tilUserPass.setVisibility(View.GONE);
         tilRePass.setVisibility(View.GONE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        CountDownTimer countDownTimer = new CountDownTimer(2000, 1000) {
+        CountDownTimer countDownTimer = new CountDownTimer(1000, 1000) {
             @Override
             public void onTick(long l) {
 
             }
-
             @Override
             public void onFinish() {
                 TransitionManager.beginDelayedTransition(viewGroup);
@@ -78,16 +77,16 @@ public class SignUpActivity extends AppCompatActivity {
                 users.setUserName(username);
                 users.setFullName(fullname);
                 users.setPassWord(password);
-                users.setRePass(rePassword);
 
-                if (password.length() == rePassword.length()){
+
+                if (password.equals(rePassword)){
                     UserDAO userDAO = new UserDAO(SignUpActivity.this);
                     long check = userDAO.insertUser(users);
                     if (check > 0) {
                         Toast.makeText(SignUpActivity.this, "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
                         usersList.clear();
                         usersList.addAll(userDAO.getAllUser());
-                        Intent intent = new Intent(SignUpActivity.this,HomeActivity.class);
+                        Intent intent = new Intent(SignUpActivity.this,LoginActivity.class);
                         startActivity(intent);
                     } else {
                         Toast.makeText(SignUpActivity.this, "Tạo tài khoản thất bại", Toast.LENGTH_SHORT).show();

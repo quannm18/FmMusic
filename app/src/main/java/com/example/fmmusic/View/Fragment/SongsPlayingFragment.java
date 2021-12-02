@@ -52,8 +52,7 @@ public class SongsPlayingFragment extends Fragment {
         imbBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), HomeActivity.class);
-                startActivity(intent);
+                getActivity().finish();
             }
         });
         String title = ((MusicPlayingActivity)getActivity()).nameSong+" - "+((MusicPlayingActivity)getActivity()).artist_name;

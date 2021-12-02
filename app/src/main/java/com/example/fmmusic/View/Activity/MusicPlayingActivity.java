@@ -14,6 +14,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.fmmusic.Adapter.ViewPagerAdapterMusicPlaying;
 import com.example.fmmusic.View.Fragment.*;
@@ -120,15 +121,23 @@ public class MusicPlayingActivity extends AppCompatActivity {
 
         if (from.equals("TopAdapter")){
             tops = RankingsFragment.topList;
+            Log.e("size",tops.size()+"TopAdapter");
         }
         if (from.equals("SuggestAdapter")){
             tops = PersonalFragment.suggestedList;
+            Log.e("size",tops.size()+"SuggestAdapter");
         }
         if (from.equals("FindingAdapter")){
             songs = FindingMusicActivity.findingList;
+            if (songs.isEmpty()){
+                Toast.makeText(MusicPlayingActivity.this, "K phải Finding", Toast.LENGTH_SHORT).show();
+            }else {
+                Log.e("size",songs.size()+"FindingAdapter");
+            }
         }
         if (from.equals("HighlightAdapter")){
             tops = HomeFragment.topList;
+            Log.e("size",tops.size()+"HighlightAdapter");
         }
     }
 

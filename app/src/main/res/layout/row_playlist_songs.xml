@@ -34,7 +34,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/imgThumbSongLibRow"
+                    android:id="@+id/imgThumbSongPLRow"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
@@ -42,7 +42,7 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/tvNameSongLibRow"
+                android:id="@+id/tvNameSongPLRow"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -53,24 +53,15 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvSingerSongLibRow"
+                android:id="@+id/tvSingerSongPLRow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="TV_CASI"
                 app:layout_constraintStart_toEndOf="@+id/cardView5"
-                app:layout_constraintTop_toBottomOf="@+id/tvNameSongLibRow" />
+                app:layout_constraintTop_toBottomOf="@+id/tvNameSongPLRow" />
 
-            <ImageView
-                android:id="@+id/imgMoreSongLibsRow"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_baseline_more_vert_24"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
