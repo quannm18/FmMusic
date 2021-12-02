@@ -53,6 +53,17 @@
         <entry key="..\:/Users/giang/AndroidStudioProjects/FmMusic/app/src/main/res/layout/fragment_rankings.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/giang/AndroidStudioProjects/FmMusic/app/src/main/res/layout/fragment_songs_detail.xml" value="0.33" />
         <entry key="..\:/Users/giang/AndroidStudioProjects/FmMusic/app/src/main/res/layout/fragment_songs_playing.xml" value="0.33" />
+        <entry key="..\:/Users/pvtth/Desktop/DuAn1/FmMusic/app/src/main/res/layout/activity_favorites_lib.xml" value="0.1431159420289855" />
+        <entry key="..\:/Users/pvtth/Desktop/DuAn1/FmMusic/app/src/main/res/layout/activity_singer_personal.xml" value="0.1431159420289855" />
+        <entry key="..\:/Users/pvtth/Desktop/DuAn1/FmMusic/app/src/main/res/layout/fragment_home.xml" value="0.2368659420289855" />
+        <entry key="..\:/Users/pvtth/Desktop/DuAn1/FmMusic/app/src/main/res/layout/row_playlist_songs.xml" value="0.1431159420289855" />
+        <entry key="..\:/Users/pvtth/Desktop/DuAn1/FmMusic/app/src/main/res/layout/row_singer.xml" value="0.1431159420289855" />
+        <entry key="..\:/Users/pvtth/Desktop/DuAn1/FmMusic/app/src/main/res/layout/row_singer_fvr.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/pvtth/Desktop/DuAn1/FmMusic/app/src/main/res/layout/row_singer_personal.xml" value="0.1431159420289855" />
+        <entry key="..\:/Users/pvtth/Desktop/DuAn1/FmMusic/app/src/main/res/layout/row_song_lib.xml" value="0.2368659420289855" />
+        <entry key="..\:/Users/pvtth/Desktop/DuAn1/FmMusic/app/src/main/res/layout/row_suggested_song.xml" value="0.1431159420289855" />
+        <entry key="..\:/Users/pvtth/Desktop/DuAn1/FmMusic/app/src/main/res/layout/row_top.xml" value="0.2368659420289855" />
+        <entry key="..\:/Users/pvtth/Desktop/DuAn1/FmMusic/app/src/main/res/layout/rows_song_of_the_singer.xml" value="0.1431159420289855" />
       </map>
     </option>
   </component>
