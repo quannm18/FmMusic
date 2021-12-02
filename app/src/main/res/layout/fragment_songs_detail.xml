@@ -55,8 +55,10 @@
                 android:text="Hoàng Dũng"
                 android:textColor="@color/purple_200"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/tvComposerSongDetail"
@@ -67,8 +69,10 @@
                 android:text="Hoàng Dũng"
                 android:textColor="@color/purple_200"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvSingerDetail" />
+                app:layout_constraintTop_toBottomOf="@+id/tvSingerDetail"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/tvSongDetail"
@@ -79,8 +83,10 @@
                 android:text="Nàng thơ"
                 android:textColor="@color/purple_200"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvCategorySongDetail" />
+                app:layout_constraintTop_toBottomOf="@+id/tvCategorySongDetail"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/tvDownloadDetail"
@@ -88,9 +94,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
                 android:text="Tải về máy"
                 android:textColor="#E1457A"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tvAsk"
                 app:layout_constraintTop_toBottomOf="@+id/tvSongDetail" />
 
@@ -103,8 +111,10 @@
                 android:text="Vpop, nhạc trẻ"
                 android:textColor="@color/purple_200"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvComposerSongDetail" />
+                app:layout_constraintTop_toBottomOf="@+id/tvComposerSongDetail"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -114,8 +124,10 @@
                 android:layout_marginTop="16dp"
                 android:text="Ca sĩ :"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -125,8 +137,10 @@
                 android:layout_marginTop="16dp"
                 android:text="Sáng tác :"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvSingerDetail" />
+                app:layout_constraintTop_toBottomOf="@+id/textView7"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/textView9"
@@ -136,8 +150,10 @@
                 android:layout_marginTop="16dp"
                 android:text="Thể Loại :"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvComposerSongDetail" />
+                app:layout_constraintTop_toBottomOf="@+id/textView8"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/textView12"
@@ -147,8 +163,10 @@
                 android:layout_marginTop="16dp"
                 android:text="Bài Hát :"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvCategorySongDetail" />
+                app:layout_constraintTop_toBottomOf="@+id/textView9"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/tvAsk"
@@ -156,10 +174,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
                 android:text="Bạn yêu thích bài hát này ?"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvSongDetail" />
+                app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
