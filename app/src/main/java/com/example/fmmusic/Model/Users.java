@@ -1,15 +1,14 @@
 package com.example.fmmusic.Model;
 
 public class Users {
-    private int idUser;
     private String userName;
     private String fullName;
     private String passWord;
     private String rePass;
 
 
-    public Users(int idUser, String userName, String fullName, String passWord, String rePass) {
-        this.idUser = idUser;
+    public Users( String userName, String fullName, String passWord, String rePass) {
+
         this.userName = userName;
         this.fullName = fullName;
         this.passWord = passWord;
@@ -19,15 +18,6 @@ public class Users {
     public Users() {
 
     }
-
-    public int getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
-
     public String getUserName() {
         return userName;
     }

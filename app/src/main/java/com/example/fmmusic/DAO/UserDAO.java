@@ -51,12 +51,12 @@ public class UserDAO {
     public long updatetUser(Users users){
         SQLiteDatabase sqLiteDatabase = fmMusicDatabase.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-       // contentValues.put("IDUser",users.getIdUser());
+
         contentValues.put("UserName",users.getUserName());
         contentValues.put("FullName",users.getFullName());
         contentValues.put("Password",users.getPassWord());
         contentValues.put("rePass",users.getRePass());
-        long row = sqLiteDatabase.update("USER",contentValues,"UserName=?",new String[]{String.valueOf(users.getIdUser())});
+        long row = sqLiteDatabase.update("USER",contentValues,"UserName=?",new String[]{String.valueOf(users.getUserName())});
         return row;
     }
     private List<Users> getData(String sql, String...selectionArgs){

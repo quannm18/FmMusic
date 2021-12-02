@@ -17,22 +17,22 @@ import com.example.fmmusic.View.Activity.Persional.SingersLibActivity;
 
 import java.util.List;
 
-public class ListSingerFVRAdapter extends RecyclerView.Adapter<ListSingerFVRAdapter.SingerPersonalHolder> {
+public class SingerListAdapter extends RecyclerView.Adapter<SingerListAdapter.SingerListHolder> {
     private List<Singer> singerList;
 
-    public ListSingerFVRAdapter(List<Singer> singerList) {
+    public SingerListAdapter(List<Singer> singerList) {
         this.singerList = singerList;
     }
-
+    
     @NonNull
     @Override
-    public SingerPersonalHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_singer_fvr,parent,false);
-        return new SingerPersonalHolder(view);
+    public SingerListHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_singer_personal,parent,false);
+        return new SingerListHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SingerPersonalHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SingerListHolder holder, int position) {
         final Singer singer = singerList.get(position);
         Glide.with(holder.itemView.getContext())
                 .load(singer.getId())
@@ -57,15 +57,13 @@ public class ListSingerFVRAdapter extends RecyclerView.Adapter<ListSingerFVRAdap
         return singerList.size();
     }
 
-    public class SingerPersonalHolder extends RecyclerView.ViewHolder {
+    public class SingerListHolder extends RecyclerView.ViewHolder {
         private ImageView imgSingerHomeRow;
         private TextView tvSingerHomeRow;
-
-        public SingerPersonalHolder(@NonNull View itemView) {
+        public SingerListHolder(@NonNull View itemView) {
             super(itemView);
             imgSingerHomeRow = (ImageView) itemView.findViewById(R.id.imgSingerHomeRow);
             tvSingerHomeRow = (TextView) itemView.findViewById(R.id.tvSingerHomeRow);
-
         }
     }
 }
