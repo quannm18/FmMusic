@@ -17,10 +17,10 @@ import com.example.fmmusic.View.Activity.Persional.SingersLibActivity;
 
 import java.util.List;
 
-public class SingerPersonalAdapter extends RecyclerView.Adapter<SingerPersonalAdapter.SingerPersonalHolder> {
+public class ListSingerFVRAdapter extends RecyclerView.Adapter<ListSingerFVRAdapter.SingerPersonalHolder> {
     private List<Singer> singerList;
 
-    public SingerPersonalAdapter(List<Singer> singerList) {
+    public ListSingerFVRAdapter(List<Singer> singerList) {
         this.singerList = singerList;
     }
 

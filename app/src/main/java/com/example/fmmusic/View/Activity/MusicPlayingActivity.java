@@ -17,6 +17,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fmmusic.Adapter.ViewPagerAdapterMusicPlaying;
+import com.example.fmmusic.DAO.FavoriteDAO;
+import com.example.fmmusic.Model.Favorite;
+import com.example.fmmusic.Model.SingerModel.Singer;
 import com.example.fmmusic.View.Fragment.*;
 import com.example.fmmusic.Model.Songs.AudioModel;
 import com.example.fmmusic.Model.Songs.Song;
@@ -54,9 +57,11 @@ public class MusicPlayingActivity extends AppCompatActivity {
     static List<Song> songs = new ArrayList<>();
     static List<AudioModel> audios = new ArrayList<>();
     static List<Top> tops = new ArrayList<>();
-
     private Animation animation;
 
+    private List<Favorite> favoriteList;
+    private FavoriteDAO favoriteDAO;
+    private Favorite favorite;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +79,8 @@ public class MusicPlayingActivity extends AppCompatActivity {
         getIntentData();
         animation = AnimationUtils.loadAnimation(MusicPlayingActivity.this,R.anim.run_music);
 
-
+        favoriteDAO = new FavoriteDAO(MusicPlayingActivity.this);
+        favoriteList = new ArrayList<>();
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new SongsPlayingFragment());
         fragmentList.add(new SongsDetailFragment());
@@ -100,6 +106,35 @@ public class MusicPlayingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 imbPause.setVisibility(View.GONE);
                 imbPlay.setVisibility(View.VISIBLE);
+            }
+        });
+        imbFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                favorite = new Favorite();
+                Song song =  new Song();
+
+                song.setId(id);
+                song.setName(nameSong);
+                song.setThumbnail(thumbnail);
+                song.setDuration(Integer.parseInt(duration));
+                Singer singer = new Singer("abcxyz",artist_name);
+                song.setSinger(singer);
+                favorite.setSong(song);
+                favorite.setUseName("tho2002");
+                long kq = favoriteDAO.insertFV(favorite);
+                if (kq>0)
+                {
+                    favoriteList.clear();
+                    favoriteList.addAll(favoriteDAO.getAllFVR());
+
+                    Toast.makeText(MusicPlayingActivity.this,"Thêm thành công ",Toast.LENGTH_LONG).show();
+
+                }
+                else
+                {
+                    Toast.makeText(MusicPlayingActivity.this,"Thêm không thành công ",Toast.LENGTH_LONG).show();
+                }
             }
         });
 
