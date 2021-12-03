@@ -29,7 +29,6 @@ public class UserDAO {
             users.setUserName(String.valueOf(cursor.getString(cursor.getColumnIndex("UserName"))));
             users.setFullName(String.valueOf(cursor.getString(cursor.getColumnIndex("FullName"))));
             users.setPassWord(String.valueOf(cursor.getString(cursor.getColumnIndex("Password"))));
-            users.setPassWord(String.valueOf(cursor.getString(cursor.getColumnIndex("rePass"))));
             usersList.add(users);
             cursor.moveToNext();
         }
@@ -50,7 +49,6 @@ public class UserDAO {
             users.setUserName(String.valueOf(cursor.getString(cursor.getColumnIndex("UserName"))));
             users.setFullName(String.valueOf(cursor.getString(cursor.getColumnIndex("FullName"))));
             users.setPassWord(String.valueOf(cursor.getString(cursor.getColumnIndex("Password"))));
-            users.setPassWord(String.valueOf(cursor.getString(cursor.getColumnIndex("rePass"))));
             usersList.add(users);
             cursor.moveToNext();
         }
@@ -65,7 +63,6 @@ public class UserDAO {
         contentValues.put("UserName",users.getUserName());
         contentValues.put("FullName",users.getFullName());
         contentValues.put("Password",users.getPassWord());
-        contentValues.put("rePass",users.getRePass());
         long row = sqLiteDatabase.insert("USER",null,contentValues);
         return row;
     }
@@ -76,7 +73,6 @@ public class UserDAO {
         contentValues.put("UserName",users.getUserName());
         contentValues.put("FullName",users.getFullName());
         contentValues.put("Password",users.getPassWord());
-        contentValues.put("rePass",users.getRePass());
         long row = sqLiteDatabase.update("USER",contentValues,"UserName=?",new String[]{String.valueOf(users.getUserName())});
         return row;
     }

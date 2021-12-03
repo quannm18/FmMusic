@@ -19,7 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fmmusic.DAO.UserDAO;
-import com.example.fmmusic.MainActivity;
 import com.example.fmmusic.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
@@ -200,35 +199,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void checkLogin() {
-//        userdao = new UserDAO(LoginActivity.this);
-//        String username = tilUserLogIn.getEditText().getText().toString();
-//        String pass = tilPassword.getEditText().getText().toString();
-//        boolean checked = checkBox.isChecked();
-//        if (username.trim().isEmpty()) {
-//            tilUserLogIn.setError("Vui lòng nhập Tài khoản người dùng");
-//            return;
-//        } else {
-//            tilUserLogIn.setErrorEnabled(false);
-//            if (pass.trim().isEmpty()) {
-//                tilPassword.setError("Vui lòng nhập mật khẩu người dùng");
-//                return;
-//            } else {
-//                tilPassword.setErrorEnabled(false);
-//            }
-//            if (userdao.checkLogin(username,pass) > 0 || (username.equalsIgnoreCase("admin") && pass.equalsIgnoreCase("admin"))) {
-//                SharedPreferences sdf = getSharedPreferences("USER_FILE",MODE_PRIVATE);
-//                SharedPreferences.Editor editor = sdf.edit();
-//                editor.putString("PASSWORD",pass);
-//                editor.commit();
-//                luuThongTinDangNhap(username,pass,checked);
-//                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-//                intent.putExtra("user", username);
-//                startActivity(intent);
-//                finish();
-//            } else {
-//                Toast.makeText(getApplicationContext(), "Mật khẩu và tài khoản của bạn Sai vui lòng nhập ", Toast.LENGTH_SHORT).show();
-//            }
-//        }
         userdao = new UserDAO(LoginActivity.this);
         String userName = tilUserLogIn.getEditText().getText().toString();
         String password = tilPassword.getEditText().getText().toString();
@@ -249,7 +219,7 @@ public class LoginActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("PASSWORD",password);
                 editor.commit();
-                luuThongTinDangNhap(userName,password,checked);
+                saveLoginData(userName,password,checked);
                 //
                 SharedPreferences sdf = getSharedPreferences("USER_CURRENT",MODE_PRIVATE);
                 SharedPreferences.Editor setUser =sdf.edit();
@@ -258,6 +228,7 @@ public class LoginActivity extends AppCompatActivity {
                 setUser.putString("GETPASSWORD",password);
                 setUser.commit();
                 //
+                Toast.makeText(LoginActivity.this, "Chào mừng "+sharedPreferences.getString("USERNAME",""), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 intent.putExtra("user", userName);
                 startActivity(intent);
@@ -269,7 +240,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    public void luuThongTinDangNhap(String taiKhoan, String matkhau, boolean remember) {
+    public void saveLoginData(String taiKhoan, String matkhau, boolean remember) {
         SharedPreferences sharedPreferences = getSharedPreferences("USER_FILE", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if (remember == false) {

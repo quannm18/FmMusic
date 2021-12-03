@@ -93,11 +93,11 @@ public class PassChangingActivity extends AppCompatActivity {
             String password = tilNewPass.getEditText().getText().toString();
             String rePassword = tilRePass.getEditText().getText().toString();
             if (!oldpassword.equals(tilOldPass.getEditText().getText().toString())){
-                Toast.makeText(getApplicationContext(), "Sai mat khau cu", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Sai mật khẩu cũ!", Toast.LENGTH_SHORT).show();
                 check = -1;
             }
             if (!password.equals(rePassword)){
-                Toast.makeText(getApplicationContext(), "Mat khau moi khong giong nhau", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Mật khẩu không trùng khớp!", Toast.LENGTH_SHORT).show();
                 check = -1;
             }
         }
