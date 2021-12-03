@@ -70,7 +70,7 @@
                 app:srcCompat="@drawable/back_button" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/imgAddtoPlaylist"
                 android:layout_width="30dp"
                 android:layout_height="29dp"
                 android:layout_marginTop="11dp"

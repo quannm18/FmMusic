@@ -2,11 +2,15 @@ package com.example.fmmusic.View.Activity.Persional;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -36,17 +40,23 @@ public class PlaylistActivity extends AppCompatActivity {
     private ImageView imgPause;
     private TextView tvNameSong;
     private RecyclerView rcvPlaylist;
+    private CardView cardView10;
+    private TextView textView4;
+    private HorizontalScrollView horizontalScrollView;
 
     private PlaylistAdapter playlistAdapter;
     private List<Playlist> playlistList;
     private List<PLL>listpll;
     private MyPlaylistAdapter myPlaylistAdapter;
+    private PLLDAO plldao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playlist);
 
-
+        horizontalScrollView = (HorizontalScrollView) findViewById(R.id.horizontalScrollView);
+        textView4 = (TextView) findViewById(R.id.textView4);
+        cardView10 = (CardView) findViewById(R.id.cardView10);
         rcvPlaylist = (RecyclerView) findViewById(R.id.rcvPlaylist);
         scrollView2 = (ScrollView) findViewById(R.id.scrollView2);
         tilFindPlaylist = (TextInputLayout) findViewById(R.id.tilFindPlaylist);
@@ -69,23 +79,22 @@ public class PlaylistActivity extends AppCompatActivity {
 
         SharedPreferences sdf = getSharedPreferences("USER_CURRENT",MODE_PRIVATE);
         String userName =sdf.getString("USERNAME","");
+        plldao = new PLLDAO(getApplicationContext());
         listpll = new ArrayList<>();
-        PLLDAO plldao = new PLLDAO(this);
-        listpll = plldao.getDataUser(userName);
-        if (listpll.size() <= 0)
-        {
-            listpll.add(new PLL(1,"Your play list",userName));
-            listpll.add(new PLL(2,"My playlist",userName));
-            listpll.add(new PLL(3,"Your play list",userName));
-            listpll.add(new PLL(4,"My playlist",userName));
-            listpll.add(new PLL(5,"Your play list",userName));
-            listpll.add(new PLL(6,"My playlist",userName));
-        }
+        listpll = plldao.getAllPll();
         myPlaylistAdapter = new MyPlaylistAdapter(listpll);
         rcvPlaylist.setAdapter(myPlaylistAdapter);
-
         rcvPlaylist.setLayoutManager(new LinearLayoutManager(PlaylistActivity.this,RecyclerView.HORIZONTAL,false));
-
+        String CheckLogin =sdf.getString("CHECKLOGIN","");
+        Log.e(" ",CheckLogin);
+        if(CheckLogin == "SKIPLOGIN")
+        {
+            tvtPlaylist.setVisibility(View.GONE);
+            rcvPlaylist.setVisibility(View.GONE);
+            cardView10.setVisibility(View.GONE);
+            textView4.setVisibility(View.GONE);
+            horizontalScrollView.setVisibility(View.GONE);
+        }
     }
     void setListData(){
         String url1="https://pimobfptedu.github.io/img/";

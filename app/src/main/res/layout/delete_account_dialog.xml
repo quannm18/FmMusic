@@ -19,30 +19,30 @@
             android:layout_marginStart="51dp"
             android:layout_marginTop="11dp"
             android:layout_marginEnd="52dp"
-            android:text="Bạn có chắc muốn tiếp tục sử dụng ứng dụng mà không đăng nhập không"
+            android:text="Bạn có muốn xóa người dùng này không"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="153dp"
-                android:layout_marginTop="36dp"
-                android:layout_marginEnd="154dp"
-                android:text="Xác Nhận"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="153dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="154dp"
+            android:text="Xác Nhận"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnCancelLogin"
+            android:id="@+id/btnCancelDelete"
             android:layout_width="80dp"
-            android:layout_height="48dp"
+            android:layout_height="38dp"
             android:layout_marginStart="168dp"
             android:layout_marginTop="35dp"
             android:layout_marginEnd="37dp"
@@ -57,9 +57,9 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnYesLogIn"
+            android:id="@+id/btnYesDelete"
             android:layout_width="78dp"
-            android:layout_height="48dp"
+            android:layout_height="39dp"
             android:layout_marginTop="34dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"

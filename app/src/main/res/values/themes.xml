@@ -39,4 +39,6 @@
         <item name="boxStrokeColor">#E345FF</item>
         <item name="boxStrokeWidth">2dp</item>
     </style>
+    <style name="Theme.FmMusic.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.FmMusic.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -189,9 +189,13 @@ public class LoginActivity extends AppCompatActivity {
         btnYesLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences sdf = getSharedPreferences("USER_CURRENT",MODE_PRIVATE);
+                SharedPreferences.Editor setUser =sdf.edit();
+                setUser.clear();
+                setUser.putString("CHECKLOGIN","SKIPLOGIN");
+                setUser.commit();
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 startActivity(intent);
-                finish();
                 dialog.dismiss();
             }
         });
@@ -233,6 +237,9 @@ public class LoginActivity extends AppCompatActivity {
                 intent.putExtra("user", userName);
                 startActivity(intent);
                 finish();
+            }
+            else {
+                Toast.makeText(this,"Tài khoản hoặc mật khẩu không chính xác",Toast.LENGTH_LONG).show();
             }
 
         }

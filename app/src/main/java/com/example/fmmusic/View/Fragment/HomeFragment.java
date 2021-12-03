@@ -1,5 +1,6 @@
 package com.example.fmmusic.View.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,6 +29,7 @@ import com.example.fmmusic.Adapter.SliderAdapter;
 import com.example.fmmusic.Model.SingerModel.Singer;
 import com.example.fmmusic.Model.Songs.Top;
 import com.example.fmmusic.R;
+import com.example.fmmusic.View.Activity.Persional.SongsLibActivity;
 import com.smarteist.autoimageslider.SliderView;
 
 import org.json.JSONArray;
@@ -169,6 +171,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getContext(), "Loi"+error.toString(), Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getContext(), SongsLibActivity.class));
                     }
                 });
         requestQueue.add(jsonObjectRequest);

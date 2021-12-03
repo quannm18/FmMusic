@@ -13,7 +13,6 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.fmmusic.DAO.UserDAO;
-import com.example.fmmusic.Database.FMMusicDatabase;
 import com.example.fmmusic.Model.Users;
 import com.example.fmmusic.R;
 import com.google.android.material.textfield.TextInputLayout;
@@ -85,6 +84,7 @@ public class SignUpActivity extends AppCompatActivity {
                         Toast.makeText(SignUpActivity.this, "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(SignUpActivity.this,LoginActivity.class);
                         startActivity(intent);
+                        finish();
                     } else {
                         Toast.makeText(SignUpActivity.this, "Tạo tài khoản thất bại", Toast.LENGTH_SHORT).show();
                     }

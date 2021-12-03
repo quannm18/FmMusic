@@ -165,6 +165,7 @@ public class PersonalFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getContext(), "Loi"+error.toString(), Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getContext(), SongsLibActivity.class));
                     }
                 });
         requestQueue.add(jsonObjectRequest);

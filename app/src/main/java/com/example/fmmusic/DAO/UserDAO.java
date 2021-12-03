@@ -36,7 +36,6 @@ public class UserDAO {
         database.close();
         return usersList;
     }
-
     public Users getUser(String username){
         List<Users> usersList = new ArrayList<>();
         SQLiteDatabase database = fmMusicDatabase.getReadableDatabase();
@@ -99,6 +98,10 @@ public class UserDAO {
             return -1;
         }
         return 1;
+    }
+    public int DeleteUser(String user){
+        SQLiteDatabase sqLiteDatabase = fmMusicDatabase.getWritableDatabase();
+        return sqLiteDatabase.delete("USER","UserName=?",new String[]{user});
     }
 
 }
