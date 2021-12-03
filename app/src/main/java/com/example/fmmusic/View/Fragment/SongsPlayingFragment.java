@@ -17,11 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.fmmusic.Controller.Updateable;
 import com.example.fmmusic.R;
 import com.example.fmmusic.View.Activity.HomeActivity;
 import com.example.fmmusic.View.Activity.MusicPlayingActivity;
 
-public class SongsPlayingFragment extends Fragment {
+public class SongsPlayingFragment extends Fragment implements Updateable {
     private ImageView imbBack;
     private ImageView imgThumbnailPlaying;
     private TextView tvTitlePlaying;
@@ -74,4 +75,19 @@ public class SongsPlayingFragment extends Fragment {
     }
 
 
+    @Override
+    public void update() {
+        String title = ((MusicPlayingActivity)getActivity()).nameSong+" - "+((MusicPlayingActivity)getActivity()).artist_name;
+        if (title.length()>35){
+            tvTitlePlaying.setText(((MusicPlayingActivity)getActivity()).nameSong.substring(0,20)+"..."+" - "+((MusicPlayingActivity)getActivity()).artist_name);
+        }
+        else {
+            tvTitlePlaying.setText(title);
+        }
+        tvSubTitlePlaylistOfSiger.setText("Danh sách phát - "+((MusicPlayingActivity)getActivity()).artist_name);
+        Glide.with(getContext())
+                .load(((MusicPlayingActivity)getActivity()).thumbnail)
+                .centerCrop()
+                .into(imgThumbnailPlaying);
+    }
 }

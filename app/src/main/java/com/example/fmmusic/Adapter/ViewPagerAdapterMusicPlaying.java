@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.example.fmmusic.View.Fragment.SongsDetailFragment;
+import com.example.fmmusic.View.Fragment.SongsPlayingFragment;
+
 import java.util.List;
 
 public class ViewPagerAdapterMusicPlaying extends FragmentStatePagerAdapter {
@@ -23,5 +26,10 @@ public class ViewPagerAdapterMusicPlaying extends FragmentStatePagerAdapter {
     @Override
     public int getCount() {
         return fragmentList.size();
+    }
+
+    @Override
+    public int getItemPosition(@NonNull Object object) {
+        return POSITION_NONE;
     }
 }
