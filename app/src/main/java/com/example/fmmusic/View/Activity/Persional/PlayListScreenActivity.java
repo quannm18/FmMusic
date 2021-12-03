@@ -17,17 +17,21 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.fmmusic.Adapter.PlayListSongAdapter;
+import com.example.fmmusic.Adapter.SliderAdapter;
 import com.example.fmmusic.Model.Genres.Genres;
 import com.example.fmmusic.Model.SingerModel.Singer;
 import com.example.fmmusic.Model.Songs.PlaylistSongs;
 import com.example.fmmusic.Model.Songs.Song;
 import com.example.fmmusic.R;
+import com.smarteist.autoimageslider.SliderView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PlayListScreenActivity extends AppCompatActivity {
@@ -36,21 +40,27 @@ public class PlayListScreenActivity extends AppCompatActivity {
     private PlayListSongAdapter playListSongAdapter;
     private RecyclerView rcvPlaylist;
     private TextView tvtPlaylistSinger;
-//    private String thumbnail;
-
+    private SliderView imgSliderThumbnail;
+    private SliderAdapter sliderAdapter;
+    private List<String> stringList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playlist_screen);
         rcvPlaylist = (RecyclerView) findViewById(R.id.rcvPlaylist);
         tvtPlaylistSinger = (TextView) findViewById(R.id.tvtPlaylistSinger);
+        imgSliderThumbnail = (SliderView) findViewById(R.id.imgSliderThumbnail);
 
         songList = new ArrayList<>();
         getIntentData();
         getDataAnyID();
+        stringList = new ArrayList<>();
+        sliderAdapter = new SliderAdapter(stringList);
+        imgSliderThumbnail.setSliderAdapter(sliderAdapter);
         playListSongAdapter = new PlayListSongAdapter(songList);
         rcvPlaylist.setAdapter(playListSongAdapter);
         rcvPlaylist.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
 
     }
 
@@ -721,18 +731,22 @@ public class PlayListScreenActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            Genres genres;
                             JSONObject data = response.getJSONObject("data");
                             JSONArray items = data.getJSONArray("artists");
                             JSONObject obOfItems = (JSONObject) items.get(0);
                             String id_artist = obOfItems.getString("id");
                             String name_artist = obOfItems.getString("name");
-                            String thumbnail = obOfItems.getString("thumbnail");
+                            String thumbnail_0 = obOfItems.getString("thumbnail");
+                            String thumbnail = thumbnail_0.substring(0, 33) + ((thumbnail_0.substring(48, thumbnail_0.length())));
+                            if (stringList.size()<5){
+                                stringList.add(thumbnail);
+                                sliderAdapter.notifyDataSetChanged();
+                            }
 //                            Log.e("Huy Len", thumbnail_0);
-//                            thumbnail = thumbnail_0.substring(0, 33) + ((thumbnail_0.substring(48, thumbnail_0.length())));
                             Log.e("Huy Ngu", thumbnail);
                             String name = playlistSongsList.getPlName();
                             String id = playlistSongsList.getPlName();
+
                             Song song = new Song(id, name, new Singer(id_artist, name_artist), thumbnail, 320);
                             songList.add(song);
                             playListSongAdapter.notifyDataSetChanged();
