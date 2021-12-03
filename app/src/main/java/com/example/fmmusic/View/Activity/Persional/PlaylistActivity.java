@@ -5,12 +5,15 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.example.fmmusic.Adapter.MyPlaylistAdapter;
 import com.example.fmmusic.Adapter.PlaylistAdapter;
+import com.example.fmmusic.Model.PLL;
 import com.example.fmmusic.Model.Songs.Playlist;
 import com.example.fmmusic.R;
 import com.google.android.material.textfield.TextInputLayout;
@@ -31,14 +34,19 @@ public class PlaylistActivity extends AppCompatActivity {
     private ImageView imgNext;
     private ImageView imgPause;
     private TextView tvNameSong;
+    private RecyclerView rcvPlaylist;
 
     private PlaylistAdapter playlistAdapter;
     private List<Playlist> playlistList;
+    private List<PLL>listpll;
+    private MyPlaylistAdapter myPlaylistAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playlist);
 
+
+        rcvPlaylist = (RecyclerView) findViewById(R.id.rcvPlaylist);
         scrollView2 = (ScrollView) findViewById(R.id.scrollView2);
         tilFindPlaylist = (TextInputLayout) findViewById(R.id.tilFindPlaylist);
         tvtPlaylist = (TextView) findViewById(R.id.tvtPlaylist);
@@ -57,6 +65,21 @@ public class PlaylistActivity extends AppCompatActivity {
         playlistAdapter = new PlaylistAdapter(playlistList);
         rcvFmMusicPlaylist.setAdapter(playlistAdapter);
         rcvFmMusicPlaylist.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+        SharedPreferences sdf = getSharedPreferences("USER_CURRENT",MODE_PRIVATE);
+        String userName =sdf.getString("USERNAME","");
+        listpll = new ArrayList<>();
+        listpll.add(new PLL(1,"Your play list",userName));
+        listpll.add(new PLL(2,"My playlist",userName));
+        listpll.add(new PLL(3,"Your play list",userName));
+        listpll.add(new PLL(4,"My playlist",userName));
+        listpll.add(new PLL(5,"Your play list",userName));
+        listpll.add(new PLL(6,"My playlist",userName));
+        myPlaylistAdapter = new MyPlaylistAdapter(listpll);
+        rcvPlaylist.setAdapter(myPlaylistAdapter);
+
+        rcvPlaylist.setLayoutManager(new LinearLayoutManager(PlaylistActivity.this,RecyclerView.HORIZONTAL,false));
+
     }
     void setListData(){
         String url1="https://pimobfptedu.github.io/img/";

@@ -6,6 +6,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -102,12 +103,15 @@ public class MusicPlayingActivity extends AppCompatActivity {
         viewPagerAdapterMusicPlaying = new ViewPagerAdapterMusicPlaying(getSupportFragmentManager(), fragmentList);
         viewPager.setAdapter(viewPagerAdapterMusicPlaying);
         //TODO : thêm animation quay 360 cho imageview
+
         imbFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 favorite = new Favorite();
                 Song song =  new Song();
                 favoriteDAO = new FavoriteDAO(MusicPlayingActivity.this);
+                SharedPreferences sdf = getSharedPreferences("USER_CURRENT",MODE_PRIVATE);
+
                 song.setId(id);
                 song.setName(nameSong);
                 song.setThumbnail(thumbnail);
@@ -115,7 +119,7 @@ public class MusicPlayingActivity extends AppCompatActivity {
                 Singer singer = new Singer("abcxyz",artist_name);
                 song.setSinger(singer);
                 favorite.setSong(song);
-                favorite.setUseName("tho2002");
+                favorite.setUseName(sdf.getString("USERNAME",""));
                 long kq = favoriteDAO.insertFV(favorite);
                 if (kq>0){
                     Toast.makeText(MusicPlayingActivity.this,"Thêm thành công ",Toast.LENGTH_LONG).show();
