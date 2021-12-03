@@ -73,10 +73,6 @@
             android:exported="true"
             android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar" />
         <activity
-            android:name=".View.Activity.Persional.PlayListScreenActivity"
-            android:exported="true"
-            android:theme="@style/Theme.FmMusic.NoActionBar" />
-        <activity
             android:name=".View.Activity.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar" >

@@ -1,5 +1,8 @@
 package com.example.fmmusic.Adapter;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +23,7 @@ import java.util.List;
 
 public class MyPlaylistAdapter extends RecyclerView.Adapter<MyPlaylistAdapter.MyPlaylistViewHolder> {
     List<PLL> pllList;
-
+    private Dialog dialog;
     public MyPlaylistAdapter(List<PLL> pllList) {
         this.pllList = pllList;
     }
@@ -43,12 +46,21 @@ public class MyPlaylistAdapter extends RecyclerView.Adapter<MyPlaylistAdapter.My
             holder.imgThumbnailPlaylist.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    dialog = new Dialog(v.getContext());
+                    dialog.setContentView(R.layout.add_playlist_dialog);
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    dialog.show();
                 }
             });
-
         }
-
+        else{
+            holder.imgThumbnailPlaylist.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(),"Danh sách bài hát",Toast.LENGTH_LONG).show();
+                }
+            });
+        }
     }
 
     @Override
