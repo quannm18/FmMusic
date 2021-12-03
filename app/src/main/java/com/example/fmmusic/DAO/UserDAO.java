@@ -36,6 +36,26 @@ public class UserDAO {
         database.close();
         return usersList;
     }
+
+    public Users getUser(String username){
+        List<Users> usersList = new ArrayList<>();
+        SQLiteDatabase database = fmMusicDatabase.getReadableDatabase();
+        String dataUser = "SELECT * FROM USER WHERE UserName=?";
+        Cursor cursor = database.rawQuery(dataUser,new String[]{username});
+        cursor.moveToFirst();
+        while (cursor.isAfterLast() == false){
+            Users users = new Users();
+            //  users.setIdUser(Integer.parseInt(cursor.getString(cursor.getColumnIndex("IDUser"))));
+            users.setUserName(String.valueOf(cursor.getString(cursor.getColumnIndex("UserName"))));
+            users.setFullName(String.valueOf(cursor.getString(cursor.getColumnIndex("FullName"))));
+            users.setPassWord(String.valueOf(cursor.getString(cursor.getColumnIndex("Password"))));
+            usersList.add(users);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        database.close();
+        return usersList.get(0);
+    }
     public long insertUser(Users users){
         SQLiteDatabase sqLiteDatabase = fmMusicDatabase.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -43,18 +63,17 @@ public class UserDAO {
         contentValues.put("UserName",users.getUserName());
         contentValues.put("FullName",users.getFullName());
         contentValues.put("Password",users.getPassWord());
-
         long row = sqLiteDatabase.insert("USER",null,contentValues);
         return row;
     }
     public long updatetUser(Users users){
         SQLiteDatabase sqLiteDatabase = fmMusicDatabase.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-       // contentValues.put("IDUser",users.getIdUser());
+
         contentValues.put("UserName",users.getUserName());
         contentValues.put("FullName",users.getFullName());
         contentValues.put("Password",users.getPassWord());
-        long row = sqLiteDatabase.update("USER",contentValues,"UserName=?",new String[]{String.valueOf(users.getIdUser())});
+        long row = sqLiteDatabase.update("USER",contentValues,"UserName=?",new String[]{String.valueOf(users.getUserName())});
         return row;
     }
     private List<Users> getData(String sql, String...selectionArgs){
@@ -73,7 +92,7 @@ public class UserDAO {
         return list;
     }
 
-    public  int checkSigin(String taiKhoan,String matKhau){
+    public  int checkLogin(String taiKhoan,String matKhau){
         String sql = "SELECT * FROM USER WHERE UserName=? AND Password=?";
         List<Users> thuThuList = getData(sql,taiKhoan,matKhau);
         if (thuThuList.size()==0){

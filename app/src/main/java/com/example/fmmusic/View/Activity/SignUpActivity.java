@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.fmmusic.DAO.UserDAO;
+import com.example.fmmusic.Database.FMMusicDatabase;
 import com.example.fmmusic.Model.Users;
 import com.example.fmmusic.R;
 import com.google.android.material.textfield.TextInputLayout;
@@ -55,7 +56,6 @@ public class SignUpActivity extends AppCompatActivity {
             public void onTick(long l) {
 
             }
-
             @Override
             public void onFinish() {
                 TransitionManager.beginDelayedTransition(viewGroup);
@@ -74,48 +74,21 @@ public class SignUpActivity extends AppCompatActivity {
                 String password = tilUserPass.getEditText().getText().toString();
                 String rePassword = tilRePass.getEditText().getText().toString();
 
-                Users users = new Users();
-                users.setUserName(username);
-                users.setFullName(fullname);
-                users.setPassWord(password);
-
-                if (fullname.trim().isEmpty()) {
-                    tilFullName.setError("Vui lòng nhập họ tên");
-                    return;
-                } else {
-                    tilFullName.setErrorEnabled(false);
-                }
-                if (username.trim().isEmpty()) {
-                    tilUserName.setError("Vui lòng nhập tài khoản");
-                    return;
-                } else {
-                    tilUserName.setErrorEnabled(false);
-                }
-                if (password.trim().isEmpty()) {
-                    tilUserPass.setError("Vui lòng nhập mật khẩu");
-                    return;
-                } else {
-                    tilUserPass.setErrorEnabled(false);
-                }
-                if (rePassword.trim().isEmpty()) {
-                    tilRePass.setError("Vui lòng xác nhận mật khẩu");
-                    return;
-                } else {
-                    tilRePass.setErrorEnabled(false);
-                }
-                if (password.equals(rePassword)) {
+                if (password.equals(rePassword)){
+                    Users users = new Users();
+                    users.setUserName(username);
+                    users.setFullName(fullname);
+                    users.setPassWord(password);
                     UserDAO userDAO = new UserDAO(SignUpActivity.this);
                     long check = userDAO.insertUser(users);
                     if (check > 0) {
                         Toast.makeText(SignUpActivity.this, "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
-                        usersList.clear();
-                        usersList.addAll(userDAO.getAllUser());
-                        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                        Intent intent = new Intent(SignUpActivity.this,LoginActivity.class);
                         startActivity(intent);
                     } else {
                         Toast.makeText(SignUpActivity.this, "Tạo tài khoản thất bại", Toast.LENGTH_SHORT).show();
                     }
-                } else {
+                }else {
                     Toast.makeText(SignUpActivity.this, "Mat khau khong giong nhau", Toast.LENGTH_SHORT).show();
                 }
             }

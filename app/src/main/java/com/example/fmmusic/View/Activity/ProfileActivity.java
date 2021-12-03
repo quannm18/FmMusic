@@ -27,9 +27,9 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView tvEmailOfUser;
     private MaterialButton btnLogout;
     private MaterialButton btnRePassword;
-
     private Dialog dialog ;
     private UserDAO userDAO;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,16 +82,18 @@ public class ProfileActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         SharedPreferences sdf = getSharedPreferences("USER_CURRENT", MODE_PRIVATE);
-                        String confind =sdf.getString("GETPASSWORD","");
+                        String confirmPassword = sdf.getString("GETPASSWORD","");
                         String writePassword = tilPassword.getEditText().getText().toString();
-
-                            if (writePassword.equalsIgnoreCase(confind)){
+                        for (int i = 0; i < userDAO.getAllUser().size(); i++) {
+                            if (writePassword.trim().equals(confirmPassword)){
                                 Intent intent = new Intent(ProfileActivity.this,PassChangingActivity.class);
                                 startActivity(intent);
                                 dialog.dismiss();
                             }else {
                                 Toast.makeText(ProfileActivity.this, "Sai mật khẩu bạn cần nhập chính xác!!!", Toast.LENGTH_SHORT).show();
                             }
+                        }
+
                         }
                 });
                 dialog.show();
