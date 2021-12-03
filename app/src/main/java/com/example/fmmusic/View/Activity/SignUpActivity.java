@@ -74,19 +74,15 @@ public class SignUpActivity extends AppCompatActivity {
                 String password = tilUserPass.getEditText().getText().toString();
                 String rePassword = tilRePass.getEditText().getText().toString();
 
-                Users users = new Users();
-                users.setUserName(username);
-                users.setFullName(fullname);
-                users.setPassWord(password);
-
-
                 if (password.equals(rePassword)){
+                    Users users = new Users();
+                    users.setUserName(username);
+                    users.setFullName(fullname);
+                    users.setPassWord(password);
                     UserDAO userDAO = new UserDAO(SignUpActivity.this);
                     long check = userDAO.insertUser(users);
                     if (check > 0) {
                         Toast.makeText(SignUpActivity.this, "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
-                        usersList.clear();
-                        usersList.addAll(userDAO.getAllUser());
                         Intent intent = new Intent(SignUpActivity.this,LoginActivity.class);
                         startActivity(intent);
                     } else {

@@ -20,6 +20,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fmmusic.Adapter.ViewPagerAdapterMusicPlaying;
+import com.example.fmmusic.DAO.FavoriteDAO;
+import com.example.fmmusic.Model.Favorite;
+import com.example.fmmusic.Model.SingerModel.Singer;
 import com.example.fmmusic.View.Fragment.*;
 import com.example.fmmusic.Model.Songs.AudioModel;
 import com.example.fmmusic.Model.Songs.Song;
@@ -63,7 +66,8 @@ public class MusicPlayingActivity extends AppCompatActivity {
     public static String DOMAIN_PLAY = "http://api.mp3.zing.vn/api/streaming/audio/";
     private Animation animation;
     public Handler handler = new Handler();
-
+    private Favorite favorite;
+    private FavoriteDAO favoriteDAO;
     private Thread playThread, prevThread, nextThread;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +102,28 @@ public class MusicPlayingActivity extends AppCompatActivity {
         viewPagerAdapterMusicPlaying = new ViewPagerAdapterMusicPlaying(getSupportFragmentManager(), fragmentList);
         viewPager.setAdapter(viewPagerAdapterMusicPlaying);
         //TODO : thêm animation quay 360 cho imageview
-
+        imbFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                favorite = new Favorite();
+                Song song =  new Song();
+                favoriteDAO = new FavoriteDAO(MusicPlayingActivity.this);
+                song.setId(id);
+                song.setName(nameSong);
+                song.setThumbnail(thumbnail);
+                song.setDuration(Integer.parseInt(duration));
+                Singer singer = new Singer("abcxyz",artist_name);
+                song.setSinger(singer);
+                favorite.setSong(song);
+                favorite.setUseName("tho2002");
+                long kq = favoriteDAO.insertFV(favorite);
+                if (kq>0){
+                    Toast.makeText(MusicPlayingActivity.this,"Thêm thành công ",Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(MusicPlayingActivity.this,"Thêm không thành công ",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {

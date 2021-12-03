@@ -16,6 +16,8 @@ public class FMMusicDatabase extends SQLiteOpenHelper {
         // table user
         String TABLE_USER = "CREATE TABLE USER( UserName TEXT PRIMARY KEY, FullName TEXT NOT NULL, Password TEXT NOT NULL)";
         db.execSQL(TABLE_USER);
+        db.execSQL("INSERT INTO USER VALUES(\"doquochuy\",\"Do Quoc Huy\",\"123456\")");
+        db.execSQL("INSERT INTO USER VALUES(\"tho2002\",\"ThoPham\",\"123456\")");
 
         // table Playlist
         String TABLE_PLL = "CREATE TABLE PLL(IDPLL TEXT PRIMARY KEY, NamePLL TEXT," +
@@ -32,29 +34,22 @@ public class FMMusicDatabase extends SQLiteOpenHelper {
         String TABLE_SINGER = "CREATE TABLE SINGER(IDSinger TEXT PRIMARY KEY, SingerName TEXT)";
         db.execSQL(TABLE_SINGER);
 
-        // table Country
-        String TABLE_COUNTRY = "CREATE TABLE COUNTRY(IDCountry TEXT PRIMARY KEY, CountryName TEXT)";
-        db.execSQL(TABLE_COUNTRY);
-
         // table genres
         String TABLE_GENRES = "CREATE TABLE GENRES(IDGenres TEXT PRIMARY KEY, GenresName TEXT)";
         db.execSQL(TABLE_GENRES);
 
         // table Song
         String TABLE_SONG = "CREATE TABLE SONG(IDSong TEXT PRIMARY KEY, SongName TEXT,Thumbnail TEXT,Duration INTEGER," +
-                " IDCountry TEXT REFERENCES COUNTRY(IDCountry)," +
                 " IDGenres TEXT REFERENCES GENRES(IDGenres)," +
                 " IDSinger TEXT REFERENCES SINGER(IDSinger))";
         db.execSQL(TABLE_SONG);
 
         // table favorite
-        String TABLE_FAVORITE = "CREATE TABLE FAVORITE(IDFavorite TEXT PRIMARY KEY, " +
-                "IDUser TEXT REFERENCES USER(IDUser))";
+        String TABLE_FAVORITE = "CREATE TABLE FAVORITE(IDFavorite INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                "IDSong TEXT UNIQUE REFERENCES SONG(IDSong), SongName TEXT,Thumbnail TEXT,Duration INTEGER, IDSinger TEXT, SingerName TEXT,"+
+                "UserName TEXT REFERENCES USER(UserName))";
         db.execSQL(TABLE_FAVORITE);
-        // table favorite-song
-        String TABLE_FAVORITE_SONG = "CREATE TABLE FAVORITESONG(IDFavoriteSong TEXT PRIMARY KEY," +
-                "IDSong TEXT REFERENCES SONG(IDSong))";
-        db.execSQL(TABLE_FAVORITE_SONG);
+
 
     }
 

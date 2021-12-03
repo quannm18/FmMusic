@@ -1,30 +1,42 @@
 package com.example.fmmusic.Model;
 
+import com.example.fmmusic.Model.Songs.Song;
+
 public class Favorite {
-    private String idfv;
-    private String namefv;
+    private int idfv;
+    private Song song;
+    private String useName;
+
+    public Favorite(int idfv, Song song, String useName) {
+        this.idfv = idfv;
+        this.song = song;
+        this.useName = useName;
+    }
 
     public Favorite() {
     }
 
-    public Favorite(String idfv, String namefv) {
-        this.idfv = idfv;
-        this.namefv = namefv;
-    }
-
-    public String getIdfv() {
+    public int getIdfv() {
         return idfv;
     }
 
-    public void setIdfv(String idfv) {
+    public void setIdfv(int idfv) {
         this.idfv = idfv;
     }
 
-    public String getNamefv() {
-        return namefv;
+    public Song getSong() {
+        return song;
     }
 
-    public void setNamefv(String namefv) {
-        this.namefv = namefv;
+    public void setSong(Song song) {
+        this.song = song;
+    }
+
+    public String getUseName() {
+        return useName;
+    }
+
+    public void setUseName(String useName) {
+        this.useName = useName;
     }
 }
