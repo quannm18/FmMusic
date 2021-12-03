@@ -71,7 +71,7 @@ public class PlaylistActivity extends AppCompatActivity {
         String userName =sdf.getString("USERNAME","");
         listpll = new ArrayList<>();
         PLLDAO plldao = new PLLDAO(this);
-        listpll = plldao.getAllPll();
+        listpll = plldao.getDataUser(userName);
         if (listpll.size() <= 0)
         {
             listpll.add(new PLL(1,"Your play list",userName));
