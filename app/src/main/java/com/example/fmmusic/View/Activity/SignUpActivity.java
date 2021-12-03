@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.fmmusic.DAO.UserDAO;
+import com.example.fmmusic.Database.FMMusicDatabase;
 import com.example.fmmusic.Model.Users;
 import com.example.fmmusic.R;
 import com.google.android.material.textfield.TextInputLayout;
@@ -77,16 +78,16 @@ public class SignUpActivity extends AppCompatActivity {
                 users.setUserName(username);
                 users.setFullName(fullname);
                 users.setPassWord(password);
-                users.setRePass(rePassword);
 
-                if (password.length() == rePassword.length()){
+
+                if (password.equals(rePassword)){
                     UserDAO userDAO = new UserDAO(SignUpActivity.this);
                     long check = userDAO.insertUser(users);
                     if (check > 0) {
                         Toast.makeText(SignUpActivity.this, "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
                         usersList.clear();
                         usersList.addAll(userDAO.getAllUser());
-                        Intent intent = new Intent(SignUpActivity.this,HomeActivity.class);
+                        Intent intent = new Intent(SignUpActivity.this,LoginActivity.class);
                         startActivity(intent);
                     } else {
                         Toast.makeText(SignUpActivity.this, "Tạo tài khoản thất bại", Toast.LENGTH_SHORT).show();

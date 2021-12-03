@@ -34,36 +34,36 @@
         app:layout_constraintTop_toBottomOf="@+id/tvChangPass"
         app:srcCompat="@drawable/fmwwhite" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilUserName"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="32dp"
-        android:textColorHint="#FFFFFF"
-        app:boxCornerRadiusBottomEnd="24dp"
-        app:boxCornerRadiusBottomStart="24dp"
-        app:boxCornerRadiusTopEnd="24dp"
-        app:boxCornerRadiusTopStart="24dp"
-        app:boxStrokeColor="@color/white"
-        app:hintTextColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgFm"
-        app:layout_constraintVertical_bias="0.0"
-        app:errorEnabled="true">
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:id="@+id/tilUserName"-->
+<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="32dp"-->
+<!--        android:layout_marginTop="56dp"-->
+<!--        android:layout_marginEnd="32dp"-->
+<!--        android:textColorHint="#FFFFFF"-->
+<!--        app:boxCornerRadiusBottomEnd="24dp"-->
+<!--        app:boxCornerRadiusBottomStart="24dp"-->
+<!--        app:boxCornerRadiusTopEnd="24dp"-->
+<!--        app:boxCornerRadiusTopStart="24dp"-->
+<!--        app:boxStrokeColor="@color/white"-->
+<!--        app:hintTextColor="#FFFFFF"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.51"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/imgFm"-->
+<!--        app:layout_constraintVertical_bias="0.0"-->
+<!--        app:errorEnabled="true">-->
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_person_48"
-            android:hint="UserName"
-            android:textColor="@color/white" />
-    </com.google.android.material.textfield.TextInputLayout>
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:drawableStart="@drawable/ic_person_48"-->
+<!--            android:hint="UserName"-->
+<!--            android:textColor="@color/white" />-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilOldPass"
@@ -78,25 +78,27 @@
         app:boxCornerRadiusTopEnd="24dp"
         app:boxCornerRadiusTopStart="24dp"
         app:boxStrokeColor="#FFFFFF"
-        app:passwordToggleContentDescription="Hiển thị mật khẩu"
-        app:passwordToggleTint="@color/mtrl_textinput_default_box_stroke_color"
-        app:passwordToggleEnabled="true"
+        app:errorEnabled="true"
         app:hintTextColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilUserName"
-        app:placeholderTextColor="#FFFFFF"
-        app:errorEnabled="true">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.572"
+        app:passwordToggleContentDescription="Hiển thị mật khẩu"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/mtrl_textinput_default_box_stroke_color"
+        app:placeholderTextColor="#FFFFFF">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_lock_24"
             android:hint="Old Password"
             android:inputType="textPassword"
             android:textColor="@color/white"
-            tools:ignore="TouchTargetSizeCheck"
-            android:drawableStart="@drawable/ic_lock_24"/>
+            tools:ignore="TouchTargetSizeCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout

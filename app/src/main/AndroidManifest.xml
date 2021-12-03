@@ -56,7 +56,7 @@
         <activity
             android:name=".View.Activity.SignUpActivity"
             android:exported="true"
-            android:theme="@style/Theme.FmMusic.NoActionBar" />
+            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar" />
         <activity
             android:name=".View.Activity.MusicPlayingActivity"
             android:exported="true"
