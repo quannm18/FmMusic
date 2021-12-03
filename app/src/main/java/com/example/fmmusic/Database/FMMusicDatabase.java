@@ -20,10 +20,9 @@ public class FMMusicDatabase extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO USER VALUES(\"tho2002\",\"ThoPham\",\"123456\")");
 
         // table Playlist
-        String TABLE_PLL = "CREATE TABLE PLL(IDPLL INTEGER PRIMARY KEY AUTOINCREMENT, NamePLL TEXT," +
+        String TABLE_PLL = "CREATE TABLE PLL(IDPLL INTEGER PRIMARY KEY AUTOINCREMENT, NamePLL TEXT NOT NULL," +
                 " IDUser TEXT REFERENCES USER(IDUser))";
         db.execSQL(TABLE_PLL);
-
         // table PLL_Song
         String TABLE_PLL_SONG = "CREATE TABLE PLLSONG(IDPLLSong TEXT PRIMARY KEY," +
                 " IDPLL TEXT REFERENCES PLL(IDPLL)," +

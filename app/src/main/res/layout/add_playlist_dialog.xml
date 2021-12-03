@@ -61,7 +61,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnAddPlaylist"
+            android:id="@+id/btnAdd"
             android:layout_width="80dp"
             android:layout_height="38dp"
             app:backgroundTint="@null"

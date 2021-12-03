@@ -2,7 +2,9 @@ package com.example.fmmusic.Adapter;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -23,6 +25,7 @@ import com.bumptech.glide.Glide;
 import com.example.fmmusic.DAO.PLLDAO;
 import com.example.fmmusic.Model.PLL;
 import com.example.fmmusic.R;
+import com.example.fmmusic.View.Activity.MySongPlaylist_Activity;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
@@ -30,6 +33,7 @@ import java.util.List;
 public class MyPlaylistAdapter extends RecyclerView.Adapter<MyPlaylistAdapter.MyPlaylistViewHolder> {
     List<PLL> pllList;
     private Dialog dialog;
+    private ViewGroup viewGroup;
 
 
     public MyPlaylistAdapter(List<PLL> pllList) {
@@ -47,59 +51,13 @@ public class MyPlaylistAdapter extends RecyclerView.Adapter<MyPlaylistAdapter.My
     public void onBindViewHolder(@NonNull MyPlaylistAdapter.MyPlaylistViewHolder holder, int position) {
         final PLL pll = pllList.get(position);
         holder.tvNamePlaylist.setText(pll.getNamePll());
-        if (position == 0) {
-            Glide.with(holder.itemView.getContext())
-                    .load(R.drawable.button_add_playlist).
-                    into(holder.imgThumbnailPlaylist);
-            holder.imgThumbnailPlaylist.setOnClickListener(new View.OnClickListener() {
-                private TextView textView11;
-                private TextInputLayout tilNamePlaylist;
-                private AppCompatButton btnAddPlaylist;
-
-                @Override
-                public void onClick(View v) {
-                    dialog = new Dialog(v.getContext());
-                    dialog.setContentView(R.layout.add_playlist_dialog);
-                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                    SharedPreferences sdf = v.getContext().getSharedPreferences("USER_CURRENT",MODE_PRIVATE);
-
-
-                    textView11 = (TextView) dialog.findViewById(R.id.textView11);
-                    tilNamePlaylist = (TextInputLayout) dialog.findViewById(R.id.tilNamePlaylist);
-                    btnAddPlaylist = dialog.findViewById(R.id.btnAddPlaylist);
-                    btnAddPlaylist.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                            String namePlaylist = tilNamePlaylist.getEditText().getText().toString();
-                            PLL pll1 = new PLL();
-                            pll1.setNamePll(namePlaylist);
-                            pll1.setIdUser( sdf.getString("USERNAME",""));
-                            PLLDAO plldao = new PLLDAO(v.getContext());
-                            long checking = plldao.insertPLL(pll1);
-                            if (checking > 0) {
-                                Toast.makeText(v.getContext(), "Them thanh cong", Toast.LENGTH_SHORT).show();
-                                dialog.dismiss();
-                                pllList.clear();
-                                pllList.addAll(plldao.getAllPll());
-                                notifyDataSetChanged();
-                            } else {
-                                Toast.makeText(v.getContext(), "Them thất bại", Toast.LENGTH_SHORT).show();
-
-                            }
-                        }
-                    });
-                    dialog.show();
-                }
-            });
-        } else {
-            holder.imgThumbnailPlaylist.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(v.getContext(), "Danh sách bài hát", Toast.LENGTH_LONG).show();
-                }
-            });
-        }
+        holder.imgThumbnailPlaylist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(holder.itemView.getContext(), MySongPlaylist_Activity.class);
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

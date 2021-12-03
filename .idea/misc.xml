@@ -30,6 +30,7 @@
         <entry key="..\:/AndroidStudio/FileSave/PRO1121_DuAn1/FmMusic/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.22179487179487178" />
         <entry key="..\:/FmMusic/app/src/main/res/drawable/recycleview_no_conner.xml" value="0.2703125" />
         <entry key="..\:/FmMusic/app/src/main/res/layout/activity_down_load.xml" value="0.25416666666666665" />
+        <entry key="..\:/FmMusic/app/src/main/res/layout/activity_favorite_playlist.xml" value="0.19202898550724637" />
         <entry key="..\:/FmMusic/app/src/main/res/layout/activity_favorites_lib.xml" value="0.16168478260869565" />
         <entry key="..\:/FmMusic/app/src/main/res/layout/activity_finding_music.xml" value="0.25416666666666665" />
         <entry key="..\:/FmMusic/app/src/main/res/layout/activity_home.xml" value="0.16168478260869565" />
@@ -40,6 +41,7 @@
         <entry key="..\:/FmMusic/app/src/main/res/layout/change_pass_dialog.xml" value="0.25416666666666665" />
         <entry key="..\:/FmMusic/app/src/main/res/layout/fragment_songs_playing.xml" value="0.2210144927536232" />
         <entry key="..\:/FmMusic/app/src/main/res/layout/row_highlight.xml" value="0.25416666666666665" />
+        <entry key="..\:/FmMusic/app/src/main/res/layout/row_lis_playlist.xml" value="0.19202898550724637" />
         <entry key="..\:/FmMusic/app/src/main/res/layout/row_myplaylist.xml" value="0.2164855072463768" />
         <entry key="..\:/FmMusic/app/src/main/res/layout/row_song_lib.xml" value="0.25416666666666665" />
         <entry key="..\:/FmMusic/app/src/main/res/layout/skiplogin_dialog.xml" value="0.25416666666666665" />
@@ -53,7 +55,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
