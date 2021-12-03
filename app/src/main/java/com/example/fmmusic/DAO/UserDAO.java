@@ -28,6 +28,7 @@ public class UserDAO {
             users.setUserName(String.valueOf(cursor.getString(cursor.getColumnIndex("UserName"))));
             users.setFullName(String.valueOf(cursor.getString(cursor.getColumnIndex("FullName"))));
             users.setPassWord(String.valueOf(cursor.getString(cursor.getColumnIndex("Password"))));
+            users.setPassWord(String.valueOf(cursor.getString(cursor.getColumnIndex("rePass"))));
             usersList.add(users);
             cursor.moveToNext();
         }
