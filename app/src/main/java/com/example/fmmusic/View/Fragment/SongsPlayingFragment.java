@@ -58,7 +58,9 @@ public class SongsPlayingFragment extends Fragment implements Updateable {
         });
         String title = ((MusicPlayingActivity)getActivity()).nameSong+" - "+((MusicPlayingActivity)getActivity()).artist_name;
         if (title.length()>35){
-            tvTitlePlaying.setText(((MusicPlayingActivity)getActivity()).nameSong.substring(0,20)+"..."+" - "+((MusicPlayingActivity)getActivity()).artist_name);
+            if (((MusicPlayingActivity)getActivity()).nameSong.length()>19){
+                tvTitlePlaying.setText(((MusicPlayingActivity)getActivity()).nameSong.substring(0,20)+"..."+" - "+((MusicPlayingActivity)getActivity()).artist_name);
+            }
         }
         else {
             tvTitlePlaying.setText(title);
@@ -81,7 +83,7 @@ public class SongsPlayingFragment extends Fragment implements Updateable {
         if (title.length()>35){
             tvTitlePlaying.setText(((MusicPlayingActivity)getActivity()).nameSong.substring(0,20)+"..."+" - "+((MusicPlayingActivity)getActivity()).artist_name);
         }
-        else {
+        if (title.length()<36){
             tvTitlePlaying.setText(title);
         }
         tvSubTitlePlaylistOfSiger.setText("Danh sách phát - "+((MusicPlayingActivity)getActivity()).artist_name);
