@@ -16,6 +16,7 @@ import com.example.fmmusic.Model.SingerModel.Singer;
 import com.example.fmmusic.Model.Songs.Top;
 import com.example.fmmusic.R;
 import com.example.fmmusic.View.Activity.MusicPlayingActivity;
+import com.example.fmmusic.View.Activity.Persional.SingersLibActivity;
 
 import java.util.List;
 
@@ -41,6 +42,17 @@ public class SingerHomeAdapter extends RecyclerView.Adapter<SingerHomeAdapter.Si
                 .centerCrop()
                 .into(holder.imgSingerHomeRow);
         holder.tvSingerHomeRow.setText(singer.getName());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(),SingersLibActivity.class);
+                intent.putExtra("singer_name_home",singer.getName());
+                intent.putExtra("singer_img_home",singer.getId());
+                v.getContext().startActivity(intent);
+
+            }
+        });
     }
 
     @Override

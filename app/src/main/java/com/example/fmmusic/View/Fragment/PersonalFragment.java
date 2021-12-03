@@ -1,9 +1,18 @@
 package com.example.fmmusic.View.Fragment;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+
+import android.os.Environment;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +39,7 @@ import com.example.fmmusic.Model.Songs.Top;
 import com.example.fmmusic.R;
 import com.example.fmmusic.View.Activity.Persional.FavoritesLibActivity;
 import com.example.fmmusic.View.Activity.Persional.PlaylistActivity;
+import com.example.fmmusic.View.Activity.Persional.SingerFavoriteActivity;
 import com.example.fmmusic.View.Activity.Persional.SingersLibActivity;
 import com.example.fmmusic.View.Activity.Persional.SongsLibActivity;
 
@@ -74,6 +84,11 @@ public class PersonalFragment extends Fragment {
         cvSongsLib.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (isPermissionsGranted()){
+                    Toast.makeText(v.getContext(), "Permission already granted", Toast.LENGTH_SHORT).show();
+                }else {
+                    takePermission();
+                }
                 startActivity(new Intent(getContext(), SongsLibActivity.class));
 
             }
@@ -88,7 +103,7 @@ public class PersonalFragment extends Fragment {
         cvSingerLib.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), SingersLibActivity.class));
+                startActivity(new Intent(getContext(), SingerFavoriteActivity.class));
 
             }
         });
@@ -153,5 +168,33 @@ public class PersonalFragment extends Fragment {
                     }
                 });
         requestQueue.add(jsonObjectRequest);
+    }
+    private boolean isPermissionsGranted(){
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.R){
+            return Environment.isExternalStorageManager();
+        }else {
+            int readEnternalStoragePermission =
+                    ContextCompat.checkSelfPermission(getContext(),
+                            Manifest.permission.READ_EXTERNAL_STORAGE);
+            return readEnternalStoragePermission == PackageManager.PERMISSION_GRANTED;
+        }
+    }
+    private void takePermission(){
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.R){
+            try {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                intent.addCategory("android.intent.category.DEFAULT");
+                intent.setData(Uri.parse(String.format("package:%s",getContext().getPackageName())));
+                startActivityForResult(intent,100);
+            }catch (Exception e){
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                startActivityForResult(intent,100);
+                e.printStackTrace();
+            }
+        }else {
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},101);
+        }
     }
 }

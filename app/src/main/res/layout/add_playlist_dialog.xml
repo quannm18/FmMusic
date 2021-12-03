@@ -43,7 +43,6 @@
             app:boxCornerRadiusTopStart="24dp"
             app:boxStrokeColor="@color/white"
             app:boxStrokeErrorColor="#650808"
-            app:endIconMode="password_toggle"
             app:errorTextColor="#650808"
             app:hintTextColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -53,8 +52,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView11"
             app:layout_constraintVertical_bias="0.218"
             app:placeholderTextColor="@color/white"
-            app:prefixTextColor="@color/white"
-            app:startIconDrawable="@drawable/ic_baseline_vpn_key_24_white">
+            app:prefixTextColor="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
