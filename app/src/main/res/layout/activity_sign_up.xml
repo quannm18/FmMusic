@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/containerSignUp"
     android:layout_width="match_parent"
-    android:background="@drawable/background_signup_ht"
+    android:background="@drawable/background_signup_test"
     android:layout_height="match_parent"
     tools:context=".View.Activity.SignUpActivity">
 
@@ -12,7 +12,6 @@
         android:id="@+id/btnSignUp"
         android:layout_width="112dp"
         android:layout_height="51dp"
-        android:layout_marginBottom="32dp"
         android:background="@drawable/custom_button_color"
         android:text="Đăng Ký"
         android:textColor="@color/white"
@@ -22,7 +21,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilRePass"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.45" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilFullName"
@@ -31,27 +30,27 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:textColorHint="#FFFFFF"
+        android:textColorHint="#CA42EF"
         app:boxCornerRadiusBottomEnd="24dp"
         app:boxCornerRadiusBottomStart="24dp"
         app:boxCornerRadiusTopEnd="24dp"
         app:boxCornerRadiusTopStart="24dp"
-        app:boxStrokeColor="#FFFFFF"
+        app:boxStrokeColor="#CA42EF"
         app:errorEnabled="true"
-        app:hintTextColor="#FFFFFF"
+        app:hintTextColor="#CA42EF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55">
+        app:layout_constraintVertical_bias="0.39999998">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_person_48"
             android:hint="Họ tên:"
-            android:textColor="@color/white" />
+            android:textColor="#CA42EF" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -61,21 +60,21 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:textColorHint="#FFFFFF"
+        android:textColorHint="#CA42EF"
         app:boxCornerRadiusBottomEnd="24dp"
         app:boxCornerRadiusBottomStart="24dp"
         app:boxCornerRadiusTopEnd="24dp"
         app:boxCornerRadiusTopStart="24dp"
-        app:boxStrokeColor="#FFFFFF"
+        app:boxStrokeColor="#CA42EF"
         app:endIconMode="password_toggle"
         app:errorEnabled="true"
-        app:hintTextColor="#FFFFFF"
+        app:hintTextColor="#CA42EF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilUserPass"
-        app:placeholderTextColor="#FFFFFF"
-        app:prefixTextColor="#FFFFFF"
-        app:suffixTextColor="#FFFFFF"
+        app:placeholderTextColor="#CA42EF"
+        app:prefixTextColor="#CA42EF"
+        app:suffixTextColor="#CA42EF"
         app:passwordToggleContentDescription="Hiển thị mật khẩu"
         app:passwordToggleTint="@color/mtrl_textinput_default_box_stroke_color"
         app:passwordToggleEnabled="true">
@@ -96,14 +95,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:textColorHint="#FFFFFF"
+        android:textColorHint="#CA42EF"
         app:boxCornerRadiusBottomEnd="24dp"
         app:boxCornerRadiusBottomStart="24dp"
         app:boxCornerRadiusTopEnd="24dp"
         app:boxCornerRadiusTopStart="24dp"
-        app:boxStrokeColor="#FFFFFF"
+        app:boxStrokeColor="#CA42EF"
         app:errorEnabled="true"
-        app:hintTextColor="#FFFFFF"
+        app:hintTextColor="#CA42EF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,15 +123,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:textColorHint="#FFFFFF"
+        android:textColorHint="#CA42EF"
         app:boxCornerRadiusBottomEnd="24dp"
         app:boxCornerRadiusBottomStart="24dp"
         app:boxCornerRadiusTopEnd="24dp"
         app:boxCornerRadiusTopStart="24dp"
-        app:boxStrokeColor="#FFFFFF"
+        app:boxStrokeColor="#CA42EF"
         app:endIconMode="password_toggle"
         app:errorEnabled="true"
-        app:hintTextColor="#FFFFFF"
+        app:hintTextColor="#CA42EF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
@@ -147,7 +146,7 @@
             android:layout_height="wrap_content"
             android:hint="Mật khẩu:"
             android:inputType="textPassword"
-            android:textColor="@color/white"
+            android:textColor="#CA42EF"
             tools:ignore="TouchTargetSizeCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 

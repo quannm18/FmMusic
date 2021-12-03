@@ -28,7 +28,6 @@ public class PLLDAO {
             pll.setIdUser(String.valueOf(Integer.parseInt(cursor.getString(cursor.getColumnIndex("IDUser")))));
             pll.setIdPLL(Integer.parseInt(String.valueOf(cursor.getString(cursor.getColumnIndex("IDPLL")))));
             pll.setNamePll(String.valueOf(cursor.getString(cursor.getColumnIndex("NamePLL"))));
-
             pllList.add(pll);
             cursor.moveToNext();
         }
@@ -53,5 +52,24 @@ public class PLLDAO {
         contentValues.put("NamePLL",pll.getNamePll());
         long row = sqLiteDatabase.update("PLL",contentValues,"IDPLL=?",new String[]{String.valueOf(pll.getIdPLL())});
         return row;
+    }
+    public List<String> getAllNamePLL(){
+        List<String> pllModellist = new ArrayList<>();
+        String query = "SELECT * FROM PLL";
+        SQLiteDatabase sql = fmMusicDatabase.getReadableDatabase();
+        sql.rawQuery(query, null);
+        Cursor cursor = sql.rawQuery(query,null);
+        if(cursor.getCount()>0){
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast()){
+                String NameUser = cursor.getString(cursor.getColumnIndex("IDUser"));
+                String IDPll = cursor.getString(cursor.getColumnIndex("IDPLL"));
+                String NamePLL = cursor.getString(cursor.getColumnIndex("NamePLL"));
+                pllModellist.add(NamePLL);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+        return pllModellist;
     }
 }
