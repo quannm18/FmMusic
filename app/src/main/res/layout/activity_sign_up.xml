@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/containerSignUp"
     android:layout_width="match_parent"
-    android:background="@drawable/background_signup_test"
+    android:background="@drawable/background_signup_ht"
     android:layout_height="match_parent"
     tools:context=".View.Activity.SignUpActivity">
 
@@ -12,7 +12,6 @@
         android:id="@+id/btnSignUp"
         android:layout_width="112dp"
         android:layout_height="51dp"
-        android:layout_marginTop="16dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/custom_button_color"
         android:text="Đăng Ký"
@@ -45,7 +44,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.43">
+        app:layout_constraintVertical_bias="0.55">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"

@@ -25,6 +25,7 @@ public class UserDAO {
         cursor.moveToFirst();
         while (cursor.isAfterLast() == false){
             Users users = new Users();
+          //  users.setIdUser(Integer.parseInt(cursor.getString(cursor.getColumnIndex("IDUser"))));
             users.setUserName(String.valueOf(cursor.getString(cursor.getColumnIndex("UserName"))));
             users.setFullName(String.valueOf(cursor.getString(cursor.getColumnIndex("FullName"))));
             users.setPassWord(String.valueOf(cursor.getString(cursor.getColumnIndex("Password"))));
@@ -36,43 +37,56 @@ public class UserDAO {
         database.close();
         return usersList;
     }
+
+    public Users getUser(String username){
+        List<Users> usersList = new ArrayList<>();
+        SQLiteDatabase database = fmMusicDatabase.getReadableDatabase();
+        String dataUser = "SELECT * FROM USER WHERE UserName=?";
+        Cursor cursor = database.rawQuery(dataUser,new String[]{username});
+        cursor.moveToFirst();
+        while (cursor.isAfterLast() == false){
+            Users users = new Users();
+            //  users.setIdUser(Integer.parseInt(cursor.getString(cursor.getColumnIndex("IDUser"))));
+            users.setUserName(String.valueOf(cursor.getString(cursor.getColumnIndex("UserName"))));
+            users.setFullName(String.valueOf(cursor.getString(cursor.getColumnIndex("FullName"))));
+            users.setPassWord(String.valueOf(cursor.getString(cursor.getColumnIndex("Password"))));
+            users.setPassWord(String.valueOf(cursor.getString(cursor.getColumnIndex("rePass"))));
+            usersList.add(users);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        database.close();
+        return usersList.get(0);
+    }
     public long insertUser(Users users){
         SQLiteDatabase sqLiteDatabase = fmMusicDatabase.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+       // contentValues.put("IDUser",users.getIdUser());
         contentValues.put("UserName",users.getUserName());
         contentValues.put("FullName",users.getFullName());
         contentValues.put("Password",users.getPassWord());
+        contentValues.put("rePass",users.getRePass());
         long row = sqLiteDatabase.insert("USER",null,contentValues);
         return row;
     }
     public long updatetUser(Users users){
         SQLiteDatabase sqLiteDatabase = fmMusicDatabase.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-//        contentValues.put("UserID",users.getIdUser());
+
         contentValues.put("UserName",users.getUserName());
         contentValues.put("FullName",users.getFullName());
         contentValues.put("Password",users.getPassWord());
-//        contentValues.put("rePass",users.getRePass());
+        contentValues.put("rePass",users.getRePass());
         long row = sqLiteDatabase.update("USER",contentValues,"UserName=?",new String[]{String.valueOf(users.getUserName())});
         return row;
     }
-    public boolean ChangePassword(String username, String newpass){
-        SQLiteDatabase sqLiteDatabase = fmMusicDatabase.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("Password", newpass);
-        int row = sqLiteDatabase.update("USER",contentValues,"UserName=?", new String[]{username});
-        if(row <=0){
-            return false;
-        }
-        return true;
-    }
-
     private List<Users> getData(String sql, String...selectionArgs){
         List<Users> list = new ArrayList<>();
         SQLiteDatabase database = fmMusicDatabase.getReadableDatabase();
         Cursor cursor = database.rawQuery(sql,selectionArgs);
         while (cursor.moveToNext()){
             Users users = new Users();
+           // users.setIdUser(Integer.parseInt(cursor.getString(cursor.getColumnIndex("IDUser"))));
             users.setUserName(String.valueOf(cursor.getString(cursor.getColumnIndex("UserName"))));
             users.setFullName(String.valueOf(cursor.getString(cursor.getColumnIndex("FullName"))));
             users.setPassWord(String.valueOf(cursor.getString(cursor.getColumnIndex("Password"))));
@@ -90,9 +104,5 @@ public class UserDAO {
         }
         return 1;
     }
-    public Users getUser(String user){
-        String sql = "SELECT * FROM USER WHERE UserName=?";
-        List<Users> list = getData(sql,user);
-        return list.get(0);
-    }
+
 }

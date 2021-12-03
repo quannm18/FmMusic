@@ -39,6 +39,7 @@ import com.example.fmmusic.Model.Songs.Top;
 import com.example.fmmusic.R;
 import com.example.fmmusic.View.Activity.Persional.FavoritesLibActivity;
 import com.example.fmmusic.View.Activity.Persional.PlaylistActivity;
+import com.example.fmmusic.View.Activity.Persional.SingerFavoriteActivity;
 import com.example.fmmusic.View.Activity.Persional.SingersLibActivity;
 import com.example.fmmusic.View.Activity.Persional.SongsLibActivity;
 
@@ -102,7 +103,7 @@ public class PersonalFragment extends Fragment {
         cvSingerLib.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), SingersLibActivity.class));
+                startActivity(new Intent(getContext(), SingerFavoriteActivity.class));
 
             }
         });
