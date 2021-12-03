@@ -25,7 +25,7 @@ public class PLLDAO {
         cursor.moveToFirst();
         while (cursor.isAfterLast() == false){
             PLL pll = new PLL();
-            pll.setIdUser(String.valueOf(Integer.parseInt(cursor.getString(cursor.getColumnIndex("IDUser")))));
+            pll.setIdUser(String.valueOf(cursor.getString(cursor.getColumnIndex("IDUser"))));
             pll.setIdPLL(Integer.parseInt(String.valueOf(cursor.getString(cursor.getColumnIndex("IDPLL")))));
             pll.setNamePll(String.valueOf(cursor.getString(cursor.getColumnIndex("NamePLL"))));
 
@@ -40,7 +40,6 @@ public class PLLDAO {
         SQLiteDatabase sqLiteDatabase = fmMusicDatabase.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("IDUser",pll.getIdUser());
-        contentValues.put("IDPLL",pll.getIdPLL());
         contentValues.put("NamePLL",pll.getNamePll());
         long row = sqLiteDatabase.insert("PLL",null,contentValues);
         return row;
@@ -49,7 +48,6 @@ public class PLLDAO {
         SQLiteDatabase sqLiteDatabase = fmMusicDatabase.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("IDUser",pll.getIdUser());
-        contentValues.put("IDPLL",pll.getIdPLL());
         contentValues.put("NamePLL",pll.getNamePll());
         long row = sqLiteDatabase.update("PLL",contentValues,"IDPLL=?",new String[]{String.valueOf(pll.getIdPLL())});
         return row;

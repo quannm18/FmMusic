@@ -43,7 +43,6 @@
             app:boxCornerRadiusTopStart="24dp"
             app:boxStrokeColor="@color/white"
             app:boxStrokeErrorColor="#650808"
-            app:endIconMode="password_toggle"
             app:errorTextColor="#650808"
             app:hintTextColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -53,8 +52,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView11"
             app:layout_constraintVertical_bias="0.218"
             app:placeholderTextColor="@color/white"
-            app:prefixTextColor="@color/white"
-            app:startIconDrawable="@drawable/ic_baseline_vpn_key_24_white">
+            app:prefixTextColor="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -62,10 +60,11 @@
                 android:hint="Tên Playlist" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnCancelLogin"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAddPlaylist"
             android:layout_width="80dp"
             android:layout_height="38dp"
+            app:backgroundTint="@null"
             android:background="@drawable/custom_button_color"
             android:text="Thêm"
             android:textColor="@color/white"
