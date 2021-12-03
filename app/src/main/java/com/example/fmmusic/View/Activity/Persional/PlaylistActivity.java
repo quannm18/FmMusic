@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.fmmusic.Adapter.MyPlaylistAdapter;
 import com.example.fmmusic.Adapter.PlaylistAdapter;
+import com.example.fmmusic.DAO.PLLDAO;
 import com.example.fmmusic.Model.PLL;
 import com.example.fmmusic.Model.Songs.Playlist;
 import com.example.fmmusic.R;
@@ -69,12 +70,17 @@ public class PlaylistActivity extends AppCompatActivity {
         SharedPreferences sdf = getSharedPreferences("USER_CURRENT",MODE_PRIVATE);
         String userName =sdf.getString("USERNAME","");
         listpll = new ArrayList<>();
-        listpll.add(new PLL(1,"Your play list",userName));
-        listpll.add(new PLL(2,"My playlist",userName));
-        listpll.add(new PLL(3,"Your play list",userName));
-        listpll.add(new PLL(4,"My playlist",userName));
-        listpll.add(new PLL(5,"Your play list",userName));
-        listpll.add(new PLL(6,"My playlist",userName));
+        PLLDAO plldao = new PLLDAO(this);
+        listpll = plldao.getDataUser(userName);
+        if (listpll.size() <= 0)
+        {
+            listpll.add(new PLL(1,"Your play list",userName));
+            listpll.add(new PLL(2,"My playlist",userName));
+            listpll.add(new PLL(3,"Your play list",userName));
+            listpll.add(new PLL(4,"My playlist",userName));
+            listpll.add(new PLL(5,"Your play list",userName));
+            listpll.add(new PLL(6,"My playlist",userName));
+        }
         myPlaylistAdapter = new MyPlaylistAdapter(listpll);
         rcvPlaylist.setAdapter(myPlaylistAdapter);
 

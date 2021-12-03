@@ -60,10 +60,11 @@
                 android:hint="Tên Playlist" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnCancelLogin"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAddPlaylist"
             android:layout_width="80dp"
             android:layout_height="38dp"
+            app:backgroundTint="@null"
             android:background="@drawable/custom_button_color"
             android:text="Thêm"
             android:textColor="@color/white"
