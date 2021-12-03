@@ -25,8 +25,8 @@ public class PLLDAO {
         cursor.moveToFirst();
         while (cursor.isAfterLast() == false){
             PLL pll = new PLL();
-            pll.setIdUser(Integer.parseInt(cursor.getString(cursor.getColumnIndex("IDUser"))));
-            pll.setIdPLL(String.valueOf(cursor.getString(cursor.getColumnIndex("IDPLL"))));
+            pll.setIdUser(String.valueOf(Integer.parseInt(cursor.getString(cursor.getColumnIndex("IDUser")))));
+            pll.setIdPLL(Integer.parseInt(String.valueOf(cursor.getString(cursor.getColumnIndex("IDPLL")))));
             pll.setNamePll(String.valueOf(cursor.getString(cursor.getColumnIndex("NamePLL"))));
 
             pllList.add(pll);

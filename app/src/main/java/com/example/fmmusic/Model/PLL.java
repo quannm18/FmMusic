@@ -1,24 +1,26 @@
 package com.example.fmmusic.Model;
 
 public class PLL {
-    private String  idPLL;
+    private int  idPLL;
     private String namePll;
-    private int idUser;
+    private String idUser;
 
     public PLL() {
     }
 
-    public PLL(String idPLL, String namePll, int idUser) {
+    public PLL(int idPLL, String namePll, String idUser) {
         this.idPLL = idPLL;
         this.namePll = namePll;
         this.idUser = idUser;
     }
 
-    public String getIdPLL() {
+
+
+    public int getIdPLL() {
         return idPLL;
     }
 
-    public void setIdPLL(String idPLL) {
+    public void setIdPLL(int idPLL) {
         this.idPLL = idPLL;
     }
 
@@ -30,11 +32,11 @@ public class PLL {
         this.namePll = namePll;
     }
 
-    public int getIdUser() {
+    public String getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(String idUser) {
         this.idUser = idUser;
     }
 }
