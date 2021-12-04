@@ -21,7 +21,7 @@ import com.example.fmmusic.View.Activity.Persional.PlaylistActivity;
 import java.util.List;
 
 public class TopAdapter extends RecyclerView.Adapter<TopAdapter.TopHolder> {
-    private List<Top> topList;
+    public static List<Top> topList;
 
     public TopAdapter(List<Top> topList) {
         this.topList = topList;

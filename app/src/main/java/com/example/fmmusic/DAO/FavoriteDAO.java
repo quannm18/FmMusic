@@ -37,7 +37,6 @@ public class FavoriteDAO {
 
             singer.setId(String.valueOf(cursor.getString(cursor.getColumnIndex("IDSinger"))));
             singer.setName(String.valueOf(cursor.getString(cursor.getColumnIndex("SingerName"))));
-
             song.setSinger(singer);
             fvr.setSong(song);
             fvr.setUseName(String.valueOf(cursor.getString(cursor.getColumnIndex("SingerName"))));

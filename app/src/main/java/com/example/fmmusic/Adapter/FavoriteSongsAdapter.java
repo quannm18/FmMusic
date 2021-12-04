@@ -17,6 +17,7 @@ import com.example.fmmusic.Model.Favorite;
 import com.example.fmmusic.Model.Songs.Top;
 import com.example.fmmusic.R;
 import com.example.fmmusic.View.Activity.MusicPlayingActivity;
+import com.example.fmmusic.View.Fragment.SongsPlayingFragment;
 
 import java.util.List;
 
@@ -44,6 +45,7 @@ public class FavoriteSongsAdapter extends RecyclerView.Adapter<FavoriteSongsAdap
 
         holder.tvNameTopRow.setText(favorite.getSong().getName());
         holder.tvSingerTopRow.setText(favorite.getSong().getSinger().getName());
+
     }
 
     @Override

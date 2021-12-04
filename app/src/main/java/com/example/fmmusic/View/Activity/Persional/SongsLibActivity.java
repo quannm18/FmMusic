@@ -21,6 +21,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,7 +52,8 @@ public class SongsLibActivity extends AppCompatActivity {
     private TextView tvNameSong;
 
     private SongsLibAdapter songsLibAdapter;
-    private List<AudioModel> audioModelList;
+    public static List<AudioModel> audioModelList;
+    public static List<AudioModel> audioFind;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,13 +81,47 @@ public class SongsLibActivity extends AppCompatActivity {
         //get song vao trong list
         audioModelList = new ArrayList<>();
         audioModelList = loadAudio(this);
-        //end
-        //setadapter
 
         songsLibAdapter = new SongsLibAdapter(audioModelList);
         rcvListSongs.setAdapter(songsLibAdapter);
         rcvListSongs.setLayoutManager(new LinearLayoutManager(this));
 
+        tilFindSonglib.getEditText().setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    findSong();
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+
+    void findSong(){
+        int pos = -1;
+        for (int i = 0; i < audioModelList.size(); i++) {
+            if (audioModelList.get(i).getName().contains(tilFindSonglib.getEditText().getText().toString())
+                    || audioModelList.get(i).getName().equalsIgnoreCase(tilFindSonglib.getEditText().getText().toString())){
+                audioFind = new ArrayList<>();
+                audioFind.add(audioModelList.get(i));
+                songsLibAdapter = new SongsLibAdapter(audioFind);
+                rcvListSongs.setAdapter(songsLibAdapter);
+                rcvListSongs.setLayoutManager(new LinearLayoutManager(this));
+                pos++;
+            }
+        }
+        if (pos<0){
+            Toast.makeText(SongsLibActivity.this, "Không tìm thấy "+tilFindSonglib.getEditText().getText().toString(), Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(SongsLibActivity.this, "Đã tìm thấy "+tilFindSonglib.getEditText().getText().toString(), Toast.LENGTH_SHORT).show();
+            audioModelList = new ArrayList<>();
+            audioModelList = loadAudio(this);
+
+            songsLibAdapter = new SongsLibAdapter(audioModelList);
+            rcvListSongs.setAdapter(songsLibAdapter);
+            rcvListSongs.setLayoutManager(new LinearLayoutManager(this));
+        }
     }
 
     private List<AudioModel> loadAudio(Context context){

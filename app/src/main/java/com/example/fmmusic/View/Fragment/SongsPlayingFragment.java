@@ -82,7 +82,7 @@ public class SongsPlayingFragment extends Fragment {
         });
         String title = ((MusicPlayingActivity) getActivity()).nameSong + " - " + ((MusicPlayingActivity) getActivity()).artist_name;
         if (title.length() > 35) {
-            tvTitlePlaying.setText(((MusicPlayingActivity) getActivity()).nameSong.substring(0, 20) + "..." + " - " + ((MusicPlayingActivity) getActivity()).artist_name);
+            tvTitlePlaying.setText(((MusicPlayingActivity) getActivity()).nameSong.substring(0, 5) + "..." + " - " + ((MusicPlayingActivity) getActivity()).artist_name);
         } else {
             tvTitlePlaying.setText(title);
         }

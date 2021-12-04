@@ -59,6 +59,8 @@
                 app:suffixTextColor="#CF40E8">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:inputType="text"
+                    android:imeOptions="actionSearch"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/corner_searchbar"

@@ -129,6 +129,15 @@ public class PlaylistActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+        rcvPlaylist.setOnLongClickListener(new View.OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+
+
+                return false;
+            }
+        });
     }
     void setListData(){
         String url1="https://pimobfptedu.github.io/img/";

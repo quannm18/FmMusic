@@ -51,6 +51,11 @@ public class PLLDAO {
         long row = sqLiteDatabase.update("PLL",contentValues,"IDPLL=?",new String[]{String.valueOf(pll.getIdPLL())});
         return row;
     }
+    public boolean deletePLL(int IDUser){
+        SQLiteDatabase database = fmMusicDatabase.getWritableDatabase();
+        int row = database.delete("PLL","IDPLL=?",new String[]{String.valueOf(IDUser)});
+        return row>0;
+    }
     public List<String> getAllNamePLL(){
         List<String> pllModellist = new ArrayList<>();
         String query = "SELECT * FROM PLL";
@@ -88,4 +93,7 @@ public class PLLDAO {
         database.close();
         return pllList;
     }
+
+
+
 }
