@@ -6,7 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.fmmusic.Database.FMMusicDatabase;
+import com.example.fmmusic.Model.PLL;
 import com.example.fmmusic.Model.PLLSong;
+import com.example.fmmusic.Model.SingerModel.Singer;
+import com.example.fmmusic.Model.Songs.Song;
 import com.example.fmmusic.Model.Users;
 
 import java.util.ArrayList;
@@ -26,9 +29,18 @@ public class PLLSongDAO {
         cursor.moveToFirst();
         while (cursor.isAfterLast() == false){
             PLLSong pllSong = new PLLSong();
-            pllSong.setIdPLLSong(String.valueOf(cursor.getString(cursor.getColumnIndex("IDPLLSong"))));
-            pllSong.setIdSong(String.valueOf(cursor.getString(cursor.getColumnIndex("IDSong"))));
-            pllSong.setIdPll(String.valueOf(cursor.getString(cursor.getColumnIndex("IDPLL"))));
+            Song song = new Song();
+            Singer singer = new Singer();
+            pllSong.setIdPLLSong(Integer.valueOf(cursor.getString(cursor.getColumnIndex("IDPLLSong"))));
+            song.setId(String.valueOf(cursor.getString(cursor.getColumnIndex("IDSong"))));
+            song.setName(String.valueOf(cursor.getString(cursor.getColumnIndex("SongName"))));
+            song.setThumbnail(String.valueOf(cursor.getString(cursor.getColumnIndex("Thumbnail"))));
+            song.setDuration(Integer.valueOf(cursor.getString(cursor.getColumnIndex("Duration"))));
+            singer.setId(String.valueOf(cursor.getString(cursor.getColumnIndex("IDSinger"))));
+            singer.setName(String.valueOf(cursor.getString(cursor.getColumnIndex("SingerName"))));
+            song.setSinger(singer);
+            pllSong.setIdPll(Integer.valueOf(cursor.getString(cursor.getColumnIndex("IDPLL"))));
+            pllSong.setSong(song);
             pllSongs.add(pllSong);
             cursor.moveToNext();
         }
@@ -36,23 +48,62 @@ public class PLLSongDAO {
         database.close();
         return pllSongs;
     }
+
+
+    public List<PLLSong> getSongFromPLL(int IDPLL){
+        List<PLLSong> pllSongList = new ArrayList<>();
+        SQLiteDatabase database = fmMusicDatabase.getReadableDatabase();
+        String dataPLL = "SELECT * FROM PLLSONG WHERE IDPLL=?";
+        Cursor cursor = database.rawQuery(dataPLL,new String[]{String.valueOf(IDPLL)});
+        if (cursor.getCount() >0){
+            cursor.moveToFirst();
+            while (cursor.isAfterLast() == false){
+                PLLSong pllSong = new PLLSong();
+                Song song = new Song();
+                Singer singer = new Singer();
+
+                pllSong.setIdPLLSong(Integer.valueOf(cursor.getString(cursor.getColumnIndex("IDPLLSong"))));
+                song.setId(String.valueOf(cursor.getString(cursor.getColumnIndex("IDSong"))));
+                song.setName(String.valueOf(cursor.getString(cursor.getColumnIndex("SongName"))));
+                song.setThumbnail(String.valueOf(cursor.getString(cursor.getColumnIndex("Thumbnail"))));
+                song.setDuration(Integer.valueOf(cursor.getString(cursor.getColumnIndex("Duration"))));
+                singer.setId(String.valueOf(cursor.getString(cursor.getColumnIndex("IDSinger"))));
+                singer.setName(String.valueOf(cursor.getString(cursor.getColumnIndex("SingerName"))));
+                song.setSinger(singer);
+                pllSong.setIdPll(Integer.valueOf(cursor.getString(cursor.getColumnIndex("IDPLL"))));
+                pllSong.setSong(song);
+
+                pllSongList.add(pllSong);
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+        database.close();
+        return pllSongList;
+    }
+
+
+
     public long insertPllSong(PLLSong pllSong){
         SQLiteDatabase sqLiteDatabase = fmMusicDatabase.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("IDPLLSong",pllSong.getIdPLLSong());
         contentValues.put("IDPLL",pllSong.getIdPll());
-        contentValues.put("IDSong",pllSong.getIdSong());
+        contentValues.put("IDSong",pllSong.getSong().getId());
+        contentValues.put("SongName",pllSong.getSong().getName());
+        contentValues.put("Thumbnail",pllSong.getSong().getThumbnail());
+        contentValues.put("Duration",pllSong.getSong().getDuration());
+        contentValues.put("IDSinger",pllSong.getSong().getSinger().getId());
+        contentValues.put("SingerName",pllSong.getSong().getSinger().getName());
+
+
 
         long row = sqLiteDatabase.insert("PLLSONG",null,contentValues);
         return row;
     }
-    public long updatetPllSong(PLLSong pllSong){
+    public int updatetPllSong(PLLSong pllSong){
         SQLiteDatabase sqLiteDatabase = fmMusicDatabase.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("IDPLLSong",pllSong.getIdPLLSong());
-        contentValues.put("IDPLL",pllSong.getIdPll());
-        contentValues.put("IDSong",pllSong.getIdSong());
-        long row = sqLiteDatabase.update("PLLSONG",contentValues,"IDPLLSong=?",new String[]{String.valueOf(pllSong.getIdPLLSong())});
+
+        int row = sqLiteDatabase.delete("PLLSONG","IDPLLSong=?",new String[]{String.valueOf(pllSong.getIdPLLSong())});
         return row;
     }
 }

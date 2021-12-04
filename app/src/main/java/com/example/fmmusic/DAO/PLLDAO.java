@@ -88,11 +88,11 @@ public class PLLDAO {
         }
         return pllModellist;
     }
-    public List<PLL> getDataUser(String ...IDUser){
+    public List<PLL> getDataUser(String IDUser){
         List<PLL> pllList = new ArrayList<>();
         SQLiteDatabase database = fmMusicDatabase.getReadableDatabase();
         String dataPLL = "SELECT * FROM PLL WHERE IDUser=?";
-        Cursor cursor = fmMusicDatabase.getReadableDatabase().rawQuery(dataPLL,IDUser);
+        Cursor cursor = fmMusicDatabase.getReadableDatabase().rawQuery(dataPLL, new String[]{IDUser});
         cursor.moveToFirst();
         while (cursor.isAfterLast() == false){
             PLL pll = new PLL();

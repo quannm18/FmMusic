@@ -86,7 +86,6 @@ public class PlaylistActivity extends AppCompatActivity {
         listpll = plldao.getDataUser(userName);
         myPlaylistAdapter = new MyPlaylistAdapter(listpll);
         rcvPlaylist.setAdapter(myPlaylistAdapter);
-
         rcvPlaylist.setLayoutManager(new LinearLayoutManager(PlaylistActivity.this,RecyclerView.HORIZONTAL,false));
 
         btnAddPlaylist.setOnClickListener(new View.OnClickListener() {

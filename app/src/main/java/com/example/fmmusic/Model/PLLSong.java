@@ -1,40 +1,42 @@
 package com.example.fmmusic.Model;
 
+import com.example.fmmusic.Model.Songs.Song;
+
 public class PLLSong {
-    private String idPLLSong;
-    private String idPll;
-    private String idSong;
+    private int idPLLSong;
+    private int idPll;
+    private Song song;
+
+    public PLLSong(int idPLLSong, int idPll, Song song) {
+        this.idPLLSong = idPLLSong;
+        this.idPll = idPll;
+        this.song = song;
+    }
 
     public PLLSong() {
     }
 
-    public PLLSong(String idPLLSong, String idPll, String idSong) {
-        this.idPLLSong = idPLLSong;
-        this.idPll = idPll;
-        this.idSong = idSong;
-    }
-
-    public String getIdPLLSong() {
+    public int getIdPLLSong() {
         return idPLLSong;
     }
 
-    public void setIdPLLSong(String idPLLSong) {
+    public void setIdPLLSong(int idPLLSong) {
         this.idPLLSong = idPLLSong;
     }
 
-    public String getIdPll() {
+    public int getIdPll() {
         return idPll;
     }
 
-    public void setIdPll(String idPll) {
+    public void setIdPll(int idPll) {
         this.idPll = idPll;
     }
 
-    public String getIdSong() {
-        return idSong;
+    public Song getSong() {
+        return song;
     }
 
-    public void setIdSong(String idSong) {
-        this.idSong = idSong;
+    public void setSong(Song song) {
+        this.song = song;
     }
 }
