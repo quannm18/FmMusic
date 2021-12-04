@@ -24,12 +24,14 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.fmmusic.Adapter.FavoriteSongsAdapter;
 import com.example.fmmusic.Adapter.FindingAdapter;
+import com.example.fmmusic.Adapter.PLLSongAdapter;
 import com.example.fmmusic.Adapter.TopAdapter;
 import com.example.fmmusic.Adapter.ViewPagerAdapterMusicPlaying;
 import com.example.fmmusic.Controller.ActionPlaying;
 import com.example.fmmusic.Controller.MusicService;
 import com.example.fmmusic.DAO.FavoriteDAO;
 import com.example.fmmusic.Model.Favorite;
+import com.example.fmmusic.Model.PLLSong;
 import com.example.fmmusic.Model.SingerModel.Singer;
 import com.example.fmmusic.Model.Songs.AudioModel;
 import com.example.fmmusic.Model.Songs.Song;
@@ -51,7 +53,9 @@ public class MusicPlayingActivity extends AppCompatActivity
     static List<Song> songs = new ArrayList<>();
     static List<AudioModel> audios = new ArrayList<>();
     static List<Top> tops = new ArrayList<>();
-    static List<Favorite> favoriteArrayListto = new ArrayList<>();
+    static List<Favorite> favorites = new ArrayList<>();
+    static List<PLLSong> pllSongs = new ArrayList<>();
+
     static Uri uri;
     static MediaPlayer mediaPlayer;
     public int position;
@@ -182,12 +186,21 @@ public class MusicPlayingActivity extends AppCompatActivity
         duration = bundle.getString("duration");
 
         if (from.equals("FVRSongAdapter")){
-            favoriteArrayListto = FavoriteSongsAdapter.favoriteList;
-            Log.e("saito",favoriteArrayListto.size()+"FVRSongAdapter" );
-            if (!favoriteArrayListto.isEmpty()) {
+            favorites = FavoriteSongsAdapter.favoriteList;
+            Log.e("saito", favorites.size()+"FVRSongAdapter" );
+            if (!favorites.isEmpty()) {
                 btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
-                uri = Uri.parse(DOMAIN_PLAY +favoriteArrayListto.get(position).getSong().getId()+"/320");
+                uri = Uri.parse(DOMAIN_PLAY + favorites.get(position).getSong().getId()+"/320");
             }   createMediaPlayer();
+        }
+        if (from.equals("PLLSongAdapter")){
+            pllSongs = PLLSongAdapter.pllSongList;
+            Log.e("saito", pllSongs.size()+"PLLSongAdapter" );
+            if (!pllSongs.isEmpty()) {
+                btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
+                uri = Uri.parse(DOMAIN_PLAY + pllSongs.get(position).getSong().getId()+"/320");
+            }
+            createMediaPlayer();
         }
         if (from.equals("TopAdapter")) {
             tops = RankingsFragment.topList;
