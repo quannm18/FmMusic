@@ -1,9 +1,11 @@
 package com.example.fmmusic.View.Activity;
 
+import static com.example.fmmusic.Controller.ApplicationClass.ACTION_NEXT;
 import static com.example.fmmusic.Controller.ApplicationClass.ACTION_PLAY;
 import static com.example.fmmusic.Controller.ApplicationClass.ACTION_PREVIOUS;
 import static com.example.fmmusic.Controller.ApplicationClass.CHANNEL_ID_2;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -36,6 +38,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
 import com.example.fmmusic.Adapter.ViewPagerAdapterMusicPlaying;
 import com.example.fmmusic.Controller.ActionPlaying;
 import com.example.fmmusic.Controller.MusicService;
@@ -68,7 +71,7 @@ public class MusicPlayingActivity extends AppCompatActivity
     public static List<AudioModel> audios = new ArrayList<>();
     public static List<Top> tops = new ArrayList<>();
     public static Uri uri;
-    //    public static MediaPlayer mediaPlayer;
+
     public static Context context;
     public int position;
     public String from;
@@ -80,7 +83,7 @@ public class MusicPlayingActivity extends AppCompatActivity
     public String duration;
     public Handler handler = new Handler();
     public String[] art;
-    MusicService musicService;
+    public static MusicService musicService;
     MediaSessionCompat mediaSessionCompat;
     private ViewPager viewPager;
     private ViewPagerAdapterMusicPlaying viewPagerAdapterMusicPlaying;
@@ -118,7 +121,6 @@ public class MusicPlayingActivity extends AppCompatActivity
         tvMinutePerSong = (TextView) findViewById(R.id.tvMinutePerSong);
         tvMinuteRunning = (TextView) findViewById(R.id.tvMinuteRunning);
 
-        mediaSessionCompat = new MediaSessionCompat(getBaseContext(), "My audio");
         getIntentData();
         animation = AnimationUtils.loadAnimation(MusicPlayingActivity.this, R.anim.run_music);
         List<Fragment> fragmentList = new ArrayList<>();
@@ -187,6 +189,8 @@ public class MusicPlayingActivity extends AppCompatActivity
                 handler.postDelayed(this::run, 1000);
             }
         });
+
+
     }
 
     void getIntentData() {
@@ -255,7 +259,7 @@ public class MusicPlayingActivity extends AppCompatActivity
             Log.e("size", audios.size() + "SongLibsAdapter");
 
             if (!audios.isEmpty()) {
-                showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
+                
                 btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
                 uri = Uri.parse(audios.get(position).getPath());
             }
@@ -275,370 +279,6 @@ public class MusicPlayingActivity extends AppCompatActivity
             return totalNew;
         }
         return totalOut;
-    }
-
-    private void preBtnClicked() {
-        if (musicService.isPlaying()) {
-            musicService.stop();
-            musicService.release();
-            if (from.equals("TopAdapter")) {
-                tops = RankingsFragment.topList;
-                if (position > 0) {
-                    position--;
-                } else {
-                    position = tops.size() - 1;
-                }
-                uri = Uri.parse(DOMAIN_PLAY + tops.get(position).getId() + "/320");
-                musicService.createMediaPlayer(position);
-
-                from = "TopAdapter";
-                position = position;
-                id = tops.get(position).getId();
-                nameSong = tops.get(position).getName();
-                artist_name = tops.get(position).getSinger().getName();
-                thumbnail = tops.get(position).getThumbnail();
-                performer = artist_name;
-
-                viewPagerAdapterMusicPlaying.notifyDataSetChanged();
-                seekBar.setMax(musicService.getDuration() / 1000);
-                tvMinutePerSong.setText(convertFormat(seekBar.getMax()));
-
-                MusicPlayingActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (musicService != null) {
-                            int mCurrentPosition = musicService.getCurrentPosition() / 1000;
-                            seekBar.setProgress(mCurrentPosition);
-                        }
-                        handler.postDelayed(this::run, 1000);
-                    }
-                });
-                musicService.onCompleted();
-                btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
-                musicService.start();
-            }
-            if (from.equals("SuggestAdapter")) {
-                tops = PersonalFragment.suggestedList;
-                if (position > 0) {
-                    position--;
-                } else {
-                    position = tops.size() - 1;
-                }
-                uri = Uri.parse(DOMAIN_PLAY + tops.get(position).getId() + "/320");
-                musicService.createMediaPlayer(position);
-
-                from = "SuggestAdapter";
-                position = position;
-                id = tops.get(position).getId();
-                nameSong = tops.get(position).getName();
-                artist_name = tops.get(position).getSinger().getName();
-                thumbnail = tops.get(position).getThumbnail();
-                performer = artist_name;
-
-                viewPagerAdapterMusicPlaying.notifyDataSetChanged();
-                seekBar.setMax(musicService.getDuration() / 1000);
-                tvMinutePerSong.setText(convertFormat(seekBar.getMax()));
-
-                MusicPlayingActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (musicService != null) {
-                            int mCurrentPosition = musicService.getCurrentPosition() / 1000;
-                            seekBar.setProgress(mCurrentPosition);
-                        }
-                        handler.postDelayed(this::run, 1000);
-                    }
-                });
-                musicService.onCompleted();
-                btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
-                musicService.start();
-            }
-            if (from.equals("FindingAdapter")) {
-                songs = FindingMusicActivity.findingList;
-                if (position > 0) {
-                    position--;
-                } else {
-                    position = songs.size() - 1;
-                }
-                uri = Uri.parse(DOMAIN_PLAY + songs.get(position).getId() + "/320");
-                musicService.createMediaPlayer(position);
-                from = "FindingAdapter";
-                position = position;
-                id = songs.get(position).getId();
-                nameSong = songs.get(position).getName();
-                artist_name = songs.get(position).getSinger().getName();
-                thumbnail = songs.get(position).getThumbnail();
-                performer = artist_name;
-
-                viewPagerAdapterMusicPlaying.notifyDataSetChanged();
-                seekBar.setMax(musicService.getDuration() / 1000);
-                tvMinutePerSong.setText(convertFormat(seekBar.getMax()));
-
-                MusicPlayingActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (musicService != null) {
-                            int mCurrentPosition = musicService.getCurrentPosition() / 1000;
-                            seekBar.setProgress(mCurrentPosition);
-                        }
-                        handler.postDelayed(this::run, 1000);
-                    }
-                });
-                musicService.onCompleted();
-                btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
-                musicService.start();
-            }
-            if (from.equals("HighlightAdapter")) {
-                tops = HomeFragment.topList;
-                if (position > 0) {
-                    position--;
-                } else {
-                    position = tops.size() - 1;
-                }
-                uri = Uri.parse(DOMAIN_PLAY + tops.get(position).getId() + "/320");
-                musicService.createMediaPlayer(position);
-                from = "HighlightAdapter";
-                position = position;
-                id = tops.get(position).getId();
-                nameSong = tops.get(position).getName();
-                artist_name = tops.get(position).getSinger().getName();
-                thumbnail = tops.get(position).getThumbnail();
-                performer = artist_name;
-
-                viewPagerAdapterMusicPlaying.notifyDataSetChanged();
-                seekBar.setMax(musicService.getDuration() / 1000);
-                tvMinutePerSong.setText(convertFormat(seekBar.getMax()));
-
-                MusicPlayingActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (musicService != null) {
-                            int mCurrentPosition = musicService.getCurrentPosition() / 1000;
-                            seekBar.setProgress(mCurrentPosition);
-                        }
-                        handler.postDelayed(this::run, 1000);
-                    }
-                });
-                musicService.onCompleted();
-                btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
-                musicService.start();
-            }
-            if (from.equals("SongLibsAdapter")) {
-                audios = SongsLibActivity.audioModelList;
-                if (position > 0) {
-                    position--;
-                } else {
-                    position = audios.size() - 1;
-                }
-                uri = Uri.parse(audios.get(position).getPath());
-                musicService.createMediaPlayer(position);
-
-                from = "SongLibsAdapter";
-                position = position;
-                id = audios.get(position).getId();
-                nameSong = audios.get(position).getName();
-                artist_name = audios.get(position).getArtist();
-                thumbnail = audios.get(position).getImgPath();
-                performer = artist_name;
-
-                viewPagerAdapterMusicPlaying.notifyDataSetChanged();
-                seekBar.setMax(musicService.getDuration() / 1000);
-                tvMinutePerSong.setText(convertFormat(seekBar.getMax()));
-
-                MusicPlayingActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (musicService != null) {
-                            int mCurrentPosition = musicService.getCurrentPosition() / 1000;
-                            seekBar.setProgress(mCurrentPosition);
-                        }
-                        handler.postDelayed(this::run, 1000);
-                    }
-                });
-                musicService.onCompleted();
-                showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
-                btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
-                musicService.start();
-            }
-        } else {
-            musicService.stop();
-            musicService.release();
-            if (from.equals("TopAdapter")) {
-                tops = RankingsFragment.topList;
-                if (position > 0) {
-                    position--;
-                } else {
-                    position = tops.size() - 1;
-                }
-                uri = Uri.parse(DOMAIN_PLAY + tops.get(position).getId());
-                musicService.createMediaPlayer(position);
-
-                //noti
-                from = "TopAdapter";
-                position = position;
-                id = tops.get(position).getId();
-                nameSong = tops.get(position).getName();
-                artist_name = tops.get(position).getSinger().getName();
-                thumbnail = tops.get(position).getThumbnail();
-                performer = artist_name;
-
-                viewPagerAdapterMusicPlaying.notifyDataSetChanged();
-                seekBar.setMax(musicService.getDuration() / 1000);
-                tvMinutePerSong.setText(convertFormat(seekBar.getMax()));
-                MusicPlayingActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (musicService != null) {
-                            int mCurrentPosition = musicService.getCurrentPosition() / 1000;
-                            seekBar.setProgress(mCurrentPosition);
-                        }
-                        handler.postDelayed(this::run, 1000);
-                    }
-                });
-                musicService.onCompleted();
-                btnPlay.setImageResource(R.drawable.play_button_musicplayer);
-            }
-            if (from.equals("SuggestAdapter")) {
-                tops = PersonalFragment.suggestedList;
-                if (position > 0) {
-                    position--;
-                } else {
-                    position = tops.size() - 1;
-                }
-                uri = Uri.parse(DOMAIN_PLAY + tops.get(position).getId());
-                musicService.createMediaPlayer(position);
-
-                //noti
-                from = "SuggestAdapter";
-                position = position;
-                id = tops.get(position).getId();
-                nameSong = tops.get(position).getName();
-                artist_name = tops.get(position).getSinger().getName();
-                thumbnail = tops.get(position).getThumbnail();
-                performer = artist_name;
-
-                viewPagerAdapterMusicPlaying.notifyDataSetChanged();
-                seekBar.setMax(musicService.getDuration() / 1000);
-                tvMinutePerSong.setText(convertFormat(seekBar.getMax()));
-                MusicPlayingActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (musicService != null) {
-                            int mCurrentPosition = musicService.getCurrentPosition() / 1000;
-                            seekBar.setProgress(mCurrentPosition);
-                        }
-                        handler.postDelayed(this::run, 1000);
-                    }
-                });
-                musicService.onCompleted();
-                btnPlay.setImageResource(R.drawable.play_button_musicplayer);
-            }
-            if (from.equals("FindingAdapter")) {
-                songs = FindingMusicActivity.findingList;
-                if (position > 0) {
-                    position--;
-                } else {
-                    position = tops.size() - 1;
-                }
-                uri = Uri.parse(DOMAIN_PLAY + songs.get(position).getId());
-                musicService.createMediaPlayer(position);
-                //noti
-                from = "FindingAdapter";
-                position = position;
-                id = songs.get(position).getId();
-                nameSong = songs.get(position).getName();
-                artist_name = songs.get(position).getSinger().getName();
-                thumbnail = songs.get(position).getThumbnail();
-                performer = artist_name;
-
-                viewPagerAdapterMusicPlaying.notifyDataSetChanged();
-                seekBar.setMax(musicService.getDuration() / 1000);
-                tvMinutePerSong.setText(convertFormat(seekBar.getMax()));
-                MusicPlayingActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (musicService != null) {
-                            int mCurrentPosition = musicService.getCurrentPosition() / 1000;
-                            seekBar.setProgress(mCurrentPosition);
-                        }
-                        handler.postDelayed(this::run, 1000);
-                    }
-                });
-                musicService.onCompleted();
-                btnPlay.setImageResource(R.drawable.play_button_musicplayer);
-            }
-            if (from.equals("HighlightAdapter")) {
-                tops = HomeFragment.topList;
-                if (position > 0) {
-                    position--;
-                } else {
-                    position = tops.size() - 1;
-                }
-                uri = Uri.parse(DOMAIN_PLAY + tops.get(position).getId());
-                musicService.createMediaPlayer(position);
-
-                //noti
-                from = "HighlightAdapter";
-                position = position;
-                id = tops.get(position).getId();
-                nameSong = tops.get(position).getName();
-                artist_name = tops.get(position).getSinger().getName();
-                thumbnail = tops.get(position).getThumbnail();
-                performer = artist_name;
-
-                viewPagerAdapterMusicPlaying.notifyDataSetChanged();
-                seekBar.setMax(musicService.getDuration() / 1000);
-                tvMinutePerSong.setText(convertFormat(seekBar.getMax()));
-                MusicPlayingActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (musicService != null) {
-                            int mCurrentPosition = musicService.getCurrentPosition() / 1000;
-                            seekBar.setProgress(mCurrentPosition);
-                        }
-                        handler.postDelayed(this::run, 1000);
-                    }
-                });
-                musicService.onCompleted();
-                btnPlay.setImageResource(R.drawable.play_button_musicplayer);
-            }
-            if (from.equals("SongLibsAdapter")) {
-                audios = SongsLibActivity.audioModelList;
-                if (position > 0) {
-                    position--;
-                } else {
-                    position = tops.size() - 1;
-                }
-                uri = Uri.parse(audios.get(position).getPath());
-                musicService.createMediaPlayer(position);
-
-                from = "SongLibsAdapter";
-                position = position;
-                id = audios.get(position).getId();
-                nameSong = audios.get(position).getName();
-                artist_name = audios.get(position).getArtist();
-                thumbnail = audios.get(position).getImgPath();
-                performer = artist_name;
-
-                viewPagerAdapterMusicPlaying.notifyDataSetChanged();
-                seekBar.setMax(musicService.getDuration() / 1000);
-                tvMinutePerSong.setText(convertFormat(seekBar.getMax()));
-
-                MusicPlayingActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (musicService != null) {
-                            int mCurrentPosition = musicService.getCurrentPosition() / 1000;
-                            seekBar.setProgress(mCurrentPosition);
-                        }
-                        handler.postDelayed(this::run, 1000);
-                    }
-                });
-                showNotification(R.drawable.ic_baseline_play_arrow_24);
-                musicService.onCompleted();
-                btnPlay.setImageResource(R.drawable.play_button_musicplayer);
-            }
-        }
     }
 
     @Override
@@ -673,6 +313,373 @@ public class MusicPlayingActivity extends AppCompatActivity
         prevThread.start();
     }
 
+    public void preBtnClicked() {
+        if (musicService.isPlaying()) {
+            musicService.stop();
+            musicService.release();
+            if (from.equals("TopAdapter")) {
+                tops = RankingsFragment.topList;
+                if (position > 0) {
+                    position--;
+                } else {
+                    position = tops.size() - 1;
+                }
+                uri = Uri.parse(DOMAIN_PLAY + tops.get(position).getId() + "/320");
+                musicService.createMediaPlayer(position);
+
+                from = "TopAdapter";
+                id = tops.get(position).getId();
+                nameSong = tops.get(position).getName();
+                artist_name = tops.get(position).getSinger().getName();
+                thumbnail = tops.get(position).getThumbnail();
+                performer = artist_name;
+
+                viewPagerAdapterMusicPlaying.notifyDataSetChanged();
+                seekBar.setMax(musicService.getDuration() / 1000);
+                tvMinutePerSong.setText(convertFormat(seekBar.getMax()));
+
+                MusicPlayingActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (musicService != null) {
+                            int mCurrentPosition = musicService.getCurrentPosition() / 1000;
+                            seekBar.setProgress(mCurrentPosition);
+                        }
+                        handler.postDelayed(this::run, 1000);
+                    }
+                });
+                musicService.onCompleted();
+
+                btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
+                musicService.start();
+            }
+            if (from.equals("SuggestAdapter")) {
+                tops = PersonalFragment.suggestedList;
+                if (position > 0) {
+                    position--;
+                } else {
+                    position = tops.size() - 1;
+                }
+                uri = Uri.parse(DOMAIN_PLAY + tops.get(position).getId() + "/320");
+                musicService.createMediaPlayer(position);
+                from = "SuggestAdapter";
+                id = tops.get(position).getId();
+                nameSong = tops.get(position).getName();
+                artist_name = tops.get(position).getSinger().getName();
+                thumbnail = tops.get(position).getThumbnail();
+                performer = artist_name;
+
+                viewPagerAdapterMusicPlaying.notifyDataSetChanged();
+                seekBar.setMax(musicService.getDuration() / 1000);
+                tvMinutePerSong.setText(convertFormat(seekBar.getMax()));
+
+                MusicPlayingActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (musicService != null) {
+                            int mCurrentPosition = musicService.getCurrentPosition() / 1000;
+                            seekBar.setProgress(mCurrentPosition);
+                        }
+                        handler.postDelayed(this::run, 1000);
+                    }
+                });
+                musicService.onCompleted();
+
+                btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
+                musicService.start();
+            }
+            if (from.equals("FindingAdapter")) {
+                songs = FindingMusicActivity.findingList;
+                if (position > 0) {
+                    position--;
+                } else {
+                    position = songs.size() - 1;
+                }
+                uri = Uri.parse(DOMAIN_PLAY + songs.get(position).getId() + "/320");
+                musicService.createMediaPlayer(position);
+                from = "FindingAdapter";
+                id = songs.get(position).getId();
+                nameSong = songs.get(position).getName();
+                artist_name = songs.get(position).getSinger().getName();
+                thumbnail = songs.get(position).getThumbnail();
+                performer = artist_name;
+
+                viewPagerAdapterMusicPlaying.notifyDataSetChanged();
+                seekBar.setMax(musicService.getDuration() / 1000);
+                tvMinutePerSong.setText(convertFormat(seekBar.getMax()));
+
+                MusicPlayingActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (musicService != null) {
+                            int mCurrentPosition = musicService.getCurrentPosition() / 1000;
+                            seekBar.setProgress(mCurrentPosition);
+                        }
+                        handler.postDelayed(this::run, 1000);
+                    }
+                });
+                musicService.onCompleted();
+
+                btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
+                musicService.start();
+            }
+            if (from.equals("HighlightAdapter")) {
+                tops = HomeFragment.topList;
+                if (position > 0) {
+                    position--;
+                } else {
+                    position = tops.size() - 1;
+                }
+                uri = Uri.parse(DOMAIN_PLAY + tops.get(position).getId() + "/320");
+                musicService.createMediaPlayer(position);
+                from = "HighlightAdapter";
+                id = tops.get(position).getId();
+                nameSong = tops.get(position).getName();
+                artist_name = tops.get(position).getSinger().getName();
+                thumbnail = tops.get(position).getThumbnail();
+                performer = artist_name;
+
+                viewPagerAdapterMusicPlaying.notifyDataSetChanged();
+                seekBar.setMax(musicService.getDuration() / 1000);
+                tvMinutePerSong.setText(convertFormat(seekBar.getMax()));
+
+                MusicPlayingActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (musicService != null) {
+                            int mCurrentPosition = musicService.getCurrentPosition() / 1000;
+                            seekBar.setProgress(mCurrentPosition);
+                        }
+                        handler.postDelayed(this::run, 1000);
+                    }
+                });
+                musicService.onCompleted();
+
+                btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
+                musicService.start();
+            }
+            if (from.equals("SongLibsAdapter")) {
+
+//                musicService.showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
+                audios = SongsLibActivity.audioModelList;
+                if (position > 0) {
+                    position--;
+                } else {
+                    position = audios.size() - 1;
+                }
+                uri = Uri.parse(audios.get(position).getPath());
+                musicService.createMediaPlayer(position);
+
+                from = "SongLibsAdapter";
+                position = position;
+                id = audios.get(position).getId();
+                nameSong = audios.get(position).getName();
+                artist_name = audios.get(position).getArtist();
+                thumbnail = audios.get(position).getImgPath();
+                performer = artist_name;
+
+                viewPagerAdapterMusicPlaying.notifyDataSetChanged();
+                seekBar.setMax(musicService.getDuration() / 1000);
+                tvMinutePerSong.setText(convertFormat(seekBar.getMax()));
+
+                MusicPlayingActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (musicService != null) {
+                            int mCurrentPosition = musicService.getCurrentPosition() / 1000;
+                            seekBar.setProgress(mCurrentPosition);
+                        }
+                        handler.postDelayed(this::run, 1000);
+                    }
+                });
+                musicService.onCompleted();
+
+                btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
+                musicService.start();
+            }
+        } else {
+            musicService.stop();
+            musicService.release();
+
+            if (from.equals("TopAdapter")) {
+                tops = RankingsFragment.topList;
+                if (position > 0) {
+                    position--;
+                } else {
+                    position = tops.size() - 1;
+                }
+                uri = Uri.parse(DOMAIN_PLAY + tops.get(position).getId());
+                musicService.createMediaPlayer(position);
+
+                //noti
+                from = "TopAdapter";
+                position = position;
+                id = tops.get(position).getId();
+                nameSong = tops.get(position).getName();
+                artist_name = tops.get(position).getSinger().getName();
+                thumbnail = tops.get(position).getThumbnail();
+                performer = artist_name;
+
+                viewPagerAdapterMusicPlaying.notifyDataSetChanged();
+                seekBar.setMax(musicService.getDuration() / 1000);
+                tvMinutePerSong.setText(convertFormat(seekBar.getMax()));
+                MusicPlayingActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (musicService != null) {
+                            int mCurrentPosition = musicService.getCurrentPosition() / 1000;
+                            seekBar.setProgress(mCurrentPosition);
+                        }
+                        handler.postDelayed(this::run, 1000);
+                    }
+                });
+                musicService.onCompleted();
+
+                btnPlay.setImageResource(R.drawable.play_button_musicplayer);
+            }
+            if (from.equals("SuggestAdapter")) {
+                tops = PersonalFragment.suggestedList;
+                if (position > 0) {
+                    position--;
+                } else {
+                    position = tops.size() - 1;
+                }
+                uri = Uri.parse(DOMAIN_PLAY + tops.get(position).getId());
+                musicService.createMediaPlayer(position);
+
+                //noti
+                from = "SuggestAdapter";
+                position = position;
+                id = tops.get(position).getId();
+                nameSong = tops.get(position).getName();
+                artist_name = tops.get(position).getSinger().getName();
+                thumbnail = tops.get(position).getThumbnail();
+                performer = artist_name;
+
+                viewPagerAdapterMusicPlaying.notifyDataSetChanged();
+                seekBar.setMax(musicService.getDuration() / 1000);
+                tvMinutePerSong.setText(convertFormat(seekBar.getMax()));
+                MusicPlayingActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (musicService != null) {
+                            int mCurrentPosition = musicService.getCurrentPosition() / 1000;
+                            seekBar.setProgress(mCurrentPosition);
+                        }
+                        handler.postDelayed(this::run, 1000);
+                    }
+                });
+                musicService.onCompleted();
+
+                btnPlay.setImageResource(R.drawable.play_button_musicplayer);
+            }
+            if (from.equals("FindingAdapter")) {
+                songs = FindingMusicActivity.findingList;
+                if (position > 0) {
+                    position--;
+                } else {
+                    position = tops.size() - 1;
+                }
+                uri = Uri.parse(DOMAIN_PLAY + songs.get(position).getId());
+                musicService.createMediaPlayer(position);
+                //noti
+                from = "FindingAdapter";
+                id = songs.get(position).getId();
+                nameSong = songs.get(position).getName();
+                artist_name = songs.get(position).getSinger().getName();
+                thumbnail = songs.get(position).getThumbnail();
+                performer = artist_name;
+
+                viewPagerAdapterMusicPlaying.notifyDataSetChanged();
+                seekBar.setMax(musicService.getDuration() / 1000);
+                tvMinutePerSong.setText(convertFormat(seekBar.getMax()));
+                MusicPlayingActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (musicService != null) {
+                            int mCurrentPosition = musicService.getCurrentPosition() / 1000;
+                            seekBar.setProgress(mCurrentPosition);
+                        }
+                        handler.postDelayed(this::run, 1000);
+                    }
+                });
+                musicService.onCompleted();
+
+                btnPlay.setImageResource(R.drawable.play_button_musicplayer);
+            }
+            if (from.equals("HighlightAdapter")) {
+                tops = HomeFragment.topList;
+                if (position > 0) {
+                    position--;
+                } else {
+                    position = tops.size() - 1;
+                }
+                uri = Uri.parse(DOMAIN_PLAY + tops.get(position).getId());
+                musicService.createMediaPlayer(position);
+
+                //noti
+                from = "HighlightAdapter";
+                id = tops.get(position).getId();
+                nameSong = tops.get(position).getName();
+                artist_name = tops.get(position).getSinger().getName();
+                thumbnail = tops.get(position).getThumbnail();
+                performer = artist_name;
+
+                viewPagerAdapterMusicPlaying.notifyDataSetChanged();
+                seekBar.setMax(musicService.getDuration() / 1000);
+                tvMinutePerSong.setText(convertFormat(seekBar.getMax()));
+                MusicPlayingActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (musicService != null) {
+                            int mCurrentPosition = musicService.getCurrentPosition() / 1000;
+                            seekBar.setProgress(mCurrentPosition);
+                        }
+                        handler.postDelayed(this::run, 1000);
+                    }
+                });
+                musicService.onCompleted();
+
+                btnPlay.setImageResource(R.drawable.play_button_musicplayer);
+            }
+            if (from.equals("SongLibsAdapter")) {
+//                musicService.showNotification(R.drawable.ic_baseline_play_arrow_24);
+                audios = SongsLibActivity.audioModelList;
+                if (position > 0) {
+                    position--;
+                } else {
+                    position = tops.size() - 1;
+                }
+                uri = Uri.parse(audios.get(position).getPath());
+                musicService.createMediaPlayer(position);
+
+                from = "SongLibsAdapter";
+                id = audios.get(position).getId();
+                nameSong = audios.get(position).getName();
+                artist_name = audios.get(position).getArtist();
+                thumbnail = audios.get(position).getImgPath();
+                performer = artist_name;
+
+                viewPagerAdapterMusicPlaying.notifyDataSetChanged();
+                seekBar.setMax(musicService.getDuration() / 1000);
+                tvMinutePerSong.setText(convertFormat(seekBar.getMax()));
+
+                MusicPlayingActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (musicService != null) {
+                            int mCurrentPosition = musicService.getCurrentPosition() / 1000;
+                            seekBar.setProgress(mCurrentPosition);
+                        }
+                        handler.postDelayed(this::run, 1000);
+                    }
+                });
+                musicService.onCompleted();
+                btnPlay.setImageResource(R.drawable.play_button_musicplayer);
+            }
+        }
+    }
+
     public void nextThreadBtn() {
         nextThread = new Thread() {
             @Override
@@ -689,7 +696,7 @@ public class MusicPlayingActivity extends AppCompatActivity
         nextThread.start();
     }
 
-    private void nextBtnClicked() {
+    public void nextBtnClicked() {
         if (musicService.isPlaying()) {
             musicService.stop();
             musicService.release();
@@ -726,6 +733,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                     }
                 });
                 musicService.onCompleted();
+
                 btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
                 musicService.start();
             }
@@ -762,6 +770,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                 });
 
                 musicService.onCompleted();
+
                 btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
                 musicService.start();
             }
@@ -797,6 +806,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                     }
                 });
                 musicService.onCompleted();
+
                 btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
                 musicService.start();
             }
@@ -832,10 +842,12 @@ public class MusicPlayingActivity extends AppCompatActivity
                     }
                 });
                 musicService.onCompleted();
+
                 btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
                 musicService.start();
             }
             if (from.equals("SongLibsAdapter")) {
+//                musicService.showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
                 audios = SongsLibActivity.audioModelList;
                 if (position < audios.size() - 1) {
                     position++;
@@ -843,6 +855,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                     position = 0;
                 }
                 uri = Uri.parse(audios.get(position).getPath());
+                Log.e("uri", "nextBtnClicked: "+uri );
                 musicService.createMediaPlayer(position);
                 from = "SongLibsAdapter";
                 position = position;
@@ -867,7 +880,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                     }
                 });
                 musicService.onCompleted();
-                showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
+
                 btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
                 musicService.start();
             }
@@ -907,6 +920,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                     }
                 });
                 musicService.onCompleted();
+
                 btnPlay.setImageResource(R.drawable.play_button_musicplayer);
             }
             if (from.equals("SuggestAdapter")) {
@@ -941,6 +955,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                     }
                 });
                 musicService.onCompleted();
+
                 btnPlay.setImageResource(R.drawable.play_button_musicplayer);
             }
             if (from.equals("FindingAdapter")) {
@@ -976,6 +991,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                     }
                 });
                 musicService.onCompleted();
+
                 btnPlay.setImageResource(R.drawable.play_button_musicplayer);
             }
             if (from.equals("HighlightAdapter")) {
@@ -1011,9 +1027,12 @@ public class MusicPlayingActivity extends AppCompatActivity
                     }
                 });
                 musicService.onCompleted();
+
                 btnPlay.setImageResource(R.drawable.play_button_musicplayer);
             }
             if (from.equals("SongLibsAdapter")) {
+
+//                musicService.showNotification(R.drawable.ic_baseline_play_arrow_24);
                 audios = SongsLibActivity.audioModelList;
                 if (position < audios.size() - 1) {
                     position++;
@@ -1044,7 +1063,6 @@ public class MusicPlayingActivity extends AppCompatActivity
                         handler.postDelayed(this::run, 1000);
                     }
                 });
-                showNotification(R.drawable.ic_baseline_play_arrow_24);
                 musicService.onCompleted();
                 btnPlay.setImageResource(R.drawable.play_button_musicplayer);
             }
@@ -1070,8 +1088,7 @@ public class MusicPlayingActivity extends AppCompatActivity
 
     public void pauseBtnClicked() {
         if (musicService.isPlaying()) {
-
-            showNotification(R.drawable.ic_baseline_play_arrow_24);
+//            musicService.showNotification(R.drawable.ic_baseline_play_arrow_24);
             btnPlay.setImageResource(R.drawable.play_button_musicplayer);
             musicService.pause();
             seekBar.setMax(musicService.getDuration() / 1000);
@@ -1086,8 +1103,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                 }
             });
         } else {
-
-            showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
+//            musicService.showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
             btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
             musicService.start();
             seekBar.setMax(musicService.getDuration() / 1000);
@@ -1097,7 +1113,6 @@ public class MusicPlayingActivity extends AppCompatActivity
                     if (musicService != null) {
                         int mCurrentPosition = musicService.getCurrentPosition() / 1000;
                         seekBar.setProgress(mCurrentPosition);
-//                        tvMinuteRunning.setText(convertFormat(mCurrentPosition));
                     }
                     handler.postDelayed(this::run, 1000);
                 }
@@ -1111,85 +1126,28 @@ public class MusicPlayingActivity extends AppCompatActivity
     public void onServiceConnected(ComponentName name, IBinder service) {
         MusicService.MyBinder myBinder = (MusicService.MyBinder) service;
         musicService = myBinder.getService();
+        musicService.setCallback(this);
         Toast.makeText(this, "Connected " + musicService, Toast.LENGTH_SHORT).show();
 
         seekBar.setMax(musicService.getDuration() / 1000);
         tvMinutePerSong.setText(convertFormat(musicService.getDuration() / 1000));
-
+//        musicService.showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
         musicService.onCompleted();
     }
 
+    public static void pause(){
+        if (musicService.isPlaying()) {
+            musicService.pause();
+        }
+    }
     @Override
     public void onServiceDisconnected(ComponentName name) {
         musicService = null;
     }
-
-    void showNotification(int playPauseBtn) {
-        Intent intent = new Intent(this, MusicPlayingActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, 0);
-
-        Intent preIntent = new Intent(this, NotificationReceiver.class)
-                .setAction(ACTION_PREVIOUS);
-        PendingIntent prevPending = PendingIntent.getBroadcast(this, 0, preIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        Intent pauseIntent = new Intent(this, NotificationReceiver.class)
-                .setAction(ACTION_PLAY);
-        PendingIntent pausePending = PendingIntent.getBroadcast(this, 0, pauseIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        Intent nextIntent = new Intent(this, NotificationReceiver.class)
-                .setAction(ACTION_PLAY);
-        PendingIntent nextPending = PendingIntent.getBroadcast(this, 0, nextIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-//
-//        String[] picture = null;
-//        picture = getImg();
-//        Bitmap thumb = BitmapFactory.decodeFile(picture[position]);
-        Bitmap thumb = getBitmapFromUri(audios.get(position).getImgPath());
-        if (getBitmapFromUri(audios.get(position).getImgPath())!=null){
-            Notification notification =
-                    new NotificationCompat.Builder(this, CHANNEL_ID_2)
-                            .setSmallIcon(playPauseBtn)
-                            .setLargeIcon(thumb)
-                            .setContentTitle(audios.get(position).getName())
-                            .setContentText(audios.get(position).getArtist())
-                            .addAction(R.drawable.ic_baseline_skip_previous_24, "Previous", prevPending)
-                            .addAction(playPauseBtn, "Pause", pausePending)
-                            .addAction(R.drawable.ic_baseline_skip_next_24, "Next", nextPending)
-                            .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
-                                    .setMediaSession(mediaSessionCompat.getSessionToken()))
-                            .setPriority(NotificationCompat.PRIORITY_HIGH)
-                            .setOnlyAlertOnce(true)
-                            .build();
-            NotificationManager notificationManager =
-                    (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-            notificationManager.notify(0,notification);
-            Toast.makeText(getApplicationContext(), "Show noti", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public static Bitmap getBitmapFromURL(String src) {
-        try {
-            URL url = new URL(src);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            InputStream input = connection.getInputStream();
-            Bitmap myBitmap = BitmapFactory.decodeStream(input);
-            return myBitmap;
-        } catch (IOException e) {
-            // Log exception
-            e.printStackTrace();
-            return null;
-        }
-    }
-    public Bitmap getBitmapFromUri(String uri){
-        Bitmap bitmap =null;
-        try
-        {
-             bitmap = MediaStore.Images.Media.getBitmap(getContentResolver() , Uri.parse(uri));
-        }
-        catch (Exception e)        {
-            e.printStackTrace();
-        }
-        return bitmap;
+    @Override
+    public void onBackPressed() {
+        pauseBtnClicked();
+        finish();
+        // super.onBackPressed();
     }
 }
