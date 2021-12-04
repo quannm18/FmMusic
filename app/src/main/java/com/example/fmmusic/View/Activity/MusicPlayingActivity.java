@@ -1,9 +1,11 @@
 package com.example.fmmusic.View.Activity;
 
+import static com.example.fmmusic.Controller.ApplicationClass.ACTION_NEXT;
 import static com.example.fmmusic.Controller.ApplicationClass.ACTION_PLAY;
 import static com.example.fmmusic.Controller.ApplicationClass.ACTION_PREVIOUS;
 import static com.example.fmmusic.Controller.ApplicationClass.CHANNEL_ID_2;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -36,6 +38,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
 import com.example.fmmusic.Adapter.ViewPagerAdapterMusicPlaying;
 import com.example.fmmusic.Controller.ActionPlaying;
 import com.example.fmmusic.Controller.MusicService;
@@ -277,7 +280,7 @@ public class MusicPlayingActivity extends AppCompatActivity
         return totalOut;
     }
 
-    private void preBtnClicked() {
+    public void preBtnClicked() {
         if (musicService.isPlaying()) {
             musicService.stop();
             musicService.release();
@@ -314,6 +317,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                     }
                 });
                 musicService.onCompleted();
+                showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
                 btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
                 musicService.start();
             }
@@ -350,6 +354,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                     }
                 });
                 musicService.onCompleted();
+                showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
                 btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
                 musicService.start();
             }
@@ -385,6 +390,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                     }
                 });
                 musicService.onCompleted();
+                showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
                 btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
                 musicService.start();
             }
@@ -420,6 +426,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                     }
                 });
                 musicService.onCompleted();
+                showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
                 btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
                 musicService.start();
             }
@@ -496,6 +503,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                     }
                 });
                 musicService.onCompleted();
+                showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
                 btnPlay.setImageResource(R.drawable.play_button_musicplayer);
             }
             if (from.equals("SuggestAdapter")) {
@@ -531,6 +539,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                     }
                 });
                 musicService.onCompleted();
+                showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
                 btnPlay.setImageResource(R.drawable.play_button_musicplayer);
             }
             if (from.equals("FindingAdapter")) {
@@ -565,6 +574,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                     }
                 });
                 musicService.onCompleted();
+                showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
                 btnPlay.setImageResource(R.drawable.play_button_musicplayer);
             }
             if (from.equals("HighlightAdapter")) {
@@ -600,6 +610,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                     }
                 });
                 musicService.onCompleted();
+                showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
                 btnPlay.setImageResource(R.drawable.play_button_musicplayer);
             }
             if (from.equals("SongLibsAdapter")) {
@@ -689,7 +700,7 @@ public class MusicPlayingActivity extends AppCompatActivity
         nextThread.start();
     }
 
-    private void nextBtnClicked() {
+    public void nextBtnClicked() {
         if (musicService.isPlaying()) {
             musicService.stop();
             musicService.release();
@@ -726,6 +737,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                     }
                 });
                 musicService.onCompleted();
+                showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
                 btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
                 musicService.start();
             }
@@ -762,6 +774,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                 });
 
                 musicService.onCompleted();
+                showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
                 btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
                 musicService.start();
             }
@@ -797,6 +810,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                     }
                 });
                 musicService.onCompleted();
+                showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
                 btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
                 musicService.start();
             }
@@ -832,6 +846,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                     }
                 });
                 musicService.onCompleted();
+                showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
                 btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
                 musicService.start();
             }
@@ -907,6 +922,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                     }
                 });
                 musicService.onCompleted();
+                showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
                 btnPlay.setImageResource(R.drawable.play_button_musicplayer);
             }
             if (from.equals("SuggestAdapter")) {
@@ -941,6 +957,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                     }
                 });
                 musicService.onCompleted();
+                showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
                 btnPlay.setImageResource(R.drawable.play_button_musicplayer);
             }
             if (from.equals("FindingAdapter")) {
@@ -976,6 +993,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                     }
                 });
                 musicService.onCompleted();
+                showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
                 btnPlay.setImageResource(R.drawable.play_button_musicplayer);
             }
             if (from.equals("HighlightAdapter")) {
@@ -1011,6 +1029,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                     }
                 });
                 musicService.onCompleted();
+                showNotification(R.drawable.ic_baseline_pause_circle_outline_24);
                 btnPlay.setImageResource(R.drawable.play_button_musicplayer);
             }
             if (from.equals("SongLibsAdapter")) {
@@ -1111,6 +1130,7 @@ public class MusicPlayingActivity extends AppCompatActivity
     public void onServiceConnected(ComponentName name, IBinder service) {
         MusicService.MyBinder myBinder = (MusicService.MyBinder) service;
         musicService = myBinder.getService();
+        musicService.setCallback(this);
         Toast.makeText(this, "Connected " + musicService, Toast.LENGTH_SHORT).show();
 
         seekBar.setMax(musicService.getDuration() / 1000);
@@ -1128,58 +1148,155 @@ public class MusicPlayingActivity extends AppCompatActivity
         Intent intent = new Intent(this, MusicPlayingActivity.class);
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
-        Intent preIntent = new Intent(this, NotificationReceiver.class)
-                .setAction(ACTION_PREVIOUS);
-        PendingIntent prevPending = PendingIntent.getBroadcast(this, 0, preIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Intent pauseIntent = new Intent(this, NotificationReceiver.class)
                 .setAction(ACTION_PLAY);
-        PendingIntent pausePending = PendingIntent.getBroadcast(this, 0, pauseIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        @SuppressLint("UnspecifiedImmutableFlag") PendingIntent pausePending = PendingIntent
+                .getBroadcast(this, 0, pauseIntent
+                        , PendingIntent.FLAG_UPDATE_CURRENT);
 
         Intent nextIntent = new Intent(this, NotificationReceiver.class)
-                .setAction(ACTION_PLAY);
-        PendingIntent nextPending = PendingIntent.getBroadcast(this, 0, nextIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-//
-//        String[] picture = null;
-//        picture = getImg();
-//        Bitmap thumb = BitmapFactory.decodeFile(picture[position]);
-        Bitmap thumb = getBitmapFromUri(audios.get(position).getImgPath());
-        if (getBitmapFromUri(audios.get(position).getImgPath())!=null){
-            Notification notification =
-                    new NotificationCompat.Builder(this, CHANNEL_ID_2)
-                            .setSmallIcon(playPauseBtn)
-                            .setLargeIcon(thumb)
-                            .setContentTitle(audios.get(position).getName())
-                            .setContentText(audios.get(position).getArtist())
-                            .addAction(R.drawable.ic_baseline_skip_previous_24, "Previous", prevPending)
-                            .addAction(playPauseBtn, "Pause", pausePending)
-                            .addAction(R.drawable.ic_baseline_skip_next_24, "Next", nextPending)
-                            .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
-                                    .setMediaSession(mediaSessionCompat.getSessionToken()))
-                            .setPriority(NotificationCompat.PRIORITY_HIGH)
-                            .setOnlyAlertOnce(true)
-                            .build();
-            NotificationManager notificationManager =
-                    (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-            notificationManager.notify(0,notification);
-            Toast.makeText(getApplicationContext(), "Show noti", Toast.LENGTH_SHORT).show();
+                .setAction(ACTION_NEXT);
+        @SuppressLint("UnspecifiedImmutableFlag") PendingIntent nextPending = PendingIntent
+                .getBroadcast(this, 0, nextIntent
+                        , PendingIntent.FLAG_UPDATE_CURRENT);
+        Intent prevIntent = new Intent(this, NotificationReceiver.class)
+                .setAction(ACTION_PREVIOUS);
+        @SuppressLint("UnspecifiedImmutableFlag") PendingIntent prevPending = PendingIntent
+                .getBroadcast(this, 0, prevIntent
+                        , PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+        if (from.equals("TopAdapter")) {
+            Bitmap thumb = getBitmapFromURL(tops.get(position).getThumbnail());
+            if (getBitmapFromUri(tops.get(position).getThumbnail())!=null){
+                Notification notification =
+                        new NotificationCompat.Builder(this, CHANNEL_ID_2)
+                                .setSmallIcon(playPauseBtn)
+                                .setLargeIcon(thumb)
+                                .setContentTitle(tops.get(position).getName())
+                                .setContentText(tops.get(position).getSinger().getName())
+                                .addAction(R.drawable.ic_baseline_skip_previous_24, "Previous", prevPending)
+                                .addAction(playPauseBtn, "Pause", pausePending)
+                                .addAction(R.drawable.ic_baseline_skip_next_24, "Next", nextPending)
+                                .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
+                                        .setMediaSession(mediaSessionCompat.getSessionToken()))
+                                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                                .setOnlyAlertOnce(true)
+                                .build();
+                NotificationManager notificationManager =
+                        (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                notificationManager.notify(0,notification);
+                Toast.makeText(getApplicationContext(), "Show noti", Toast.LENGTH_SHORT).show();
+            }
+        }
+        if (from.equals("SuggestAdapter")) {
+            Bitmap thumb = getBitmapFromURL(tops.get(position).getThumbnail());
+            if (getBitmapFromUri(tops.get(position).getThumbnail())!=null){
+                Notification notification =
+                        new NotificationCompat.Builder(this, CHANNEL_ID_2)
+                                .setSmallIcon(playPauseBtn)
+                                .setLargeIcon(thumb)
+                                .setContentTitle(tops.get(position).getName())
+                                .setContentText(tops.get(position).getSinger().getName())
+                                .addAction(R.drawable.ic_baseline_skip_previous_24, "Previous", prevPending)
+                                .addAction(playPauseBtn, "Pause", pausePending)
+                                .addAction(R.drawable.ic_baseline_skip_next_24, "Next", nextPending)
+                                .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
+                                        .setMediaSession(mediaSessionCompat.getSessionToken()))
+                                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                                .setOnlyAlertOnce(true)
+                                .build();
+                NotificationManager notificationManager =
+                        (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                notificationManager.notify(0,notification);
+                Toast.makeText(getApplicationContext(), "Show noti", Toast.LENGTH_SHORT).show();
+            }
+        }
+        if (from.equals("FindingAdapter")) {
+            Bitmap thumb = getBitmapFromURL(songs.get(position).getThumbnail());
+            if (getBitmapFromUri(songs.get(position).getThumbnail())!=null){
+                Notification notification =
+                        new NotificationCompat.Builder(this, CHANNEL_ID_2)
+                                .setSmallIcon(playPauseBtn)
+                                .setLargeIcon(thumb)
+                                .setContentTitle(songs.get(position).getName())
+                                .setContentText(songs.get(position).getSinger().getName())
+                                .addAction(R.drawable.ic_baseline_skip_previous_24, "Previous", prevPending)
+                                .addAction(playPauseBtn, "Pause", pausePending)
+                                .addAction(R.drawable.ic_baseline_skip_next_24, "Next", nextPending)
+                                .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
+                                        .setMediaSession(mediaSessionCompat.getSessionToken()))
+                                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                                .setOnlyAlertOnce(true)
+                                .build();
+                NotificationManager notificationManager =
+                        (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                notificationManager.notify(0,notification);
+                Toast.makeText(getApplicationContext(), "Show noti", Toast.LENGTH_SHORT).show();
+            }
+        }
+        if (from.equals("HighlightAdapter")) {
+            Bitmap thumb = getBitmapFromURL(tops.get(position).getThumbnail());
+            if (getBitmapFromUri(tops.get(position).getThumbnail())!=null){
+                Notification notification =
+                        new NotificationCompat.Builder(this, CHANNEL_ID_2)
+                                .setSmallIcon(playPauseBtn)
+                                .setLargeIcon(thumb)
+                                .setContentTitle(tops.get(position).getName())
+                                .setContentText(tops.get(position).getSinger().getName())
+                                .addAction(R.drawable.ic_baseline_skip_previous_24, "Previous", prevPending)
+                                .addAction(playPauseBtn, "Pause", pausePending)
+                                .addAction(R.drawable.ic_baseline_skip_next_24, "Next", nextPending)
+                                .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
+                                        .setMediaSession(mediaSessionCompat.getSessionToken()))
+                                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                                .setOnlyAlertOnce(true)
+                                .build();
+                NotificationManager notificationManager =
+                        (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                notificationManager.notify(0,notification);
+                Toast.makeText(getApplicationContext(), "Show noti", Toast.LENGTH_SHORT).show();
+            }
+        }
+        if (from.equals("SongLibsAdapter")) {
+            Bitmap thumb = getBitmapFromUri(audios.get(position).getImgPath());
+            if (getBitmapFromUri(audios.get(position).getImgPath())!=null){
+                Notification notification =
+                        new NotificationCompat.Builder(this, CHANNEL_ID_2)
+                                .setSmallIcon(playPauseBtn)
+                                .setLargeIcon(thumb)
+                                .setContentTitle(audios.get(position).getName())
+                                .setContentText(audios.get(position).getArtist())
+                                .addAction(R.drawable.ic_baseline_skip_previous_24, "Previous", prevPending)
+                                .addAction(playPauseBtn, "Pause", pausePending)
+                                .addAction(R.drawable.ic_baseline_skip_next_24, "Next", nextPending)
+                                .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
+                                        .setMediaSession(mediaSessionCompat.getSessionToken()))
+                                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                                .setOnlyAlertOnce(true)
+                                .build();
+                NotificationManager notificationManager =
+                        (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                notificationManager.notify(0,notification);
+                Toast.makeText(getApplicationContext(), "Show noti", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
     public static Bitmap getBitmapFromURL(String src) {
+        Bitmap bitmap = null;
         try {
-            URL url = new URL(src);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            InputStream input = connection.getInputStream();
-            Bitmap myBitmap = BitmapFactory.decodeStream(input);
-            return myBitmap;
-        } catch (IOException e) {
-            // Log exception
+             bitmap = Glide
+                    .with(context)
+                    .asBitmap()
+                    .load(src)
+                    .submit()
+                    .get();
+        } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
+        return bitmap;
     }
     public Bitmap getBitmapFromUri(String uri){
         Bitmap bitmap =null;

@@ -94,6 +94,15 @@
         <service
             android:name=".Controller.MusicService"
             android:enabled="true"/>
+
+        <receiver android:name=".Controller.NotificationReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="actionnext" />
+                <action android:name="actionplay" />
+                <action android:name="actionprevious" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
