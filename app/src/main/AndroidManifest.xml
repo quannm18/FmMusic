@@ -20,9 +20,6 @@
         android:theme="@style/Theme.FmMusic"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".View.Activity.MySongPlaylist_Activity"
-            android:exported="true" />
-        <activity
             android:name=".View.Activity.Persional.SingerFavoriteActivity"
             android:exported="true" />
         <activity
@@ -74,6 +71,10 @@
             android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar" />
         <activity
             android:name=".View.Activity.LoginActivity"
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar" />
+        <activity
+            android:name=".View.Activity.MySongPlaylist_Activity"
             android:exported="true"
             android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar" />
         <activity

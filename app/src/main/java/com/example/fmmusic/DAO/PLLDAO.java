@@ -35,6 +35,24 @@ public class PLLDAO {
         database.close();
         return pllList;
     }
+    public List<PLL> getDataUser(String ...IDUser){
+        List<PLL> pllList = new ArrayList<>();
+        SQLiteDatabase database = fmMusicDatabase.getReadableDatabase();
+        String dataPLL = "SELECT * FROM PLL WHERE IDUser=?";
+        Cursor cursor = fmMusicDatabase.getReadableDatabase().rawQuery(dataPLL,IDUser);
+        cursor.moveToFirst();
+        while (cursor.isAfterLast() == false){
+            PLL pll = new PLL();
+            pll.setIdUser(String.valueOf(cursor.getString(cursor.getColumnIndex("IDUser"))));
+            pll.setIdPLL(Integer.parseInt(String.valueOf(cursor.getString(cursor.getColumnIndex("IDPLL")))));
+            pll.setNamePll(String.valueOf(cursor.getString(cursor.getColumnIndex("NamePLL"))));
+            pllList.add(pll);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        database.close();
+        return pllList;
+    }
     public long insertPLL(PLL pll){
         SQLiteDatabase sqLiteDatabase = fmMusicDatabase.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -75,11 +93,11 @@ public class PLLDAO {
         }
         return pllModellist;
     }
-    public List<PLL> getDataUser(String ...IDUser){
+    public List<PLL> getDataUser(String IDUser){
         List<PLL> pllList = new ArrayList<>();
         SQLiteDatabase database = fmMusicDatabase.getReadableDatabase();
         String dataPLL = "SELECT * FROM PLL WHERE IDUser=?";
-        Cursor cursor = fmMusicDatabase.getReadableDatabase().rawQuery(dataPLL,IDUser);
+        Cursor cursor = fmMusicDatabase.getReadableDatabase().rawQuery(dataPLL, new String[]{IDUser});
         cursor.moveToFirst();
         while (cursor.isAfterLast() == false){
             PLL pll = new PLL();

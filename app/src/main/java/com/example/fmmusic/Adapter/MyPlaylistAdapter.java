@@ -9,6 +9,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,8 +57,12 @@ public class MyPlaylistAdapter extends RecyclerView.Adapter<MyPlaylistAdapter.My
         holder.imgThumbnailPlaylist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e("pllAdapter", ""+pll.getIdPLL() );
                 Intent intent = new Intent(holder.itemView.getContext(), MySongPlaylist_Activity.class);
-                holder.itemView.getContext().startActivity(intent);
+                Bundle bundle  = new Bundle();
+                bundle.putInt("MyPlayListAdapter",pll.getIdPLL());
+                intent.putExtra("idPLLFromMyPlaylistAdapter",bundle);
+                v.getContext().startActivity(intent);
             }
         });
 

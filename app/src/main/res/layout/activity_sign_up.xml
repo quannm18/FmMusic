@@ -85,7 +85,7 @@
             android:drawableStart="@drawable/ic_lock_open_24"
             android:hint="Nhập lại mật khẩu:"
             android:inputType="textPassword"
-            android:textColor="@color/white" />
+            android:textColor="#CA42EF" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -113,7 +113,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Tên đăng nhập:"
-            android:textColor="@color/white" />
+            android:textColor="#CA42EF"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout

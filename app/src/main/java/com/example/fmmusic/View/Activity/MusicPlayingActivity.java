@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.fmmusic.Adapter.FavoriteSongsAdapter;
 import com.example.fmmusic.Adapter.FindingAdapter;
 import com.example.fmmusic.Adapter.TopAdapter;
 import com.example.fmmusic.Adapter.ViewPagerAdapterMusicPlaying;
@@ -50,6 +51,7 @@ public class MusicPlayingActivity extends AppCompatActivity
     static List<Song> songs = new ArrayList<>();
     static List<AudioModel> audios = new ArrayList<>();
     static List<Top> tops = new ArrayList<>();
+    static List<Favorite> favoriteArrayListto = new ArrayList<>();
     static Uri uri;
     static MediaPlayer mediaPlayer;
     public int position;
@@ -179,6 +181,14 @@ public class MusicPlayingActivity extends AppCompatActivity
         performer = bundle.getString("performer");
         duration = bundle.getString("duration");
 
+        if (from.equals("FVRSongAdapter")){
+            favoriteArrayListto = FavoriteSongsAdapter.favoriteList;
+            Log.e("saito",favoriteArrayListto.size()+"FVRSongAdapter" );
+            if (!favoriteArrayListto.isEmpty()) {
+                btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
+                uri = Uri.parse(DOMAIN_PLAY +favoriteArrayListto.get(position).getSong().getId()+"/320");
+            }   createMediaPlayer();
+        }
         if (from.equals("TopAdapter")) {
             tops = RankingsFragment.topList;
             Log.e("size", tops.size() + "TopAdapter");
