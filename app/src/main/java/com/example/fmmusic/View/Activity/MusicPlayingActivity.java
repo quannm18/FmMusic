@@ -1,11 +1,14 @@
 package com.example.fmmusic.View.Activity;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -21,6 +24,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.fmmusic.Adapter.ViewPagerAdapterMusicPlaying;
 import com.example.fmmusic.Controller.ActionPlaying;
+import com.example.fmmusic.Controller.MusicService;
 import com.example.fmmusic.DAO.FavoriteDAO;
 import com.example.fmmusic.Model.Favorite;
 import com.example.fmmusic.Model.SingerModel.Singer;
@@ -39,7 +43,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MusicPlayingActivity extends AppCompatActivity
-            implements MediaPlayer.OnCompletionListener, ActionPlaying {
+            implements MediaPlayer.OnCompletionListener, ActionPlaying, ServiceConnection {
     public static String DOMAIN_PLAY = "http://api.mp3.zing.vn/api/streaming/audio/";
     static List<Song> songs = new ArrayList<>();
     static List<AudioModel> audios = new ArrayList<>();
@@ -70,7 +74,7 @@ public class MusicPlayingActivity extends AppCompatActivity
     private Favorite favorite;
     private FavoriteDAO favoriteDAO;
     private Thread playThread, prevThread, nextThread;
-
+    MusicService musicService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -613,10 +617,18 @@ public class MusicPlayingActivity extends AppCompatActivity
 
     @Override
     protected void onResume() {
+        Intent intent = new Intent(this,MusicService.class);
+        bindService(intent,this,BIND_AUTO_CREATE);
         playThreadBtn();
         nextThreadBtn();
         prevThreadBtn();
         super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unbindService(this);
     }
 
     public void prevThreadBtn() {
@@ -650,7 +662,6 @@ public class MusicPlayingActivity extends AppCompatActivity
         };
         nextThread.start();
     }
-
 
     private void nextBtnClicked() {
         if (mediaPlayer.isPlaying()) {
@@ -1056,5 +1067,18 @@ public class MusicPlayingActivity extends AppCompatActivity
     @Override
     public void onCompletion(MediaPlayer mp) {
 
+    }
+
+    @Override
+    public void onServiceConnected(ComponentName name, IBinder service) {
+        MusicService.MyBinder myBinder;
+        myBinder = (MusicService.MyBinder) service;
+        musicService = myBinder.getService();
+        Toast.makeText(this, "Connected"+musicService, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onServiceDisconnected(ComponentName name) {
+        musicService = null;
     }
 }
