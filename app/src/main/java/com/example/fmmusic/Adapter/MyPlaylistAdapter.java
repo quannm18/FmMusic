@@ -61,6 +61,7 @@ public class MyPlaylistAdapter extends RecyclerView.Adapter<MyPlaylistAdapter.My
                 Intent intent = new Intent(holder.itemView.getContext(), MySongPlaylist_Activity.class);
                 Bundle bundle  = new Bundle();
                 bundle.putInt("MyPlayListAdapter",pll.getIdPLL());
+                bundle.putString("namePLL",""+pll.getNamePll());
                 intent.putExtra("idPLLFromMyPlaylistAdapter",bundle);
                 v.getContext().startActivity(intent);
             }

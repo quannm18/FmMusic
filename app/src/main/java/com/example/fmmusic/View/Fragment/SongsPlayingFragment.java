@@ -1,5 +1,7 @@
 package com.example.fmmusic.View.Fragment;
 
+import static com.example.fmmusic.View.Activity.MusicPlayingActivity.pause;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -49,8 +51,6 @@ public class SongsPlayingFragment extends Fragment {
     private ImageView imbBack;
     private ImageView imgThumbnailPlaying;
     private TextView tvTitlePlaying;
-    private RecyclerView rcvSingerPlaylist;
-    private TextView tvSubTitlePlaylistOfSiger;
     private ImageView imgAddtoPlaylist;
     private Dialog dialog;
 
@@ -78,8 +78,6 @@ public class SongsPlayingFragment extends Fragment {
         imbBack = (ImageView) view.findViewById(R.id.imbBack);
         imgThumbnailPlaying = (ImageView) view.findViewById(R.id.imgThumbnailPlaying);
         tvTitlePlaying = (TextView) view.findViewById(R.id.tvTitlePlaying);
-        rcvSingerPlaylist = (RecyclerView) view.findViewById(R.id.rcvSingerPlaylist);
-        tvSubTitlePlaylistOfSiger = (TextView) view.findViewById(R.id.tvSubTitlePlaylistOfSiger);
         imgAddtoPlaylist = (ImageView) view.findViewById(R.id.imgAddtoPlaylist);
 
         imgAddtoPlaylist.setOnClickListener(new View.OnClickListener() {
@@ -91,6 +89,7 @@ public class SongsPlayingFragment extends Fragment {
         imbBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pause();
                 getActivity().finish();
             }
         });
@@ -100,7 +99,6 @@ public class SongsPlayingFragment extends Fragment {
         } else {
             tvTitlePlaying.setText(title);
         }
-        tvSubTitlePlaylistOfSiger.setText("Danh sách phát - " + ((MusicPlayingActivity) getActivity()).artist_name);
         Glide.with(getContext())
                 .load(((MusicPlayingActivity) getActivity()).thumbnail)
                 .centerCrop()

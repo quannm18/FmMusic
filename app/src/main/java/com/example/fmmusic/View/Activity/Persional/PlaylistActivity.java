@@ -11,7 +11,10 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -34,19 +37,12 @@ public class PlaylistActivity extends AppCompatActivity {
     private TextInputLayout tilFindPlaylist;
     private TextView tvtPlaylist;
     private RecyclerView rcvFmMusicPlaylist;
-    private CardView cvBottomPlayBars;
-    private CardView cvThumbnail;
-    private ImageView imgThumbnail;
-    private ImageView imgPlay;
-    private ImageView imgPrevious;
-    private ImageView imgNext;
-    private ImageView imgPause;
-    private TextView tvNameSong;
     private RecyclerView rcvPlaylist;
     private ImageView btnAddPlaylist;
 
     private PlaylistAdapter playlistAdapter;
     private List<Playlist> playlistList;
+    private List<Playlist> findingList;
     private List<PLL>listpll;
     private MyPlaylistAdapter myPlaylistAdapter;
 
@@ -55,23 +51,12 @@ public class PlaylistActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playlist);
-
-
-
         btnAddPlaylist = (ImageView) findViewById(R.id.btnAddPlaylist);
         rcvPlaylist = (RecyclerView) findViewById(R.id.rcvPlaylist);
         scrollView2 = (ScrollView) findViewById(R.id.scrollView2);
         tilFindPlaylist = (TextInputLayout) findViewById(R.id.tilFindPlaylist);
         tvtPlaylist = (TextView) findViewById(R.id.tvtPlaylist);
         rcvFmMusicPlaylist = (RecyclerView) findViewById(R.id.rcvFmMusicPlaylist);
-        cvBottomPlayBars = (CardView) findViewById(R.id.cvBottomPlayBars);
-        cvThumbnail = (CardView) findViewById(R.id.cvThumbnail);
-        imgThumbnail = (ImageView) findViewById(R.id.imgThumbnail);
-        imgPlay = (ImageView) findViewById(R.id.imgPlay);
-        imgPrevious = (ImageView) findViewById(R.id.imgPrevious);
-        imgNext = (ImageView) findViewById(R.id.imgNext);
-        imgPause = (ImageView) findViewById(R.id.imgPause);
-        tvNameSong = (TextView) findViewById(R.id.tvNameSong);
 
         setListData();
 
@@ -81,6 +66,17 @@ public class PlaylistActivity extends AppCompatActivity {
 
         SharedPreferences sdf = getSharedPreferences("USER_CURRENT",MODE_PRIVATE);
         String userName =sdf.getString("USERNAME","");
+
+        String CheckLogin =sdf.getString("CHECKLOGIN","");
+        Log.e(" ",CheckLogin);
+        if(CheckLogin == "SKIPLOGIN")
+        {
+            tvtPlaylist.setVisibility(View.GONE);
+            rcvPlaylist.setVisibility(View.GONE);
+            findViewById(R.id.cardView10).setVisibility(View.GONE);
+            findViewById(R.id.textView4).setVisibility(View.GONE);
+            findViewById(R.id.horizontalScrollView).setVisibility(View.GONE);
+        }
         listpll = new ArrayList<>();
         PLLDAO plldao = new PLLDAO(this);
         listpll = plldao.getDataUser(userName);
@@ -137,7 +133,42 @@ public class PlaylistActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        tilFindPlaylist.getEditText().setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    String finding = tilFindPlaylist.getEditText().getText().toString();
+                    findSong(finding);
+                    return true;
+                }
+                return false;
+            }
+        });
     }
+
+    private void findSong(String finding) {
+        int pos = -1;
+        findingList = new ArrayList<>();
+        for (int i = 0; i < playlistList.size(); i++) {
+            if (playlistList.get(i).getText().equals(finding)
+                    ||playlistList.get(i).getText().equalsIgnoreCase(finding)
+                    ||playlistList.get(i).getText().contains(finding)){
+                findingList.add(playlistList.get(i));
+                pos++;
+            }
+        }
+        if (pos==-1){
+            playlistAdapter = new PlaylistAdapter(playlistList);
+            Toast.makeText(PlaylistActivity.this, "Không tìm thấy "+finding, Toast.LENGTH_SHORT).show();
+        }else {
+            playlistAdapter = new PlaylistAdapter(findingList);
+            Toast.makeText(PlaylistActivity.this, "Đã tìm thấy "+finding, Toast.LENGTH_SHORT).show();
+        }
+        rcvFmMusicPlaylist.setAdapter(playlistAdapter);
+        rcvFmMusicPlaylist.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+    }
+
     void setListData(){
         String url1="https://pimobfptedu.github.io/img/";
         playlistList = new ArrayList<>();

@@ -35,8 +35,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PlayListScreenActivity extends AppCompatActivity {
-    private List<PlaylistSongs> playlistSongsList;
-    private List<Song> songList;
+    public List<PlaylistSongs> playlistSongsList;
+    public static List<Song> songPList;
     private PlayListSongAdapter playListSongAdapter;
     private RecyclerView rcvPlaylist;
     private TextView tvtPlaylistSinger;
@@ -51,13 +51,13 @@ public class PlayListScreenActivity extends AppCompatActivity {
         tvtPlaylistSinger = (TextView) findViewById(R.id.tvtPlaylistSinger);
         imgSliderThumbnail = (SliderView) findViewById(R.id.imgSliderThumbnail);
 
-        songList = new ArrayList<>();
+        songPList = new ArrayList<>();
         getIntentData();
         getDataAnyID();
         stringList = new ArrayList<>();
         sliderAdapter = new SliderAdapter(stringList);
         imgSliderThumbnail.setSliderAdapter(sliderAdapter);
-        playListSongAdapter = new PlayListSongAdapter(songList);
+        playListSongAdapter = new PlayListSongAdapter(songPList);
         rcvPlaylist.setAdapter(playListSongAdapter);
         rcvPlaylist.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
@@ -74,14 +74,14 @@ public class PlayListScreenActivity extends AppCompatActivity {
             playlistSongsList = new ArrayList<>();
             playlistSongsList.add(new PlaylistSongs("Tan Vỡ", "ZU96I8D9"));
             playlistSongsList.add(new PlaylistSongs("Anh Lại Làm Em Khóc", "ZU99FBUW"));
-            playlistSongsList.add(new PlaylistSongs("Thay Lòng", "ZU7C8FDU\n"));
-            playlistSongsList.add(new PlaylistSongs("Cưa Là Đổ", "ZU9WOC9E\n"));
-            playlistSongsList.add(new PlaylistSongs("Nhắn Rằng Anh Nhớ Em", "ZU77WA8Z\n"));
-            playlistSongsList.add(new PlaylistSongs("Bao Lâu Ta Lại Yêu Một Ngườ", "ZU7UEUD0\n"));
-            playlistSongsList.add(new PlaylistSongs("Đông Phai Mờ Dáng Ai", "ZU89DBIU\n"));
-            playlistSongsList.add(new PlaylistSongs("Độ Tộc 2", "ZUUUEEIE\n"));
-            playlistSongsList.add(new PlaylistSongs("Em Là Con Thuyền Cô Đơ", "ZU7UC9ZC\n"));
-            playlistSongsList.add(new PlaylistSongs("Phi Hành Gia", "ZU9CE99E\n"));
+            playlistSongsList.add(new PlaylistSongs("Thay Lòng", "ZU7C8FDU"));
+            playlistSongsList.add(new PlaylistSongs("Cưa Là Đổ", "ZU9WOC9E"));
+            playlistSongsList.add(new PlaylistSongs("Nhắn Rằng Anh Nhớ Em", "ZU77WA8Z"));
+            playlistSongsList.add(new PlaylistSongs("Bao Lâu Ta Lại Yêu Một Ngườ", "ZU7UEUD0"));
+            playlistSongsList.add(new PlaylistSongs("Đông Phai Mờ Dáng Ai", "ZU89DBIU"));
+            playlistSongsList.add(new PlaylistSongs("Độ Tộc 2", "ZUUUEEIE"));
+            playlistSongsList.add(new PlaylistSongs("Em Là Con Thuyền Cô Đơ", "ZU7UC9ZC"));
+            playlistSongsList.add(new PlaylistSongs("Phi Hành Gia", "ZU9CE99E"));
             tvtPlaylistSinger.setText("Nhạc Trẻ");
         }
         // 2.Nhạc Trữ Tình
@@ -742,15 +742,13 @@ public class PlayListScreenActivity extends AppCompatActivity {
                                 stringList.add(thumbnail);
                                 sliderAdapter.notifyDataSetChanged();
                             }
-//                            Log.e("Huy Len", thumbnail_0);
-                            Log.e("Huy Ngu", thumbnail);
                             String name = playlistSongsList.getPlName();
-                            String id = playlistSongsList.getPlName();
+                            String id = playlistSongsList.getPlID();
 
                             Song song = new Song(id, name, new Singer(id_artist, name_artist), thumbnail, 320);
-                            songList.add(song);
+                            songPList.add(song);
                             playListSongAdapter.notifyDataSetChanged();
-                        } catch (JSONException e) {
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }

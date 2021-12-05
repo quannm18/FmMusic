@@ -21,7 +21,7 @@ import com.example.fmmusic.View.Fragment.SongsPlayingFragment;
 import java.util.List;
 
 public class FindingAdapter extends RecyclerView.Adapter<FindingAdapter.TopHolder> {
-    public static List<Song> songList;
+    public List<Song> songList;
 
     public FindingAdapter(List<Song> songList) {
         this.songList = songList;

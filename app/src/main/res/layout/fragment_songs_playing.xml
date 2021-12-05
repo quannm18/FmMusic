@@ -8,10 +8,10 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="260dp"
-        android:layout_height="260dp"
-        android:layout_marginTop="16dp"
-        app:cardCornerRadius="130dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="64dp"
+        app:cardCornerRadius="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView9">
@@ -83,32 +83,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcvSingerPlaylist"
-        android:layout_width="300dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/corner_recycleview"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSubTitlePlaylistOfSiger" />
-
-    <TextView
-        android:id="@+id/tvSubTitlePlaylistOfSiger"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:shadowColor="#000000"
-        android:shadowRadius="2"
-        android:text="Danh sách phát - Hoàng Dũng"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

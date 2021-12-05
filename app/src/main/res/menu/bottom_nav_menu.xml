@@ -8,9 +8,9 @@
         android:title="Trang Chủ">
     </item>
     <item
-        android:icon="@drawable/ic_baseline_playlist_play_24"
+        android:icon="@drawable/ic_person_48"
         android:id="@+id/playListFragment"
-        android:title="PlayList">
+        android:title="Cá nhân">
     </item>
     <item
         android:icon="@drawable/ic_baseline_bar_chart_24"

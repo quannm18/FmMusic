@@ -115,7 +115,7 @@ public class PLLSongDAO {
         long row = sqLiteDatabase.insert("PLLSONG",null,contentValues);
         return row;
     }
-    public int updatetPllSong(PLLSong pllSong){
+    public int deletePLLSong(PLLSong pllSong){
         SQLiteDatabase sqLiteDatabase = fmMusicDatabase.getWritableDatabase();
 
         int row = sqLiteDatabase.delete("PLLSONG","IDPLLSong=?",new String[]{String.valueOf(pllSong.getIdPLLSong())});

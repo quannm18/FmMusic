@@ -26,7 +26,7 @@ public class FMMusicDatabase extends SQLiteOpenHelper {
         // table PLL_Song
         String TABLE_PLL_SONG = "CREATE TABLE PLLSONG(IDPLLSong INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " IDPLL TEXT  REFERENCES PLL(IDPLL)," +
-                "IDSong TEXT  REFERENCES SONG(IDSong), SongName TEXT,Thumbnail TEXT,Duration INTEGER, IDSinger TEXT, SingerName TEXT)";
+                "IDSong  TEXT UNIQUE REFERENCES SONG(IDSong), SongName TEXT,Thumbnail TEXT,Duration INTEGER, IDSinger TEXT, SingerName TEXT)";
                 db.execSQL(TABLE_PLL_SONG);
 
         // table Singer

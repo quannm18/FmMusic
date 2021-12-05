@@ -11,7 +11,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/cvBottomPlayBars"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Playlist"
+                android:text="Playlist của bạn"
                 android:textColor="@color/white"
                 android:textSize="24dp"
                 android:textStyle="bold"
@@ -49,25 +49,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginTop="16dp"
-                android:backgroundTint="#E05CDC"
-                app:cornerRadius="28dp"
-                android:text="Phát Ngẫu nhiên"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvUserPLLName" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcvUserPLL"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/corner_recycleview_playlist_screen"
-                android:paddingTop="80dp"
+                android:paddingTop="16dp"
                 android:paddingBottom="24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -78,100 +66,4 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvBottomPlayBars"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvThumbnail"
-                android:layout_width="46dp"
-                android:layout_height="44dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                app:cardCornerRadius="100dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/imgThumbnail"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/demo_nangtho_test" />
-            </androidx.cardview.widget.CardView>
-
-            <ImageView
-                android:id="@+id/imgPlay"
-                android:layout_width="40dp"
-                android:layout_height="31dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="11dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imgNext"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
-                app:srcCompat="@drawable/ic_baseline_play_arrow_24" />
-
-            <ImageView
-                android:id="@+id/imgPrevious"
-                android:layout_width="40dp"
-                android:layout_height="31dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="11dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imgPause"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
-                app:srcCompat="@drawable/ic_baseline_skip_previous_24" />
-
-            <ImageView
-                android:id="@+id/imgNext"
-                android:layout_width="40dp"
-                android:layout_height="31dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="11dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
-                app:srcCompat="@drawable/ic_baseline_skip_next_24" />
-
-            <ImageView
-                android:id="@+id/imgPause"
-                android:layout_width="40dp"
-                android:layout_height="31dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="11dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imgPlay"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
-                app:srcCompat="@drawable/ic_baseline_pause_circle_outline_24" />
-
-            <TextView
-                android:id="@+id/tvNameSong"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="9dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Chưa có bài hát nào"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/cvThumbnail"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

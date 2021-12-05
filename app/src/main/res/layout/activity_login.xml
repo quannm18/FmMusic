@@ -34,14 +34,14 @@
         app:layout_constraintVertical_bias="0.0"
         app:placeholderTextColor="@color/white"
         app:prefixTextColor="@color/white"
-        app:boxStrokeColor="@color/white"
-        app:startIconDrawable="@drawable/ic_baseline_vpn_key_24_white">
+        app:boxStrokeColor="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:animateLayoutChanges="true"
             android:hint="PassWord"
+            android:drawableStart="@drawable/ic_baseline_vpn_key_24_white"
             android:inputType="textPassword"
             android:textColor="@color/white"
             android:textColorHint="#FAF7F7" />
@@ -72,7 +72,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvQuotes"
         app:layout_constraintVertical_bias="0.04000002"
-        app:startIconDrawable="@drawable/ic_baseline_person_24_white"
         app:suffixTextColor="#F1E5E5">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -82,6 +81,7 @@
             android:bottomLeftRadius="24dp"
             android:bottomRightRadius="24dp"
             android:hint="UserName"
+            android:drawableStart="@drawable/ic_baseline_person_24_white"
             android:textColor="@color/white"
             android:textColorHint="#EFEDED"
             android:topLeftRadius="24dp"
@@ -93,7 +93,7 @@
         android:id="@+id/btnSignIn"
         android:layout_width="125dp"
         android:layout_height="48dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:animateLayoutChanges="true"
         android:background="@drawable/custom_button_color"
         android:text="Đăng Nhập"
@@ -102,7 +102,6 @@
         app:backgroundTint="@null"
         app:cornerRadius="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cbxRemember" />
 
@@ -123,21 +122,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.046" />
-
-    <TextView
-        android:id="@+id/tvLostPass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:animateLayoutChanges="true"
-        android:text="Quên Mật Khẩu?"
-        android:textColor="#393232"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.964"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.859" />
 
     <TextView
         android:id="@+id/tvXinChao"
@@ -184,24 +168,23 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_DesText"
         app:layout_constraintVertical_bias="0.07999998" />
 
-    <com.google.android.material.button.MaterialButton
+    <TextView
         android:id="@+id/btnRegister"
-        android:layout_width="125dp"
-        android:layout_height="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:animateLayoutChanges="true"
-        android:background="@drawable/custom_button_color"
-        android:text="Đăng Ký"
+        android:text="Đăng ký"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/ic_launcher_background"
         app:backgroundTint="@null"
         app:cornerRadius="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cbxRemember" />
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <CheckBox
+        android:textColor="@color/white"
         android:id="@+id/cbxRemember"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -211,4 +194,17 @@
         app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilPassword" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Bạn chưa có tài khoản?"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignIn" />
 </androidx.constraintlayout.widget.ConstraintLayout>
