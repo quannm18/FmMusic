@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.fmmusic">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission
@@ -21,30 +22,32 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".View.Activity.Persional.SingerFavoriteActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar"  />
         <activity
             android:name=".View.Activity.DownLoadActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar"  />
         <activity
             android:name=".View.Activity.FindingMusicActivity"
             android:exported="true"
-            android:theme="@style/Theme.FmMusic.NoActionBar" />
+            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar" />
         <activity
             android:name=".View.Activity.Persional.SingersLibActivity"
             android:exported="true"
-            android:theme="@style/Theme.FmMusic.NoActionBar" />
+            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar" />
         <activity
             android:name=".View.Activity.Persional.PlaylistActivity"
             android:exported="true"
-            android:theme="@style/Theme.FmMusic.NoActionBar" />
+            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar" />
         <activity
             android:name=".View.Activity.Persional.FavoritesLibActivity"
             android:exported="true"
-            android:theme="@style/Theme.FmMusic.NoActionBar" />
+            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar" />
         <activity
             android:name=".View.Activity.Persional.SongsLibActivity"
             android:exported="true"
-            android:theme="@style/Theme.FmMusic.NoActionBar" />
+            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar" />
         <activity
             android:name=".View.Activity.HomeActivity"
             android:exported="true"
@@ -52,7 +55,7 @@
         <activity
             android:name=".View.Activity.SongDetailActivity"
             android:exported="true"
-            android:theme="@style/Theme.FmMusic.NoActionBar" />
+            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar" />
         <activity
             android:name=".View.Activity.PassChangingActivity"
             android:exported="true"
@@ -64,7 +67,7 @@
         <activity
             android:name=".View.Activity.MusicPlayingActivity"
             android:exported="true"
-            android:theme="@style/Theme.FmMusic.NoActionBar" />
+            android:theme="@style/Theme.FmMusic.NoActionBarAndStatusBar" />
         <activity
             android:name=".View.Activity.ProfileActivity"
             android:exported="true"
@@ -94,6 +97,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+        <activity android:name=".View.Activity.AdminAccountActivity" />
 
         <service
             android:name=".Controller.MusicService"
@@ -107,6 +111,7 @@
                 <action android:name="actionprevious" />
             </intent-filter>
         </receiver>
+        <receiver android:name=".Controller.CheckInternet" />
     </application>
 
 </manifest>

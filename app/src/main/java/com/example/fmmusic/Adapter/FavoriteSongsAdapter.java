@@ -22,10 +22,10 @@ import com.example.fmmusic.View.Fragment.SongsPlayingFragment;
 import java.util.List;
 
 public class FavoriteSongsAdapter extends RecyclerView.Adapter<FavoriteSongsAdapter.FavoriteSongHolder> {
-    public static List<Favorite> favoriteList;
+    public static List<Favorite> favoriteListAdapter;
 
-    public FavoriteSongsAdapter(List<Favorite> favoriteList) {
-        this.favoriteList = favoriteList;
+    public FavoriteSongsAdapter(List<Favorite> favoriteListAdapter) {
+        this.favoriteListAdapter = favoriteListAdapter;
     }
 
     @NonNull
@@ -37,7 +37,7 @@ public class FavoriteSongsAdapter extends RecyclerView.Adapter<FavoriteSongsAdap
 
     @Override
     public void onBindViewHolder(@NonNull FavoriteSongHolder holder, int position) {
-        final Favorite favorite = favoriteList.get(position);
+        final Favorite favorite = favoriteListAdapter.get(position);
         Glide.with(holder.itemView.getContext())
                 .load(favorite.getSong().getThumbnail())
                 .centerCrop()
@@ -69,7 +69,7 @@ public class FavoriteSongsAdapter extends RecyclerView.Adapter<FavoriteSongsAdap
 
     @Override
     public int getItemCount() {
-        return favoriteList.size();
+        return favoriteListAdapter.size();
     }
 
     public class FavoriteSongHolder extends RecyclerView.ViewHolder {

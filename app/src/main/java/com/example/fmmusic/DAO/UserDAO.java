@@ -76,6 +76,11 @@ public class UserDAO {
         long row = sqLiteDatabase.update("USER",contentValues,"UserName=?",new String[]{String.valueOf(users.getUserName())});
         return row;
     }
+    public int deleteUser(String username){
+        SQLiteDatabase sqLiteDatabase = fmMusicDatabase.getWritableDatabase();
+        int row = sqLiteDatabase.delete("USER","UserName=?",new String[]{String.valueOf(username)});
+        return row;
+    }
     private List<Users> getData(String sql, String...selectionArgs){
         List<Users> list = new ArrayList<>();
         SQLiteDatabase database = fmMusicDatabase.getReadableDatabase();

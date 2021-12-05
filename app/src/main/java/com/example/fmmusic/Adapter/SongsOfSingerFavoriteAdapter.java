@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.fmmusic.Model.Songs.PlaylistSongs;
 import com.example.fmmusic.Model.Songs.Song;
 import com.example.fmmusic.R;
 import com.example.fmmusic.View.Activity.MusicPlayingActivity;
@@ -20,26 +19,30 @@ import com.example.fmmusic.View.Fragment.SongsPlayingFragment;
 
 import java.util.List;
 
-public class PlayListSongAdapter extends RecyclerView.Adapter<PlayListSongAdapter.PlaylistHolder> {
-    private List<Song> songList;
+public class SongsOfSingerFavoriteAdapter extends RecyclerView.Adapter<SongsOfSingerFavoriteAdapter.SongsOfSingerFavoriteHolder> {
+    public static List<Song> songOfSinger;
 
-    public PlayListSongAdapter(List<Song> songList) {
-        this.songList = songList;
+    public SongsOfSingerFavoriteAdapter(List<Song> songOfSinger) {
+        this.songOfSinger = songOfSinger;
     }
 
     @NonNull
     @Override
-    public PlaylistHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view =LayoutInflater.from(parent.getContext()).inflate(R.layout.row_playlist_songs,parent,false);
-        return new PlaylistHolder(view);
+    public SongsOfSingerFavoriteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_suggested_song,parent,false);
+        return new SongsOfSingerFavoriteHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PlaylistHolder holder, int position) {
-        Song song = songList.get(position);
-        Glide.with(holder.itemView.getContext()).load(song.getThumbnail()).centerCrop().into(holder.imgThumbSongPLRow);
-        holder.tvNameSongPLRow.setText(song.getName());
-        holder.tvSingerSongPLRow.setText(song.getSinger().getName());
+    public void onBindViewHolder(@NonNull SongsOfSingerFavoriteHolder holder, int position) {
+        final Song song = songOfSinger.get(position);
+        Glide.with(holder.itemView.getContext())
+                .load(song.getThumbnail())
+                .centerCrop()
+                .into(holder.imgThumbTopRow);
+        holder.tvNameTopRow.setText(song.getName());
+        holder.tvSingerTopRow.setText(song.getSinger().getName());
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,13 +50,13 @@ public class PlayListSongAdapter extends RecyclerView.Adapter<PlayListSongAdapte
                 Intent intent = new Intent(v.getContext(), MusicPlayingActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("position",holder.getAdapterPosition());
-                bundle.putString("from","PlayListSongAdapter");
+                bundle.putString("from","SongsOfSingerFavoriteAdapter");
                 bundle.putString("id",song.getId());
                 bundle.putString("name",song.getName());
                 bundle.putString("artist_names",song.getSinger().getName());
                 bundle.putString("performer",song.getSinger().getName());
                 bundle.putString("thumbnail",song.getThumbnail());
-                bundle.putString("duration",song.getDuration()+"");
+                bundle.putString("duration", String.valueOf(song.getDuration()));
 
                 intent.putExtra("song_suggested",bundle);
                 SongsPlayingFragment songsPlayingFragment = SongsPlayingFragment.newInstance();
@@ -66,19 +69,20 @@ public class PlayListSongAdapter extends RecyclerView.Adapter<PlayListSongAdapte
 
     @Override
     public int getItemCount() {
-        return songList.size();
+        return songOfSinger.size();
     }
 
-    public class PlaylistHolder extends RecyclerView.ViewHolder {
-        private ImageView imgThumbSongPLRow;
-        private TextView tvNameSongPLRow;
-        private TextView tvSingerSongPLRow;
+    public class SongsOfSingerFavoriteHolder extends RecyclerView.ViewHolder {
+        private ImageView imgThumbTopRow;
+        private TextView tvNameTopRow;
+        private TextView tvSingerTopRow;
 
-        public PlaylistHolder(@NonNull View itemView) {
+        public SongsOfSingerFavoriteHolder(@NonNull View itemView) {
             super(itemView);
-            imgThumbSongPLRow = (ImageView) itemView.findViewById(R.id.imgThumbSongPLRow);
-            tvNameSongPLRow = (TextView) itemView.findViewById(R.id.tvNameSongPLRow);
-            tvSingerSongPLRow = (TextView) itemView.findViewById(R.id.tvSingerSongPLRow);
+
+            imgThumbTopRow = (ImageView) itemView.findViewById(R.id.imgThumbTopRow);
+            tvNameTopRow = (TextView) itemView.findViewById(R.id.tvNameTopRow);
+            tvSingerTopRow = (TextView) itemView.findViewById(R.id.tvSingerTopRow);
 
         }
     }

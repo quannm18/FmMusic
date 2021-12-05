@@ -65,7 +65,10 @@ public class SongsDetailFragment extends Fragment implements Updateable {
                 .centerCrop()
                 .into(thumbDetailSongs);
 
-        if (from.equals("TopAdapter")||from.equals("SuggestAdapter")||from.equals("FindingAdapter")||from.equals("HighlightAdapter")){
+        if (from.equals("TopAdapter")||from.equals("SuggestAdapter")||from.equals("FindingAdapter")
+                ||from.equals("HighlightAdapter")||from.equals("PLLSongAdapter")
+                ||from.equals("SongsOfSingerFavoriteAdapter")||from.equals("FVRSongAdapter")
+                ||from.equals("PlayListSongAdapter")||from.equals("NewSongHomeAdapter")){
             tvDownloadDetail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

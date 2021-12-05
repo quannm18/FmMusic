@@ -13,7 +13,9 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300dp"
         android:layout_height="52dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:textColorHint="#CF40E8"
         app:boxCornerRadiusBottomEnd="24dp"
         app:boxCornerRadiusBottomStart="24dp"
@@ -24,7 +26,7 @@
         app:hintTextColor="#CF40E8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cvProfileUser"
         app:layout_constraintTop_toTopOf="parent"
         app:placeholderTextColor="#CF40E8"
         app:prefixTextColor="#CF40E8"
@@ -32,12 +34,12 @@
         app:suffixTextColor="#CF40E8">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/corner_searchbar"
             android:hint="Tìm kiếm bài hát, bảng..."
-            android:textColor="@color/black"/>
+            android:inputType="text"
+            android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -47,118 +49,17 @@
         android:background="#FFFFFF"
         app:itemIconTint="@color/custom_color_bottomnav"
         app:itemTextColor="@color/custom_color_bottomnav"
-        app:layout_constraintBottom_toBottomOf="@+id/vpHome"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/bottom_nav_menu" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvBottomPlayBars"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvThumbnail"
-                android:layout_width="46dp"
-                android:layout_height="44dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                app:cardCornerRadius="100dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/imgThumbnail"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/demo_nangtho_test" />
-            </androidx.cardview.widget.CardView>
-
-            <ImageView
-                android:id="@+id/imgPlay"
-                android:layout_width="40dp"
-                android:layout_height="31dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="11dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imgNext"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
-                app:srcCompat="@drawable/ic_baseline_play_arrow_24" />
-
-            <ImageView
-                android:id="@+id/imgPrevious"
-                android:layout_width="40dp"
-                android:layout_height="31dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="11dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imgPause"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
-                app:srcCompat="@drawable/ic_baseline_skip_previous_24" />
-
-            <ImageView
-                android:id="@+id/imgNext"
-                android:layout_width="40dp"
-                android:layout_height="31dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="11dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
-                app:srcCompat="@drawable/ic_baseline_skip_next_24" />
-
-            <ImageView
-                android:id="@+id/imgPause"
-                android:layout_width="40dp"
-                android:layout_height="31dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="11dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imgPlay"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
-                app:srcCompat="@drawable/ic_baseline_pause_circle_outline_24" />
-
-            <TextView
-                android:id="@+id/tvNameSong"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="9dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Chưa có bài hát nào"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/cvThumbnail"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vpHome"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
         android:background="#00FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

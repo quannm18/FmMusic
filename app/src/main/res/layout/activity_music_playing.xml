@@ -72,7 +72,7 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="0.8"
-            app:srcCompat="@drawable/favorite_button" />
+            app:srcCompat="@drawable/heart_like" />
 
         <ImageView
             android:id="@+id/imbPrevious"
@@ -111,6 +111,6 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="0.8"
-            app:srcCompat="@drawable/loop_button" />
+            app:srcCompat="@drawable/share" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

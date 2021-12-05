@@ -46,14 +46,6 @@ public class SongsLibActivity extends AppCompatActivity {
     private TextInputLayout tilFindSonglib;
     private MaterialButton btnRandomplay;
     private TextView textView;
-    private CardView cvBottomPlayBars;
-    private CardView cvThumbnail;
-    private ImageView imgThumbnail;
-    private ImageView imgPlay;
-    private ImageView imgPrevious;
-    private ImageView imgNext;
-    private ImageView imgPause;
-    private TextView tvNameSong;
 
     private SongsLibAdapter songsLibAdapter;
     public static List<AudioModel> audioModelList;
@@ -68,14 +60,6 @@ public class SongsLibActivity extends AppCompatActivity {
         tilFindSonglib = (TextInputLayout) findViewById(R.id.tilFindSonglib);
         btnRandomplay = (MaterialButton) findViewById(R.id.btnRamdoomplay);
         textView = (TextView) findViewById(R.id.textView);
-        cvBottomPlayBars = (CardView) findViewById(R.id.cvBottomPlayBars);
-        cvThumbnail = (CardView) findViewById(R.id.cvThumbnail);
-        imgThumbnail = (ImageView) findViewById(R.id.imgThumbnail);
-        imgPlay = (ImageView) findViewById(R.id.imgPlay);
-        imgPrevious = (ImageView) findViewById(R.id.imgPrevious);
-        imgNext = (ImageView) findViewById(R.id.imgNext);
-        imgPause = (ImageView) findViewById(R.id.imgPause);
-        tvNameSong = (TextView) findViewById(R.id.tvNameSong);
 
         if (isPermissionsGranted()){
             Toast.makeText(SongsLibActivity.this, "Permission already granted", Toast.LENGTH_SHORT).show();
