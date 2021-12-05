@@ -92,6 +92,7 @@ public class UserDAO {
         return list;
     }
 
+
     public  int checkLogin(String taiKhoan,String matKhau){
         String sql = "SELECT * FROM USER WHERE UserName=? AND Password=?";
         List<Users> thuThuList = getData(sql,taiKhoan,matKhau);

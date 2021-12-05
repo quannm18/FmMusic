@@ -21,7 +21,7 @@ import com.example.fmmusic.View.Fragment.SongsPlayingFragment;
 import java.util.List;
 
 public class FindingAdapter extends RecyclerView.Adapter<FindingAdapter.TopHolder> {
-    private List<Song> songList;
+    public static List<Song> songList;
 
     public FindingAdapter(List<Song> songList) {
         this.songList = songList;
@@ -57,7 +57,7 @@ public class FindingAdapter extends RecyclerView.Adapter<FindingAdapter.TopHolde
                 bundle.putString("artist_names",song.getSinger().getName());
                 bundle.putString("performer",song.getSinger().getName());
                 bundle.putString("thumbnail",song.getThumbnail());
-                bundle.putString("duration",song.getDuration()+"");
+                bundle.putString("duration", String.valueOf(song.getDuration()));
 
                 intent.putExtra("song_suggested",bundle);
                 SongsPlayingFragment songsPlayingFragment = SongsPlayingFragment.newInstance();

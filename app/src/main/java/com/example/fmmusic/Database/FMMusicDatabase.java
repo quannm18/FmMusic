@@ -20,15 +20,14 @@ public class FMMusicDatabase extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO USER VALUES(\"tho2002\",\"ThoPham\",\"123456\")");
 
         // table Playlist
-        String TABLE_PLL = "CREATE TABLE PLL(IDPLL TEXT PRIMARY KEY, NamePLL TEXT," +
+        String TABLE_PLL = "CREATE TABLE PLL(IDPLL INTEGER PRIMARY KEY AUTOINCREMENT, NamePLL TEXT NOT NULL," +
                 " IDUser TEXT REFERENCES USER(IDUser))";
         db.execSQL(TABLE_PLL);
-
         // table PLL_Song
-        String TABLE_PLL_SONG = "CREATE TABLE PLLSONG(IDPLLSong TEXT PRIMARY KEY," +
-                " IDPLL TEXT REFERENCES PLL(IDPLL)," +
-                "IDSong TEXT REFERENCES SONG(IDSong))";
-        db.execSQL(TABLE_PLL_SONG);
+        String TABLE_PLL_SONG = "CREATE TABLE PLLSONG(IDPLLSong INTEGER PRIMARY KEY AUTOINCREMENT," +
+                " IDPLL TEXT  REFERENCES PLL(IDPLL)," +
+                "IDSong TEXT  REFERENCES SONG(IDSong), SongName TEXT,Thumbnail TEXT,Duration INTEGER, IDSinger TEXT, SingerName TEXT)";
+                db.execSQL(TABLE_PLL_SONG);
 
         // table Singer
         String TABLE_SINGER = "CREATE TABLE SINGER(IDSinger TEXT PRIMARY KEY, SingerName TEXT)";
