@@ -62,6 +62,7 @@ public class SingersLibActivity extends AppCompatActivity {
         rcvSongOfTheSing.setAdapter(findingAdapter);
         rcvSongOfTheSing.setLayoutManager(new LinearLayoutManager(SingersLibActivity.this));
 
+
     }
     void getDataTop(String url){
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
