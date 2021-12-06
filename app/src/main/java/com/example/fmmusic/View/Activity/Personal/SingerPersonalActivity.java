@@ -1,4 +1,4 @@
-package com.example.fmmusic.View.Activity.Persional;
+package com.example.fmmusic.View.Activity.Personal;
 
 import androidx.appcompat.app.AppCompatActivity;
 

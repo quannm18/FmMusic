@@ -17,14 +17,15 @@ import com.example.fmmusic.Model.Favorite;
 import com.example.fmmusic.Model.Songs.Top;
 import com.example.fmmusic.R;
 import com.example.fmmusic.View.Activity.MusicPlayingActivity;
+import com.example.fmmusic.View.Fragment.SongsPlayingFragment;
 
 import java.util.List;
 
 public class FavoriteSongsAdapter extends RecyclerView.Adapter<FavoriteSongsAdapter.FavoriteSongHolder> {
-    private List<Favorite> favoriteList;
+    public static List<Favorite> favoriteListAdapter;
 
-    public FavoriteSongsAdapter(List<Favorite> favoriteList) {
-        this.favoriteList = favoriteList;
+    public FavoriteSongsAdapter(List<Favorite> favoriteListAdapter) {
+        this.favoriteListAdapter = favoriteListAdapter;
     }
 
     @NonNull
@@ -36,7 +37,7 @@ public class FavoriteSongsAdapter extends RecyclerView.Adapter<FavoriteSongsAdap
 
     @Override
     public void onBindViewHolder(@NonNull FavoriteSongHolder holder, int position) {
-        final Favorite favorite = favoriteList.get(position);
+        final Favorite favorite = favoriteListAdapter.get(position);
         Glide.with(holder.itemView.getContext())
                 .load(favorite.getSong().getThumbnail())
                 .centerCrop()
@@ -44,11 +45,31 @@ public class FavoriteSongsAdapter extends RecyclerView.Adapter<FavoriteSongsAdap
 
         holder.tvNameTopRow.setText(favorite.getSong().getName());
         holder.tvSingerTopRow.setText(favorite.getSong().getSinger().getName());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), MusicPlayingActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("position",holder.getAdapterPosition());
+                bundle.putString("from","FVRSongAdapter");
+                bundle.putString("id",favorite.getSong().getId());
+                bundle.putString("name",favorite.getSong().getName());
+                bundle.putString("artist_names",favorite.getSong().getSinger().getName());
+                bundle.putString("performer",favorite.getSong().getSinger().getName());
+                bundle.putString("thumbnail",favorite.getSong().getThumbnail());
+                bundle.putString("duration", String.valueOf(favorite.getSong().getDuration()));
+
+                intent.putExtra("song_suggested",bundle);
+                SongsPlayingFragment songsPlayingFragment = SongsPlayingFragment.newInstance();
+                songsPlayingFragment.setArguments(bundle);
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return favoriteList.size();
+        return favoriteListAdapter.size();
     }
 
     public class FavoriteSongHolder extends RecyclerView.ViewHolder {

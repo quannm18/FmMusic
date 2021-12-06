@@ -1,6 +1,8 @@
 package com.example.fmmusic.View.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,7 @@ import com.example.fmmusic.Adapter.TopAdapter;
 import com.example.fmmusic.Model.SingerModel.Singer;
 import com.example.fmmusic.Model.Songs.Top;
 import com.example.fmmusic.R;
+import com.example.fmmusic.View.Activity.SplashActivity;
 import com.smarteist.autoimageslider.SliderView;
 
 import org.json.JSONArray;
@@ -62,7 +65,6 @@ public class RankingsFragment extends Fragment {
         sliderAdapter = new SliderAdapter(Arrays.asList(sliderList));
         sliderTop.setSliderAdapter(sliderAdapter);
         sliderTop.setAutoCycle(true);
-        Toast.makeText(getContext(), ""+topList.size(), Toast.LENGTH_SHORT).show();
     }
     void getDataTop(){
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
@@ -75,7 +77,7 @@ public class RankingsFragment extends Fragment {
                             Singer singer;
                             JSONObject data = response.getJSONObject("data");
                             JSONArray items = data.getJSONArray("song");
-                            for (int i = 0; i < items.length()-1; i++) {
+                            for (int i = 0; i < items.length(); i++) {
                                 JSONObject obOfItems = (JSONObject) items.get(i);
                                 String id = obOfItems.getString("id");
                                 String name = obOfItems.getString("name");
@@ -85,6 +87,7 @@ public class RankingsFragment extends Fragment {
                                 String performer = obOfItems.getString("performer");
                                 String link = obOfItems.getString("link");
                                 String thumbnail_0 = obOfItems.getString("thumbnail");
+
                                 String thumbnail = thumbnail_0.substring(0,33)+((thumbnail_0.substring(47,thumbnail_0.indexOf("?"))));
                                 int duration = Integer.parseInt(obOfItems.getString("duration"));
                                 int total = Integer.parseInt(obOfItems.getString("total"));
@@ -121,7 +124,9 @@ public class RankingsFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getContext(), "Loi"+error.toString(), Toast.LENGTH_SHORT).show();
+                        Log.e("Volley",error.toString());
+                        startActivity(new Intent(getActivity().getApplicationContext(), SplashActivity.class));
+                        getActivity().finish();
                     }
                 });
         requestQueue.add(jsonObjectRequest);

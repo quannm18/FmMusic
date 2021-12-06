@@ -56,6 +56,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onTick(long l) {
 
             }
+
             @Override
             public void onFinish() {
                 TransitionManager.beginDelayedTransition(viewGroup);
@@ -74,24 +75,52 @@ public class SignUpActivity extends AppCompatActivity {
                 String password = tilUserPass.getEditText().getText().toString();
                 String rePassword = tilRePass.getEditText().getText().toString();
 
-                if (password.equals(rePassword)){
-                    Users users = new Users();
-                    users.setUserName(username);
-                    users.setFullName(fullname);
-                    users.setPassWord(password);
-                    UserDAO userDAO = new UserDAO(SignUpActivity.this);
-                    long check = userDAO.insertUser(users);
-                    if (check > 0) {
-                        Toast.makeText(SignUpActivity.this, "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(SignUpActivity.this,LoginActivity.class);
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(SignUpActivity.this, "Tạo tài khoản thất bại", Toast.LENGTH_SHORT).show();
-                    }
-                }else {
-                    Toast.makeText(SignUpActivity.this, "Mat khau khong giong nhau", Toast.LENGTH_SHORT).show();
+                if (fullname.trim().length() == 0) {
+                    tilFullName.setError("Không được để trống");
+                    return;
                 }
+                tilFullName.setErrorEnabled(false);
+                if (username.trim().length() == 0) {
+                    tilUserName.setError("Không được để trống");
+                    return;
+                }
+                tilUserName.setErrorEnabled(false);
+
+                if (password.trim().length() == 0) {
+                    tilUserPass.setError("Không được để trống");
+                    return;
+                }
+                tilUserPass.setErrorEnabled(false);
+
+                if (rePassword.trim().length() == 0) {
+                    tilRePass.setError("Không được để trống");
+                    return;
+                }
+                tilRePass.setErrorEnabled(false);
+                if (rePassword.equals(password) == false) {
+                    tilRePass.setError("Nhập lại mật khẩu không trùng khớp");
+                    return;
+                }
+                tilRePass.setErrorEnabled(false);
+
+                Users users = new Users();
+                users.setUserName(username);
+                users.setFullName(fullname);
+                users.setPassWord(password);
+                UserDAO userDAO = new UserDAO(SignUpActivity.this);
+                long check = userDAO.insertUser(users);
+                if (check > 0) {
+                    Toast.makeText(SignUpActivity.this, "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(SignUpActivity.this, "Tạo tài khoản thất bại", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }
+
+
 }

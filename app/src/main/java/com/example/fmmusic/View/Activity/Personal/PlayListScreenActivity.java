@@ -1,4 +1,4 @@
-package com.example.fmmusic.View.Activity.Persional;
+package com.example.fmmusic.View.Activity.Personal;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,7 +18,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.fmmusic.Adapter.PlayListSongAdapter;
 import com.example.fmmusic.Adapter.SliderAdapter;
-import com.example.fmmusic.Model.Genres.Genres;
 import com.example.fmmusic.Model.SingerModel.Singer;
 import com.example.fmmusic.Model.Songs.PlaylistSongs;
 import com.example.fmmusic.Model.Songs.Song;
@@ -26,17 +25,14 @@ import com.example.fmmusic.R;
 import com.smarteist.autoimageslider.SliderView;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class PlayListScreenActivity extends AppCompatActivity {
-    private List<PlaylistSongs> playlistSongsList;
-    private List<Song> songList;
+    public List<PlaylistSongs> playlistSongsList;
+    public static List<Song> songPList;
     private PlayListSongAdapter playListSongAdapter;
     private RecyclerView rcvPlaylist;
     private TextView tvtPlaylistSinger;
@@ -51,13 +47,13 @@ public class PlayListScreenActivity extends AppCompatActivity {
         tvtPlaylistSinger = (TextView) findViewById(R.id.tvtPlaylistSinger);
         imgSliderThumbnail = (SliderView) findViewById(R.id.imgSliderThumbnail);
 
-        songList = new ArrayList<>();
+        songPList = new ArrayList<>();
         getIntentData();
         getDataAnyID();
         stringList = new ArrayList<>();
         sliderAdapter = new SliderAdapter(stringList);
         imgSliderThumbnail.setSliderAdapter(sliderAdapter);
-        playListSongAdapter = new PlayListSongAdapter(songList);
+        playListSongAdapter = new PlayListSongAdapter(songPList);
         rcvPlaylist.setAdapter(playListSongAdapter);
         rcvPlaylist.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
@@ -74,14 +70,14 @@ public class PlayListScreenActivity extends AppCompatActivity {
             playlistSongsList = new ArrayList<>();
             playlistSongsList.add(new PlaylistSongs("Tan Vỡ", "ZU96I8D9"));
             playlistSongsList.add(new PlaylistSongs("Anh Lại Làm Em Khóc", "ZU99FBUW"));
-            playlistSongsList.add(new PlaylistSongs("Thay Lòng", "ZU7C8FDU\n"));
-            playlistSongsList.add(new PlaylistSongs("Cưa Là Đổ", "ZU9WOC9E\n"));
-            playlistSongsList.add(new PlaylistSongs("Nhắn Rằng Anh Nhớ Em", "ZU77WA8Z\n"));
-            playlistSongsList.add(new PlaylistSongs("Bao Lâu Ta Lại Yêu Một Ngườ", "ZU7UEUD0\n"));
-            playlistSongsList.add(new PlaylistSongs("Đông Phai Mờ Dáng Ai", "ZU89DBIU\n"));
-            playlistSongsList.add(new PlaylistSongs("Độ Tộc 2", "ZUUUEEIE\n"));
-            playlistSongsList.add(new PlaylistSongs("Em Là Con Thuyền Cô Đơ", "ZU7UC9ZC\n"));
-            playlistSongsList.add(new PlaylistSongs("Phi Hành Gia", "ZU9CE99E\n"));
+            playlistSongsList.add(new PlaylistSongs("Thay Lòng", "ZU7C8FDU"));
+            playlistSongsList.add(new PlaylistSongs("Cưa Là Đổ", "ZU9WOC9E"));
+            playlistSongsList.add(new PlaylistSongs("Nhắn Rằng Anh Nhớ Em", "ZU77WA8Z"));
+            playlistSongsList.add(new PlaylistSongs("Bao Lâu Ta Lại Yêu Một Ngườ", "ZU7UEUD0"));
+            playlistSongsList.add(new PlaylistSongs("Đông Phai Mờ Dáng Ai", "ZU89DBIU"));
+            playlistSongsList.add(new PlaylistSongs("Độ Tộc 2", "ZUUUEEIE"));
+            playlistSongsList.add(new PlaylistSongs("Em Là Con Thuyền Cô Đơ", "ZU7UC9ZC"));
+            playlistSongsList.add(new PlaylistSongs("Phi Hành Gia", "ZU9CE99E"));
             tvtPlaylistSinger.setText("Nhạc Trẻ");
         }
         // 2.Nhạc Trữ Tình
@@ -428,10 +424,10 @@ public class PlayListScreenActivity extends AppCompatActivity {
             playlistSongsList.add(new PlaylistSongs("The Good Earth", "ZWADU9BE"));
             playlistSongsList.add(new PlaylistSongs("I Get A Kick Out Of You", "ZUOEDFB8"));
             playlistSongsList.add(new PlaylistSongs("Angels We Have Heard On High", "ZUBZE90B"));
-            tvtPlaylistSinger.setText("Nhạc Thái");
+            tvtPlaylistSinger.setText("Nhạc Blue");
         }
         //25.Nhạc JAZZ
-        if (from.equalsIgnoreCase("Nhạc JAZZ")) {
+        if (from.equalsIgnoreCase("Nhạc Jazz")) {
             playlistSongsList = new ArrayList<>();
             playlistSongsList.add(new PlaylistSongs("California Dreamin'", "ZO9ZDI9W"));
             playlistSongsList.add(new PlaylistSongs("Dream Person", "ZW6WBW6F"));
@@ -443,7 +439,7 @@ public class PlayListScreenActivity extends AppCompatActivity {
             playlistSongsList.add(new PlaylistSongs("Love You And Love Me", "ZW60DZ06"));
             playlistSongsList.add(new PlaylistSongs("月亮代表我的心/ Ánh Trăng Nói Hộ Lòng Tôi", "ZWZBO0WB"));
             playlistSongsList.add(new PlaylistSongs("Mộng Uyên Ương Hồ Điệp / 新鴛鴦蝴蝶夢", "ZW9D8OA0"));
-            tvtPlaylistSinger.setText("Nhạc JAZZ");
+            tvtPlaylistSinger.setText("Nhạc Jazz");
         }
         //26.Nhạc Latin
         if (from.equalsIgnoreCase("Nhạc Latin")) {
@@ -523,16 +519,16 @@ public class PlayListScreenActivity extends AppCompatActivity {
         //31.Nhạc Hoa
         if (from.equalsIgnoreCase("Nhạc Hoa")) {
             playlistSongsList = new ArrayList<>();
-            playlistSongsList.add(new PlaylistSongs(" Ta Tên Trường An, Người Tên Cố Lý (我叫長安,你叫故里)", "ZOF7IFA6"));
+            playlistSongsList.add(new PlaylistSongs("Xuất Sơn / 出山", "ZWA96B8C"));
             playlistSongsList.add(new PlaylistSongs("Mang Chủng / 芒种", "ZWAEU7OE"));
-            playlistSongsList.add(new PlaylistSongs("Thiên Sơn Tuyết (千山雪)", "ZUAE80UW"));
-            playlistSongsList.add(new PlaylistSongs("Trái Tim Không Bình Yên / 心未偏安", "ZUUF0BD7"));
-            playlistSongsList.add(new PlaylistSongs("Bức Họa Nguyệt Lão (月老墨畫)", "ZUAOEEUW"));
-            playlistSongsList.add(new PlaylistSongs("Ánh Trăng Ngàn Dặm / 明月千里照故人", "ZUAOEEUW"));
-            playlistSongsList.add(new PlaylistSongs(" Mộ Hạ / 慕夏", "ZWB0EW67"));
+            playlistSongsList.add(new PlaylistSongs("Ánh Trăng Ngàn Dặm / 明月千里照故人", "ZUWWZ0UE"));
+            playlistSongsList.add(new PlaylistSongs("Cố Hương · Nhất / 故乡·一", "ZWB0OWO0"));
+            playlistSongsList.add(new PlaylistSongs("Xích Linh / 赤伶", "ZWAFWA60"));
+            playlistSongsList.add(new PlaylistSongs("Mộng Vọng Đoạn / 梦望断", "ZW9E68OW"));
+            playlistSongsList.add(new PlaylistSongs("Ly Nhân Sầu / 离人愁", "ZW9D6C99"));
             playlistSongsList.add(new PlaylistSongs("Hỉ / 囍", "ZWBI66U8"));
-            playlistSongsList.add(new PlaylistSongs(" Hồng Mã (红马)", "ZOBCDUAC"));
-            playlistSongsList.add(new PlaylistSongs(" Chỉ Mặc Giang Nam (纸墨江南)", "ZOED8IUD"));
+            playlistSongsList.add(new PlaylistSongs("Tân Quý Phi Túy Tửu / 新贵妃醉酒", "ZWADOOZ6"));
+            playlistSongsList.add(new PlaylistSongs("Túy Xích Bích / 醉赤壁", "ZW6OWIWO"));
             tvtPlaylistSinger.setText("Nhạc Hoa");
         }
         //32.Nhạc Thái
@@ -551,7 +547,7 @@ public class PlayListScreenActivity extends AppCompatActivity {
             tvtPlaylistSinger.setText("Nhạc Thái");
         }
         //33.Nhạc Tập Gym
-        if (from.equalsIgnoreCase("Nhạc Tập Gym ")) {
+        if (from.equalsIgnoreCase("Nhạc Tập Gym")) {
             playlistSongsList = new ArrayList<>();
             playlistSongsList.add(new PlaylistSongs("One Touch ", "ZWAD9O8B"));
             playlistSongsList.add(new PlaylistSongs("Higher", "ZWAE69BF"));
@@ -585,14 +581,14 @@ public class PlayListScreenActivity extends AppCompatActivity {
             playlistSongsList = new ArrayList<>();
             playlistSongsList.add(new PlaylistSongs("Shine for You (<Shining like you>Inspirational theme song)", "ZUAAOW6E"));
             playlistSongsList.add(new PlaylistSongs("Center Stage (<Shining like you>Yan Fang & Qiyi LU Love theme song)", "ZUAAOW70"));
-//                playlistSongsList.add(new PlaylistSongs("Red Scarf ("Till We Meet Again" Movie Theme Song)", "ZUAOADBC"));
-//                playlistSongsList.add(new PlaylistSongs("Round & Round ("Close to You" LINE TV Series Theme Song)", "ZO9F9FBF"));
+            playlistSongsList.add(new PlaylistSongs("Red Scarf ('Till We Meet Again' Movie Theme Song)", "ZUAOADBC"));
+            playlistSongsList.add(new PlaylistSongs("Round & Round ('Close to You' LINE TV Series Theme Song)", "ZO9F9FBF"));
             playlistSongsList.add(new PlaylistSongs(" Một Đời Một Lần Rung Động (一生一次心一动)", "ZUBD9ACD"));
             playlistSongsList.add(new PlaylistSongs("Luôn Có Người Rời Đi Ở Lại (总有离人留)", "ZUBD9AC9"));
             playlistSongsList.add(new PlaylistSongs("Tuyên Khắc (镌刻)", "ZUBD9ADW"));
             playlistSongsList.add(new PlaylistSongs("Cứ Hôn Đừng Phân Tâm (以无旁骛之吻)", "ZUBD9ABO"));
             playlistSongsList.add(new PlaylistSongs(" Mạc Ly (莫离)", "ZUAU7F0B"));
-//                playlistSongsList.add(new PlaylistSongs("You Don't Belong to Me ("More than Blue" TV Series Theme Song)", "ZU900WDI"));
+            playlistSongsList.add(new PlaylistSongs("You Don't Belong to Me ('More than Blue TV Series Theme Song')", "ZU900WDI"));
             tvtPlaylistSinger.setText("Nhạc Phim");
         }
         //36.Nhạc Tình Yêu
@@ -611,7 +607,7 @@ public class PlayListScreenActivity extends AppCompatActivity {
             tvtPlaylistSinger.setText("Nhạc Tình Yêu");
         }
         //37.Nhạc piano
-        if (from.equalsIgnoreCase("Nhạc piano")) {
+        if (from.equalsIgnoreCase("Nhạc Piano")) {
             playlistSongsList = new ArrayList<>();
             playlistSongsList.add(new PlaylistSongs("God Is Able", "ZW7WE89B"));
             playlistSongsList.add(new PlaylistSongs("I Surrender", "ZW7WE89D"));
@@ -669,8 +665,8 @@ public class PlayListScreenActivity extends AppCompatActivity {
             playlistSongsList.add(new PlaylistSongs("The River", "ZW9AE770"));
             tvtPlaylistSinger.setText("Nhạc Game");
         }
-        //41.Nhạc Acoutsic
-        if (from.equalsIgnoreCase("Nhạc Acoutsic")) {
+        //41.Nhạc Acoustic
+        if (from.equalsIgnoreCase("Nhạc Acoustic")) {
             playlistSongsList = new ArrayList<>();
             playlistSongsList.add(new PlaylistSongs("Nothing Breaks Like a Heart (Acoustic Version)", "ZWAWZ9ZI"));
             playlistSongsList.add(new PlaylistSongs("Diamonds (Acoustic)", "ZOFDUAZD"));
@@ -682,7 +678,7 @@ public class PlayListScreenActivity extends AppCompatActivity {
             playlistSongsList.add(new PlaylistSongs("Naked (Acoustic Version)", "ZW9FO789"));
             playlistSongsList.add(new PlaylistSongs("If You Wanna Love Somebody (Acoustic)", "ZW9CEAF8"));
             playlistSongsList.add(new PlaylistSongs("We Are Young (Acoustic)", "ZW6O80WW"));
-            tvtPlaylistSinger.setText("Nhạc Acoutsic");
+            tvtPlaylistSinger.setText("Nhạc Acoustic");
         }
         //42.Nhạc Rap
         if (from.equalsIgnoreCase("Nhạc Rap")) {
@@ -737,20 +733,28 @@ public class PlayListScreenActivity extends AppCompatActivity {
                             String id_artist = obOfItems.getString("id");
                             String name_artist = obOfItems.getString("name");
                             String thumbnail_0 = obOfItems.getString("thumbnail");
-                            String thumbnail = thumbnail_0.substring(0, 33) + ((thumbnail_0.substring(48, thumbnail_0.length())));
+                            Log.e("thumb",thumbnail_0);
+                            String thumbnail = null;
+                            if (!thumbnail_0.contains("default")&&thumbnail_0.contains("jpeg")){
+                                thumbnail = thumbnail_0.substring(0, 33) + ((thumbnail_0.substring(48, thumbnail_0.length())));
+                            }
+                            if (!thumbnail_0.contains("default")&&thumbnail_0.contains("png")){
+                                thumbnail = thumbnail_0.substring(0, 34) + ((thumbnail_0.substring(48, thumbnail_0.length())));
+                            }
+                            if (thumbnail_0.contains("default")){
+                                thumbnail = "https://photo-resize-zmp3.zadn.vn/avatars/7/3/73688444a73a76169d03b689a7e785cf_1404904575.jpg";
+                            }
                             if (stringList.size()<5){
                                 stringList.add(thumbnail);
                                 sliderAdapter.notifyDataSetChanged();
                             }
-//                            Log.e("Huy Len", thumbnail_0);
-                            Log.e("Huy Ngu", thumbnail);
                             String name = playlistSongsList.getPlName();
-                            String id = playlistSongsList.getPlName();
+                            String id = playlistSongsList.getPlID();
 
                             Song song = new Song(id, name, new Singer(id_artist, name_artist), thumbnail, 320);
-                            songList.add(song);
+                            songPList.add(song);
                             playListSongAdapter.notifyDataSetChanged();
-                        } catch (JSONException e) {
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }

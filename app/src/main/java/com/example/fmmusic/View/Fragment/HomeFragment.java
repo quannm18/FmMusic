@@ -1,5 +1,9 @@
 package com.example.fmmusic.View.Fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,6 +32,8 @@ import com.example.fmmusic.Adapter.SliderAdapter;
 import com.example.fmmusic.Model.SingerModel.Singer;
 import com.example.fmmusic.Model.Songs.Top;
 import com.example.fmmusic.R;
+import com.example.fmmusic.View.Activity.LoginActivity;
+import com.example.fmmusic.View.Activity.SplashActivity;
 import com.smarteist.autoimageslider.SliderView;
 
 import org.json.JSONArray;
@@ -97,6 +103,8 @@ public class HomeFragment extends Fragment {
 
         rcvSinger.setAdapter(singerHomeAdapter);
         rcvSinger.setLayoutManager(layoutManagerSinger);
+
+
     }
     void getDataTop(){
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
@@ -168,7 +176,9 @@ public class HomeFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getContext(), "Loi"+error.toString(), Toast.LENGTH_SHORT).show();
+                        Log.e("HomeVolley",error.toString());
+                        startActivity(new Intent(getActivity().getApplicationContext(), SplashActivity.class));
+                        getActivity().finish();
                     }
                 });
         requestQueue.add(jsonObjectRequest);
@@ -176,12 +186,12 @@ public class HomeFragment extends Fragment {
 
     void setListSingers(){
         singerList = new ArrayList<>();
-        singerList.add(new Singer("https://photo-resize-zmp3.zadn.vn/covers/f/a/fa8586e9353a5f80c9d22c63a88d222b_1504987991.jpg","Sơn Tùng MTP"));
+        singerList.add(new Singer("https://photo-resize-zmp3.zadn.vn/covers/9/8/98e3677733fe52439823d1b1992d9ae0_1483242323.jpg","Sơn Tùng MTP"));
         singerList.add(new Singer("https://photo-resize-zmp3.zadn.vn/avatars/4/4/7/4/4474062bb6b56be949da975c6963d4b6.jpg","Trịnh Đình Quang"));
         singerList.add(new Singer("https://photo-resize-zmp3.zadn.vn/avatars/4/3/43d8be33dc00a33132c82adb9d0d3a54_1509355224.jpg","Bích Phương"));
         singerList.add(new Singer("https://photo-resize-zmp3.zadn.vn/avatars/1/3/d/9/13d91c5df0cc3c5ff6536b611cd00b83.jpg","Quân A.P"));
         singerList.add(new Singer("https://photo-resize-zmp3.zadn.vn/avatars/8/3/9/9/8399a5082648b18af768c1d1db87804a.jpg","Amee"));
         singerList.add(new Singer("https://photo-resize-zmp3.zadn.vn/avatars/2/1/3/0/2130334d4358f2727fbd721274791421.jpg","Mr Siro"));
-        singerList.add(new Singer("https://photo-resize-zmp3.zadn.vn/avatars/7/8/c/6/78c685396dedfb3c6aef19588ea584c4.jpg","MIN"));
+        singerList.add(new Singer("https://photo-resize-zmp3.zadn.vn/avatars/e/f/8/4/ef84f25bebe0bb917735de836a3e417f.jpg","Hương Ly"));
     }
 }

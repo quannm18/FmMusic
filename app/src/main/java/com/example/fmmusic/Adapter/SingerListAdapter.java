@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.fmmusic.Model.SingerModel.Singer;
 import com.example.fmmusic.R;
-import com.example.fmmusic.View.Activity.Persional.SingersLibActivity;
+import com.example.fmmusic.View.Activity.Personal.SingersLibActivity;
 
 import java.util.List;
 

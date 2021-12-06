@@ -16,12 +16,11 @@ import com.bumptech.glide.Glide;
 import com.example.fmmusic.Model.Songs.Top;
 import com.example.fmmusic.R;
 import com.example.fmmusic.View.Activity.MusicPlayingActivity;
-import com.example.fmmusic.View.Activity.Persional.PlaylistActivity;
 
 import java.util.List;
 
 public class TopAdapter extends RecyclerView.Adapter<TopAdapter.TopHolder> {
-    private List<Top> topList;
+    public static List<Top> topList;
 
     public TopAdapter(List<Top> topList) {
         this.topList = topList;
@@ -47,16 +46,16 @@ public class TopAdapter extends RecyclerView.Adapter<TopAdapter.TopHolder> {
         holder.tvSingerTopRow.setText(top.getSinger().getName());
 
         if (top.getRankStatus().equalsIgnoreCase("stand")){
-            holder.tvStatusTopRow.setBackgroundColor(Color.GRAY);
-            holder.tvStatusTopRow.setTextColor(Color.GRAY);
+            holder.tvStatusTopRow.setBackgroundColor(Color.LTGRAY);
+            holder.tvStatusTopRow.setTextColor(Color.LTGRAY);
         }
         if (top.getRankStatus().equalsIgnoreCase("up")){
-            holder.tvStatusTopRow.setBackgroundColor(Color.GREEN);
-            holder.tvStatusTopRow.setTextColor(Color.GREEN);
+            holder.tvStatusTopRow.setBackgroundColor(Color.parseColor("#8DDE94"));
+            holder.tvStatusTopRow.setTextColor(Color.parseColor("#8DDE94"));
         }
         if (top.getRankStatus().equalsIgnoreCase("down")){
-            holder.tvStatusTopRow.setBackgroundColor(Color.RED);
-            holder.tvStatusTopRow.setTextColor(Color.RED);
+            holder.tvStatusTopRow.setBackgroundColor(Color.parseColor("#FF6962"));
+            holder.tvStatusTopRow.setTextColor(Color.parseColor("#FF6962"));
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

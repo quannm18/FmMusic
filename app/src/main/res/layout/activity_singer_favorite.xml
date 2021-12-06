@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_all"
-    tools:context=".View.Activity.Persional.SingerFavoriteActivity">
+    tools:context=".View.Activity.Personal.SingerFavoriteActivity">
 
   <ScrollView
       android:layout_width="match_parent"
@@ -41,6 +41,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="24dp"
+          android:layout_marginBottom="16dp"
           android:background="@drawable/conner_rcvfavorite_song"
           app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="parent"

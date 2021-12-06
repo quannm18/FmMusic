@@ -6,7 +6,9 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
@@ -54,7 +56,6 @@ public class FindingMusicActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-
                     String nameFind =tilFinding.getEditText().getText().toString();
                     findingList = new ArrayList<>();
                     String url = "http://ac.mp3.zing.vn/complete?type=artist,song,key,code&num=500&query="+nameFind;
@@ -90,7 +91,6 @@ public class FindingMusicActivity extends AppCompatActivity {
                                 int duration = Integer.parseInt(obOfItems.getString("duration"));
                                 String id = obOfItems.getString("id");
                                     String name = obOfItems.getString("name");
-
                                     Song mSong = new Song(id,name,new Singer(artists_id,artists_names),DOMAIN_IMG+thumbnail,duration);
                                     findingList.add(mSong);
                                     findingAdapter.notifyDataSetChanged();
@@ -106,6 +106,8 @@ public class FindingMusicActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(), "Loi"+error.toString(), Toast.LENGTH_SHORT).show();
                         error.printStackTrace();
+                        startActivity(new Intent(getApplicationContext(), SplashActivity.class));
+                        finish();
                     }
                 });
         requestQueue.add(jsonObjectRequest);

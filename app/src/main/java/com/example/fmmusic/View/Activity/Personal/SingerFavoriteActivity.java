@@ -1,4 +1,4 @@
-package com.example.fmmusic.View.Activity.Persional;
+package com.example.fmmusic.View.Activity.Personal;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -14,13 +13,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.fmmusic.Adapter.SingerHomeAdapter;
 import com.example.fmmusic.Adapter.SingerListAdapter;
 import com.example.fmmusic.DAO.FavoriteDAO;
 import com.example.fmmusic.Model.Favorite;
 import com.example.fmmusic.Model.SingerModel.Singer;
-import com.example.fmmusic.Model.Songs.PlaylistSongs;
-import com.example.fmmusic.Model.Songs.Song;
 import com.example.fmmusic.R;
 
 import org.json.JSONArray;
@@ -69,11 +65,18 @@ public class SingerFavoriteActivity extends AppCompatActivity {
                             JSONObject obOfItems = (JSONObject) items.get(0);
                             String id_artist = obOfItems.getString("id");
                             String name_artist = obOfItems.getString("name");
-                            String thumbnail = obOfItems.getString("thumbnail");
-//                            Log.e("Huy Len", thumbnail_0);
-//                            thumbnail = thumbnail_0.substring(0, 33) + ((thumbnail_0.substring(48, thumbnail_0.length())));
-                            Log.e("Huy Ngu", thumbnail);
-
+                            String thumbnail_0 = obOfItems.getString("thumbnail");
+                            String thumbnail=null;
+                            if (!thumbnail_0.contains("default")&&thumbnail_0.contains("jpeg")){
+                                thumbnail = thumbnail_0.substring(0, 33) + ((thumbnail_0.substring(48, thumbnail_0.length())));
+                            }
+                            if (!thumbnail_0.contains("default")&&thumbnail_0.contains("png")){
+                                thumbnail = thumbnail_0.substring(0, 34) + ((thumbnail_0.substring(48, thumbnail_0.length())));
+                            }
+                            if (thumbnail_0.contains("default")){
+                                thumbnail = "https://photo-resize-zmp3.zadn.vn/avatars/7/3/73688444a73a76169d03b689a7e785cf_1404904575.jpg";
+                            }
+                            Log.e("SingerFavorite", thumbnail);
                             singerList.add(new Singer(thumbnail,name_artist));
                             singerListAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
@@ -84,7 +87,7 @@ public class SingerFavoriteActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(SingerFavoriteActivity.this, "Loi" + error.toString(), Toast.LENGTH_SHORT).show();
+                        Log.e("Volley",error.toString()+" - "+singerList.size());
                     }
                 });
         requestQueue.add(jsonObjectRequest);

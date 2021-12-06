@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,15 +33,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.fmmusic.Adapter.SuggestedAdapter;
-import com.example.fmmusic.Adapter.TopAdapter;
 import com.example.fmmusic.Model.SingerModel.Singer;
 import com.example.fmmusic.Model.Songs.Top;
 import com.example.fmmusic.R;
-import com.example.fmmusic.View.Activity.Persional.FavoritesLibActivity;
-import com.example.fmmusic.View.Activity.Persional.PlaylistActivity;
-import com.example.fmmusic.View.Activity.Persional.SingerFavoriteActivity;
-import com.example.fmmusic.View.Activity.Persional.SingersLibActivity;
-import com.example.fmmusic.View.Activity.Persional.SongsLibActivity;
+import com.example.fmmusic.View.Activity.Personal.FavoritesLibActivity;
+import com.example.fmmusic.View.Activity.Personal.PlaylistActivity;
+import com.example.fmmusic.View.Activity.Personal.SingerFavoriteActivity;
+import com.example.fmmusic.View.Activity.Personal.SongsLibActivity;
+import com.example.fmmusic.View.Activity.SplashActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -158,13 +157,16 @@ public class PersonalFragment extends Fragment {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
+
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getContext(), "Loi"+error.toString(), Toast.LENGTH_SHORT).show();
+                        Log.e("PersonalVolley",error.toString());
+                        startActivity(new Intent(getActivity().getApplicationContext(), SplashActivity.class));
+                        getActivity().finish();
                     }
                 });
         requestQueue.add(jsonObjectRequest);
