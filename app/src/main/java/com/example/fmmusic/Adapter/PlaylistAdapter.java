@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.fmmusic.Model.PLL;
 import com.example.fmmusic.Model.Songs.Playlist;
 import com.example.fmmusic.R;
 import com.example.fmmusic.View.Activity.Persional.PlayListScreenActivity;
@@ -24,6 +25,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
     public PlaylistAdapter(List<Playlist> playlistList) {
         this.playlistList = playlistList;
     }
+
 
     @NonNull
     @Override

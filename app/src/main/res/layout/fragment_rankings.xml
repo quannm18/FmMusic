@@ -21,11 +21,10 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcvTop"
                 android:layout_width="350dp"
-                android:layout_height="514dp"
+                android:layout_height="match_parent"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="31dp"
-                android:layout_marginBottom="130dp"
                 android:background="@drawable/corner_recycleview"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

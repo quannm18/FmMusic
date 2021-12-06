@@ -1,5 +1,8 @@
 package com.example.fmmusic.View.Fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -97,6 +100,8 @@ public class HomeFragment extends Fragment {
 
         rcvSinger.setAdapter(singerHomeAdapter);
         rcvSinger.setLayoutManager(layoutManagerSinger);
+
+
     }
     void getDataTop(){
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());

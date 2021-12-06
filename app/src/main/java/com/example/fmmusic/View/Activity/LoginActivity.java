@@ -28,10 +28,9 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputLayout tilPassword;
     private TextInputLayout tilUserLogIn;
     private MaterialButton btnSignIn;
-    private TextView tvDangKy;
+    private TextView textView17;
     private TextView tvTextNull;
     private MaterialButton btnSkipLogIn;
-    private TextView tvLostPass;
     private TextView tvXinChao;
     private TextView tvDesText;
     private TextView tvQuotes;
@@ -40,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     private Dialog dialog;
     private ViewGroup viewGroup;
     private UserDAO userdao;
-    private MaterialButton btnRegister;
+    private TextView btnRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,24 +51,23 @@ public class LoginActivity extends AppCompatActivity {
         tilUserLogIn = (TextInputLayout) findViewById(R.id.tilUserLogIn);
         btnSignIn = findViewById(R.id.btnSignIn);
         btnSkipLogIn = findViewById(R.id.btnSkipLogIn);
-        tvLostPass = (TextView) findViewById(R.id.tvLostPass);
         tvXinChao = (TextView) findViewById(R.id.tvXinChao);
+        textView17 = (TextView) findViewById(R.id.textView17);
         tvDesText = (TextView) findViewById(R.id.tv_DesText);
         tvQuotes = (TextView) findViewById(R.id.tvQuotes);
         cbxRemember = findViewById(R.id.cbxRemember);
-        btnRegister = (MaterialButton) findViewById(R.id.btnRegister);
-
+        btnRegister = findViewById(R.id.btnRegister);
 
         tvQuotes.setVisibility(View.INVISIBLE);
         tilUserLogIn.setVisibility(View.GONE);
         tilPassword.setVisibility(View.GONE);
         btnSignIn.setVisibility(View.GONE);
-        tvLostPass.setVisibility(View.GONE);
         tvXinChao.setVisibility(View.GONE);
         tvDesText.setVisibility(View.GONE);
         btnSkipLogIn.setVisibility(View.GONE);
         cbxRemember.setVisibility(View.GONE);
         btnRegister.setVisibility(View.GONE);
+        textView17.setVisibility(View.GONE);
 
 
         SharedPreferences sdf = getSharedPreferences("USER_FILE", MODE_PRIVATE);
@@ -79,7 +77,16 @@ public class LoginActivity extends AppCompatActivity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkLogin();
+                String userName = tilUserLogIn.getEditText().getText().toString();
+                String password = tilPassword.getEditText().getText().toString();
+                if ((userName.equalsIgnoreCase("admin")&&password.equalsIgnoreCase("admin"))){
+                    Intent intent = new Intent(LoginActivity.this, AdminAccountActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else {
+                    checkLogin();
+                }
+
             }
         });
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -147,13 +154,13 @@ public class LoginActivity extends AppCompatActivity {
                 tilUserLogIn.setVisibility(View.VISIBLE);
                 tilPassword.setVisibility(View.VISIBLE);
                 btnSignIn.setVisibility(View.VISIBLE);
-                tvLostPass.setVisibility(View.VISIBLE);
                 tvXinChao.setVisibility(View.VISIBLE);
                 tvDesText.setVisibility(View.VISIBLE);
                 tvQuotes.setVisibility(View.VISIBLE);
                 btnSkipLogIn.setVisibility(View.VISIBLE);
                 cbxRemember.setVisibility(View.VISIBLE);
                 btnRegister.setVisibility(View.VISIBLE);
+                textView17.setVisibility(View.VISIBLE);
             }
         }.start();
         btnSkipLogIn.setOnClickListener(new View.OnClickListener() {
@@ -189,6 +196,11 @@ public class LoginActivity extends AppCompatActivity {
         btnYesLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences sdf = getSharedPreferences("USER_CURRENT",MODE_PRIVATE);
+                SharedPreferences.Editor setUser =sdf.edit();
+                setUser.clear();
+                setUser.putString("CHECKLOGIN","SKIPLOGIN");
+                setUser.commit();
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();
@@ -214,7 +226,8 @@ public class LoginActivity extends AppCompatActivity {
             } else {
                 tilPassword.setErrorEnabled(false);
             }
-            if (userdao.checkLogin(userName,password)>0 ||(userName.equalsIgnoreCase("admin")&&password.equalsIgnoreCase("admin"))){
+
+            if (userdao.checkLogin(userName,password)>0 ){
                 SharedPreferences sharedPreferences = getSharedPreferences("USER_FILE",MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("PASSWORD",password);
@@ -228,11 +241,14 @@ public class LoginActivity extends AppCompatActivity {
                 setUser.putString("GETPASSWORD",password);
                 setUser.commit();
                 //
-                Toast.makeText(LoginActivity.this, "Chào mừng "+sharedPreferences.getString("USERNAME",""), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                intent.putExtra("user", userName);
-                startActivity(intent);
-                finish();
+                {
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    intent.putExtra("user", userName);
+                    startActivity(intent);
+                }
+                Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(LoginActivity.this, "Đăng nhập không thành công!", Toast.LENGTH_SHORT).show();
             }
 
         }

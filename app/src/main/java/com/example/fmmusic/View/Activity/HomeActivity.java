@@ -28,13 +28,6 @@ public class HomeActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private BottomNavigationView bottomNavigationView;
     private TextInputLayout tilFind;
-    private CardView cvBottomPlayBars;
-    private ImageView imgAnhBaiHatPlayBars;
-    private ImageView imgPlay;
-    private ImageView imgPrevious;
-    private ImageView imgNext;
-    private ImageView imgPause;
-    private TextView tvTenBaiHatPlayBars;
     private CardView cvProfileUser;
 
     @Override
@@ -42,16 +35,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setNavigationBarColor(ContextCompat.getColor(this,R.color.white));
         setContentView(R.layout.activity_home);
-
         viewPager = (ViewPager) findViewById(R.id.vpHome);
         tilFind = (TextInputLayout) findViewById(R.id.tilFind);
-        cvBottomPlayBars = (CardView) findViewById(R.id.cvBottomPlayBars);
-        imgAnhBaiHatPlayBars = (ImageView) findViewById(R.id.imgThumbnail);
-        imgPlay = (ImageView) findViewById(R.id.imgPlay);
-        imgPrevious = (ImageView) findViewById(R.id.imgPrevious);
-        imgNext = (ImageView) findViewById(R.id.imgNext);
-        imgPause = (ImageView) findViewById(R.id.imgPause);
-        tvTenBaiHatPlayBars = (TextView) findViewById(R.id.tvNameSong);
         cvProfileUser = (CardView) findViewById(R.id.cvProfileUser);
 
         cvProfileUser.setOnClickListener(new View.OnClickListener() {
@@ -63,14 +48,16 @@ public class HomeActivity extends AppCompatActivity {
         });
         SharedPreferences sdf = getSharedPreferences("USER_FILE", MODE_PRIVATE);
 
-        cvBottomPlayBars.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this,MusicPlayingActivity.class);
-                startActivity(intent);
-            }
-        });
+        SharedPreferences sdfS = getSharedPreferences("USER_CURRENT",MODE_PRIVATE);
+        String userName =sdfS.getString("USERNAME","");
 
+        String CheckLogin =sdfS.getString("CHECKLOGIN","");
+        Log.e(" ",CheckLogin);
+        if(CheckLogin == "SKIPLOGIN")
+        {
+            findViewById(R.id.imgUser).setVisibility(View.GONE);
+            findViewById(R.id.cvProfileUser).setVisibility(View.GONE);
+        }
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
         setViewPager();
 

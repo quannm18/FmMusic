@@ -47,7 +47,7 @@ public class NewSongHomeAdapter extends RecyclerView.Adapter<NewSongHomeAdapter.
                 Intent intent = new Intent(v.getContext(), MusicPlayingActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("position",holder.getAdapterPosition());
-                bundle.putString("from","HighlightAdapter");
+                bundle.putString("from","NewSongHomeAdapter");
                 bundle.putString("id",top.getId());
                 bundle.putString("name",top.getName());
                 bundle.putString("artist_names",top.getSinger().getName());

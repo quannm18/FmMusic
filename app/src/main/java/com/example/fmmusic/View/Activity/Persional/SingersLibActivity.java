@@ -20,6 +20,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.fmmusic.Adapter.FindingAdapter;
+import com.example.fmmusic.Adapter.SongsOfSingerFavoriteAdapter;
 import com.example.fmmusic.Model.SingerModel.Singer;
 import com.example.fmmusic.Model.Songs.Song;
 import com.example.fmmusic.R;
@@ -33,11 +34,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SingersLibActivity extends AppCompatActivity {
-    private FindingAdapter findingAdapter;
+    private SongsOfSingerFavoriteAdapter singerFavoriteAdapter;
     private ImageView imgSingerLib;
     private TextView tvNameOfSinger;
     private RecyclerView rcvSongOfTheSing;
-    private List<Song> songList;
+    public List<Song> songList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +59,10 @@ public class SingersLibActivity extends AppCompatActivity {
         tvNameOfSinger.setText(singerNameHome);
         songList = new ArrayList<>();
         getDataTop(url);
-        findingAdapter = new FindingAdapter(songList);
-        rcvSongOfTheSing.setAdapter(findingAdapter);
+        singerFavoriteAdapter = new SongsOfSingerFavoriteAdapter(songList);
+        rcvSongOfTheSing.setAdapter(singerFavoriteAdapter);
         rcvSongOfTheSing.setLayoutManager(new LinearLayoutManager(SingersLibActivity.this));
+
 
     }
     void getDataTop(String url){
@@ -86,7 +88,7 @@ public class SingersLibActivity extends AppCompatActivity {
 
                                 Song mSong = new Song(id,name,new Singer(artists_id,artists_names),DOMAIN_IMG+thumbnail,duration);
                                 songList.add(mSong);
-                                findingAdapter.notifyDataSetChanged();
+                                singerFavoriteAdapter.notifyDataSetChanged();
                             }
 
                         } catch (JSONException e) {

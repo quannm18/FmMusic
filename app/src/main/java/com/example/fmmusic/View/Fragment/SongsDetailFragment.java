@@ -14,11 +14,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.fmmusic.Controller.Updateable;
 import com.example.fmmusic.R;
 import com.example.fmmusic.View.Activity.DownLoadActivity;
 import com.example.fmmusic.View.Activity.MusicPlayingActivity;
 
-public class SongsDetailFragment extends Fragment {
+public class SongsDetailFragment extends Fragment implements Updateable {
     private TextView tvSingerDetail;
     private TextView tvComposerSongDetail;
     private TextView tvSongDetail;
@@ -43,8 +44,6 @@ public class SongsDetailFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String from = ((MusicPlayingActivity)getActivity()).from;
-        String id = ((MusicPlayingActivity)getActivity()).id;
         tvSingerDetail = (TextView) view.findViewById(R.id.tvSingerDetail);
         tvComposerSongDetail = (TextView) view.findViewById(R.id.tvComposerSongDetail);
         tvSongDetail = (TextView) view.findViewById(R.id.tvSongDetail);
@@ -56,6 +55,39 @@ public class SongsDetailFragment extends Fragment {
         tvAsk = (TextView) view.findViewById(R.id.tvAsk);
 
 
+        String from = ((MusicPlayingActivity)getActivity()).from;
+        String id = ((MusicPlayingActivity)getActivity()).id;
+        tvSingerDetail.setText(((MusicPlayingActivity)getActivity()).artist_name);
+        tvComposerSongDetail.setText(((MusicPlayingActivity)getActivity()).performer);
+        tvSongDetail.setText(((MusicPlayingActivity)getActivity()).nameSong);
+        Glide.with(getContext())
+                .load(((MusicPlayingActivity)getActivity()).thumbnail)
+                .centerCrop()
+                .into(thumbDetailSongs);
+
+        if (from.equals("TopAdapter")||from.equals("SuggestAdapter")||from.equals("FindingAdapter")
+                ||from.equals("HighlightAdapter")||from.equals("PLLSongAdapter")
+                ||from.equals("SongsOfSingerFavoriteAdapter")||from.equals("FVRSongAdapter")
+                ||from.equals("PlayListSongAdapter")||from.equals("NewSongHomeAdapter")){
+            tvDownloadDetail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), DownLoadActivity.class);
+                    intent.putExtra("id",id);
+                    startActivity(intent);
+                }
+            });
+        } else {
+            tvAsk.setVisibility(View.GONE);
+            tvDownloadDetail.setVisibility(View.GONE);
+        }
+
+    }
+
+    @Override
+    public void update() {
+        String from = ((MusicPlayingActivity)getActivity()).from;
+        String id = ((MusicPlayingActivity)getActivity()).id;
         tvSingerDetail.setText(((MusicPlayingActivity)getActivity()).artist_name);
         tvComposerSongDetail.setText(((MusicPlayingActivity)getActivity()).performer);
         tvSongDetail.setText(((MusicPlayingActivity)getActivity()).nameSong);
@@ -77,6 +109,5 @@ public class SongsDetailFragment extends Fragment {
             tvAsk.setVisibility(View.GONE);
             tvDownloadDetail.setVisibility(View.GONE);
         }
-
     }
 }

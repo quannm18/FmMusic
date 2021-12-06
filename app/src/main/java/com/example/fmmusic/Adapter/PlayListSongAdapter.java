@@ -47,7 +47,7 @@ public class PlayListSongAdapter extends RecyclerView.Adapter<PlayListSongAdapte
                 Intent intent = new Intent(v.getContext(), MusicPlayingActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("position",holder.getAdapterPosition());
-                bundle.putString("from","FindingAdapter");
+                bundle.putString("from","PlayListSongAdapter");
                 bundle.putString("id",song.getId());
                 bundle.putString("name",song.getName());
                 bundle.putString("artist_names",song.getSinger().getName());

@@ -29,7 +29,7 @@ import java.io.File;
 import java.util.List;
 
 public class SongsLibAdapter extends RecyclerView.Adapter<SongsLibAdapter.SongsLibViewHolder> {
-    private List<AudioModel> audioModels;
+    public List<AudioModel> audioModels;
 
     public SongsLibAdapter(List<AudioModel> audioModels) {
         this.audioModels = audioModels;
