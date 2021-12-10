@@ -98,8 +98,15 @@ public class SongsPlayingFragment extends Fragment {
         });
         String title = ((MusicPlayingActivity) getActivity()).nameSong + " - " + ((MusicPlayingActivity) getActivity()).artist_name;
         if (title.length() > 35) {
-            tvTitlePlaying.setText(((MusicPlayingActivity) getActivity()).nameSong.substring(0, 10) + "..." + " - " + ((MusicPlayingActivity) getActivity()).artist_name);
-
+            if (((MusicPlayingActivity) getActivity()).nameSong.length()>10&&((MusicPlayingActivity) getActivity()).artist_name.length()<15){
+                tvTitlePlaying.setText(((MusicPlayingActivity) getActivity()).nameSong.substring(0,10)+"... - "+((MusicPlayingActivity) getActivity()).artist_name);
+            }
+            if (((MusicPlayingActivity) getActivity()).nameSong.length()<15&&((MusicPlayingActivity) getActivity()).artist_name.length()>10){
+                tvTitlePlaying.setText(((MusicPlayingActivity) getActivity()).nameSong.substring(0,10)+" - "+((MusicPlayingActivity) getActivity()).artist_name+"...");
+            }
+            if (((MusicPlayingActivity) getActivity()).nameSong.length()>10&&((MusicPlayingActivity) getActivity()).artist_name.length()>10){
+                tvTitlePlaying.setText(((MusicPlayingActivity) getActivity()).nameSong.substring(0,10)+"... - "+((MusicPlayingActivity) getActivity()).artist_name+"...");
+            }
         } else {
             tvTitlePlaying.setText(title);
         }
@@ -158,6 +165,7 @@ public class SongsPlayingFragment extends Fragment {
                 long kq = pllSongDAO.insertPllSong(pllSong);
                 if (kq>0){
                     Toast.makeText(getContext(),"Thêm thành công ",Toast.LENGTH_LONG).show();
+                    dialog.dismiss();
                 }else{
                     Toast.makeText(getContext(),"Thêm không thành công ",Toast.LENGTH_LONG).show();
                 }
