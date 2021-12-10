@@ -1,5 +1,6 @@
 package com.example.fmmusic.View.Activity.Personal;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -59,7 +60,9 @@ public class FavoritesLibActivity extends AppCompatActivity {
 
         favoriteList = new ArrayList<>();
         favoriteDAO = new FavoriteDAO(FavoritesLibActivity.this);
-        favoriteList = favoriteDAO.getAllFVR();
+        SharedPreferences sdf = getSharedPreferences("USER_CURRENT", MODE_PRIVATE);
+        String username = sdf.getString("USERNAME", "");
+        favoriteList = favoriteDAO.getFvrFromUsername(username);
         favoriteSongsAdapter = new FavoriteSongsAdapter(favoriteList);
 
         singerList = new ArrayList<>();

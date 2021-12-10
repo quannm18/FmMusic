@@ -39,7 +39,7 @@ public class FavoriteDAO {
             singer.setName(String.valueOf(cursor.getString(cursor.getColumnIndex("SingerName"))));
             song.setSinger(singer);
             fvr.setSong(song);
-            fvr.setUseName(String.valueOf(cursor.getString(cursor.getColumnIndex("SingerName"))));
+            fvr.setUseName(String.valueOf(cursor.getString(cursor.getColumnIndex("UserName"))));
 
             pllList.add(fvr);
             cursor.moveToNext();
@@ -58,6 +58,7 @@ public class FavoriteDAO {
         contentValues.put("Duration",fvr.getSong().getDuration());
         contentValues.put("IDSinger",fvr.getSong().getSinger().getId());
         contentValues.put("SingerName",fvr.getSong().getSinger().getName());
+        contentValues.put("UserName",fvr.getUseName());
 
         long row = sqLiteDatabase.insert("FAVORITE",null,contentValues);
         return row;
@@ -67,5 +68,34 @@ public class FavoriteDAO {
         SQLiteDatabase sqLiteDatabase = fmMusicDatabase.getWritableDatabase();
         int row = sqLiteDatabase.delete("FAVORITE","IDFavorite=?",new String[]{String.valueOf(fvr.getIdfv())});
         return row;
+    }
+    public List<Favorite> getFvrFromUsername(String username){
+        List<Favorite> pllList = new ArrayList<>();
+        SQLiteDatabase database = fmMusicDatabase.getReadableDatabase();
+        String dataPLL = "SELECT * FROM FAVORITE WHERE UserName=?";
+        Cursor cursor = database.rawQuery(dataPLL,new String[]{username});
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()){
+            Favorite fvr = new Favorite();
+            Song song  = new Song();
+            Singer singer = new Singer();
+            fvr.setIdfv(Integer.parseInt(cursor.getString(cursor.getColumnIndex("IDFavorite"))));
+            song.setId(String.valueOf(cursor.getString(cursor.getColumnIndex("IDSong"))));
+            song.setName(String.valueOf(cursor.getString(cursor.getColumnIndex("SongName"))));
+            song.setThumbnail(String.valueOf(cursor.getString(cursor.getColumnIndex("Thumbnail"))));
+            song.setDuration(Integer.parseInt(cursor.getString(cursor.getColumnIndex("Duration"))));
+
+            singer.setId(String.valueOf(cursor.getString(cursor.getColumnIndex("IDSinger"))));
+            singer.setName(String.valueOf(cursor.getString(cursor.getColumnIndex("SingerName"))));
+            song.setSinger(singer);
+            fvr.setSong(song);
+            fvr.setUseName(String.valueOf(cursor.getString(cursor.getColumnIndex("UserName"))));
+
+            pllList.add(fvr);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        database.close();
+        return pllList;
     }
 }

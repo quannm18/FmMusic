@@ -48,6 +48,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableTint="#CA42EF"
             android:drawableStart="@drawable/ic_person_48"
             android:hint="Họ tên:"
             android:textColor="#CA42EF" />
@@ -76,7 +77,7 @@
         app:prefixTextColor="#CA42EF"
         app:suffixTextColor="#CA42EF"
         app:passwordToggleContentDescription="Hiển thị mật khẩu"
-        app:passwordToggleTint="@color/mtrl_textinput_default_box_stroke_color"
+        app:passwordToggleTint="#CA42EF"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -84,6 +85,7 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_lock_open_24"
             android:hint="Nhập lại mật khẩu:"
+            android:drawableTint="#CA42EF"
             android:inputType="textPassword"
             android:textColor="#CA42EF" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -110,6 +112,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:drawableStart="@drawable/ic_person_48"
+            android:drawableTint="#CA42EF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Tên đăng nhập:"
@@ -137,7 +140,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilUserName"
         app:passwordToggleContentDescription="Hiển thị mật khẩu"
-        app:passwordToggleTint="@color/mtrl_textinput_default_box_stroke_color"
+        app:passwordToggleTint="#CA42EF"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -145,6 +148,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Mật khẩu:"
+            android:drawableTint="#CA42EF"
             android:inputType="textPassword"
             android:textColor="#CA42EF"
             tools:ignore="TouchTargetSizeCheck" />

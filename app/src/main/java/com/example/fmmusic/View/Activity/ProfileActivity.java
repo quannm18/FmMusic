@@ -34,7 +34,6 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        //test
         imgImageUser = (ImageView) findViewById(R.id.imgImageUser);
         tvNameOfUserTop = (TextView) findViewById(R.id.tvNameOfUserTop);
         tvNameOfUserBot = (TextView) findViewById(R.id.tvNameOfUserBot);
@@ -44,7 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
         userDAO = new UserDAO(ProfileActivity.this);
 
         SharedPreferences sdf = getSharedPreferences("USER_CURRENT",MODE_PRIVATE);
-        tvNameOfUserTop.setText("Xin chao "+sdf.getString("USERNAME",""));
+        tvNameOfUserTop.setText("Xin chào "+sdf.getString("USERNAME",""));
 
         for (int i = 0; i < userDAO.getAllUser().size(); i++) {
             if (userDAO.getAllUser().get(i).getUserName().equals(sdf.getString("USERNAME",""))){
@@ -54,7 +53,8 @@ public class ProfileActivity extends AppCompatActivity {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProfileActivity.this,LoginActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
             }
@@ -86,9 +86,9 @@ public class ProfileActivity extends AppCompatActivity {
                         String writePassword = tilPassword.getEditText().getText().toString();
                         for (int i = 0; i < userDAO.getAllUser().size(); i++) {
                             if (writePassword.trim().equals(confirmPassword)){
+                                dialog.dismiss();
                                 Intent intent = new Intent(ProfileActivity.this,PassChangingActivity.class);
                                 startActivity(intent);
-                                dialog.dismiss();
                             }else {
                                 Toast.makeText(ProfileActivity.this, "Sai mật khẩu bạn cần nhập chính xác!!!", Toast.LENGTH_SHORT).show();
                             }
@@ -96,9 +96,13 @@ public class ProfileActivity extends AppCompatActivity {
 
                         }
                 });
+                btnCancelLogin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
                 dialog.show();
-
-
             }
         });
 

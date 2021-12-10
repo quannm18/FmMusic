@@ -107,13 +107,13 @@ public class PlaylistActivity extends AppCompatActivity {
 
                         long checking = plldao.insertPLL(pll1);
                         if (checking > 0) {
-                            Toast.makeText(v.getContext(), "Them thanh cong", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(v.getContext(), "Thêm thành công!", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                             listpll.clear();
                             listpll.addAll(plldao.getDataUser(userName));
                             myPlaylistAdapter.notifyDataSetChanged();
                         } else {
-                            Toast.makeText(v.getContext(), "Them thất bại", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(v.getContext(), "Thêm thất bại!", Toast.LENGTH_SHORT).show();
 
                         }
                     }

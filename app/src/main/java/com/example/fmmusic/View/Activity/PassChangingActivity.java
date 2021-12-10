@@ -54,6 +54,7 @@ public class PassChangingActivity extends AppCompatActivity {
                     if (userDAO.updatetUser(users)>0) {
                         Toast.makeText(getApplicationContext(), "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                         finish();
                     }else {
@@ -69,38 +70,57 @@ public class PassChangingActivity extends AppCompatActivity {
         String oldPass = tilOldPass.getEditText().getText().toString();
         String newPass = tilNewPass.getEditText().getText().toString();
         String rePass = tilRePass.getEditText().getText().toString();
-        if (oldPass.length() == 0){
+        if (oldPass.trim().length()==0&&newPass.trim().length()==0&&rePass.trim().length()==0){
+            tilOldPass.setError("Không được để trống");
+            tilNewPass.setError("Không được để trống");
+            tilRePass.setError("Không được để trống");
+            return check = -1;
+        }
+        tilNewPass.setError("");
+        tilOldPass.setError("");
+        tilRePass.setError("");
+
+        if (oldPass.trim().length() == 0){
             tilOldPass.setErrorEnabled(true);
             tilOldPass.setError("Không được để trống");
-            tilNewPass.setErrorEnabled(false);
-            tilRePass.setErrorEnabled(false);
+            tilNewPass.setError("");
+            tilRePass.setError("");
+            return check = -1;
         }
-        else if(newPass.length() == 0){
+        if(newPass.trim().length() == 0){
             tilNewPass.setErrorEnabled(true);
             tilNewPass.setError("Không được để trống");
-            tilOldPass.setErrorEnabled(false);
-            tilRePass.setErrorEnabled(false);
+            tilOldPass.setError("");
+            tilRePass.setError("");
+            return check = -1;
         }
-        else if(rePass.length() ==0){
+        if(rePass.trim().length() ==0){
             tilRePass.setErrorEnabled(true);
             tilRePass.setError("Không được để trống");
-            tilNewPass.setErrorEnabled(false);
-            tilOldPass.setErrorEnabled(false);
+            tilNewPass.setError("");
+            tilOldPass.setError("");
+            return check = -1;
         }
-        else {
-            SharedPreferences sdf = getSharedPreferences("USER_FILE", MODE_PRIVATE);
-            String oldpassword = sdf.getString("PASSWORD","");
-            String password = tilNewPass.getEditText().getText().toString();
-            String rePassword = tilRePass.getEditText().getText().toString();
-            if (!oldpassword.equals(tilOldPass.getEditText().getText().toString())){
-                Toast.makeText(getApplicationContext(), "Sai mật khẩu cũ!", Toast.LENGTH_SHORT).show();
-                check = -1;
-            }
-            if (!password.equals(rePassword)){
-                Toast.makeText(getApplicationContext(), "Mật khẩu không trùng khớp!", Toast.LENGTH_SHORT).show();
-                check = -1;
-            }
+        SharedPreferences sdf = getSharedPreferences("USER_FILE", MODE_PRIVATE);
+        String oldPassword = sdf.getString("PASSWORD","");
+        if (!oldPassword.equals(oldPass)){
+            tilOldPass.setError("Sai mật khẩu cũ!");
+            return check = -1;
         }
+        tilOldPass.setError("");
+        if (!newPass.equals(rePass)){
+            tilNewPass.setError("Mật khẩu không trùng khớp!");
+            tilRePass.setError("Mật khẩu không trùng khớp!");
+            return check = -1;
+        }
+        tilNewPass.setError("");
+        tilRePass.setError("");
         return check;
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+//        super.onBackPressed();
     }
 }

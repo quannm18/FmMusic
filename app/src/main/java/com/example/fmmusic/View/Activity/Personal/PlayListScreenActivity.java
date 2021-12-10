@@ -250,15 +250,15 @@ public class PlayListScreenActivity extends AppCompatActivity {
         if (from.equalsIgnoreCase("Nhạc Hiphop")) {
             playlistSongsList = new ArrayList<>();
             playlistSongsList.add(new PlaylistSongs("Alright", "ZUW0UUOO"));
-            playlistSongsList.add(new PlaylistSongs("Team", "ZW7OEIUF"));
-            playlistSongsList.add(new PlaylistSongs("Better Now", "ZW9C07C6"));
+//            playlistSongsList.add(new PlaylistSongs("Team", "ZW7OEIUF"));
+//            playlistSongsList.add(new PlaylistSongs("Better Now", "ZW9C07C6"));
             playlistSongsList.add(new PlaylistSongs("Give It To Me", "ZW60D7WD"));
-            playlistSongsList.add(new PlaylistSongs("Godzilla", "ZOAZWCEZ"));
-            playlistSongsList.add(new PlaylistSongs("LLC", "ZW9DUUCO"));
+//            playlistSongsList.add(new PlaylistSongs("Godzilla", "ZOAZWCEZ"));
+//            playlistSongsList.add(new PlaylistSongs("LLC", "ZW9DUUCO"));
             playlistSongsList.add(new PlaylistSongs("No Limit", "ZWAA7IO7"));
-            playlistSongsList.add(new PlaylistSongs("Twerkulator", "ZOFDEBE9"));
+//            playlistSongsList.add(new PlaylistSongs("Twerkulator", "ZOFDEBE9"));
             playlistSongsList.add(new PlaylistSongs("Wobble Up", "ZWAD0E8U"));
-            playlistSongsList.add(new PlaylistSongs("ATM", "ZOE790UC"));
+//            playlistSongsList.add(new PlaylistSongs("ATM", "ZOE790UC"));
             tvtPlaylistSinger.setText("Nhạc Hiphop");
         }
         //14.Nhạc Dance
@@ -286,7 +286,7 @@ public class PlayListScreenActivity extends AppCompatActivity {
             playlistSongsList.add(new PlaylistSongs("Người Chơi Hệ Đẹp (Cucak Remix)", "ZUUWZBZD"));
             playlistSongsList.add(new PlaylistSongs("Tránh Duyên (Remix)", "ZWADFZ0Z"));
             playlistSongsList.add(new PlaylistSongs("Rồi Tới Luôn (Remix Version)", "ZUU68U78"));
-            playlistSongsList.add(new PlaylistSongs("Thôi Miên (Remix)", "ZU0D9IA9"));
+//            playlistSongsList.add(new PlaylistSongs("Thôi Miên (Remix)", "ZU0D9IA9"));
             playlistSongsList.add(new PlaylistSongs("Cua (Remix)", "ZUIOWFBO"));
             playlistSongsList.add(new PlaylistSongs("Trời Đày Nhân Duyên (Remix)", "ZOE0EUCE"));
             tvtPlaylistSinger.setText("Nhạc Remix");
@@ -324,14 +324,14 @@ public class PlayListScreenActivity extends AppCompatActivity {
         //18.Nhạc Pop
         if (from.equalsIgnoreCase("Nhạc Pop")) {
             playlistSongsList = new ArrayList<>();
-            playlistSongsList.add(new PlaylistSongs("All Too Well (10 Minute Version) (Taylor's Version) (From The Vault)", "ZUB8D8IU"));
+//            playlistSongsList.add(new PlaylistSongs("All Too Well (10 Minute Version) (Taylor's Version) (From The Vault)", "ZUB8D8IU"));
             playlistSongsList.add(new PlaylistSongs("Easy On Me", "ZU9IDI0E"));
             playlistSongsList.add(new PlaylistSongs("STAY", "ZUWIB0AW"));
             playlistSongsList.add(new PlaylistSongs("THATS WHAT I WANT", "ZU6BI00F"));
-            playlistSongsList.add(new PlaylistSongs("Telepath", "ZUAIB0I6"));
-            playlistSongsList.add(new PlaylistSongs("Cold Heart (PNAU Remix)", "ZUU7FI78"));
-            playlistSongsList.add(new PlaylistSongs("Ghost", "ZOAZZBZB"));
-            playlistSongsList.add(new PlaylistSongs("Angel Baby", "ZU6ZBZ78"));
+//            playlistSongsList.add(new PlaylistSongs("Telepath", "ZUAIB0I6"));
+//            playlistSongsList.add(new PlaylistSongs("Cold Heart (PNAU Remix)", "ZUU7FI78"));
+//            playlistSongsList.add(new PlaylistSongs("Ghost", "ZOAZZBZB"));
+//            playlistSongsList.add(new PlaylistSongs("Angel Baby", "ZU6ZBZ78"));
             playlistSongsList.add(new PlaylistSongs("One Right Now", "ZUAEZ7AO"));
             playlistSongsList.add(new PlaylistSongs("Need to Know", "ZU0BUO8W"));
             tvtPlaylistSinger.setText("Nhạc Pop");
@@ -405,10 +405,10 @@ public class PlayListScreenActivity extends AppCompatActivity {
             playlistSongsList.add(new PlaylistSongs("Like That", "ZWAFZCI8"));
             playlistSongsList.add(new PlaylistSongs("Go Crazy", "ZWBOW9BC"));
             playlistSongsList.add(new PlaylistSongs("Freak", "ZWCWDC7U"));
-            playlistSongsList.add(new PlaylistSongs("Save Your Tears (Remix)", "ZOE8A80U"));
-            playlistSongsList.add(new PlaylistSongs("Blinding Lights", "ZO9FZ6FA"));
+//            playlistSongsList.add(new PlaylistSongs("Save Your Tears (Remix)", "ZOE8A80U"));
+//            playlistSongsList.add(new PlaylistSongs("Blinding Lights", "ZO9FZ6FA"));
             playlistSongsList.add(new PlaylistSongs("Juicy", "ZWAE6CIB"));
-            playlistSongsList.add(new PlaylistSongs("Save Your Tears", "ZO9FZ6F9"));
+//            playlistSongsList.add(new PlaylistSongs("Save Your Tears", "ZO9FZ6F9"));
             tvtPlaylistSinger.setText("Nhạc R&B");
         }
         //24.Nhạc Blue
@@ -420,9 +420,9 @@ public class PlayListScreenActivity extends AppCompatActivity {
             playlistSongsList.add(new PlaylistSongs("Someone You Loved", "ZWEIZBCB"));
             playlistSongsList.add(new PlaylistSongs("God Rest Ye Merry, Gentlemen", "ZUBZEED8"));
             playlistSongsList.add(new PlaylistSongs("Moonlight Sonata", "ZWAF099F"));
-            playlistSongsList.add(new PlaylistSongs("Do I Love You", "ZU7DD0W7"));
+//            playlistSongsList.add(new PlaylistSongs("Do I Love You", "ZU7DD0W7"));
             playlistSongsList.add(new PlaylistSongs("The Good Earth", "ZWADU9BE"));
-            playlistSongsList.add(new PlaylistSongs("I Get A Kick Out Of You", "ZUOEDFB8"));
+//            playlistSongsList.add(new PlaylistSongs("I Get A Kick Out Of You", "ZUOEDFB8"));
             playlistSongsList.add(new PlaylistSongs("Angels We Have Heard On High", "ZUBZE90B"));
             tvtPlaylistSinger.setText("Nhạc Blue");
         }
@@ -448,11 +448,11 @@ public class PlayListScreenActivity extends AppCompatActivity {
             playlistSongsList.add(new PlaylistSongs("Tutu (Remix)", "ZWAFI6FF"));
             playlistSongsList.add(new PlaylistSongs("Calma (Alan Walker Remix)", "ZWADCEO6"));
             playlistSongsList.add(new PlaylistSongs("Timber	", "ZWA80C89"));
-            playlistSongsList.add(new PlaylistSongs("In Da Getto", "ZUIBICZZ"));
+//            playlistSongsList.add(new PlaylistSongs("In Da Getto", "ZUIBICZZ"));
             playlistSongsList.add(new PlaylistSongs("LA FAMA", "ZUB7IZEB"));
-            playlistSongsList.add(new PlaylistSongs("telepatía	", "ZOAFWDZD"));
+//            playlistSongsList.add(new PlaylistSongs("telepatía	", "ZOAFWDZD"));
             playlistSongsList.add(new PlaylistSongs("Tutu	", "ZWAEUDIE"));
-            playlistSongsList.add(new PlaylistSongs("Baila Conmigo", "ZO9F70Z6"));
+//            playlistSongsList.add(new PlaylistSongs("Baila Conmigo", "ZO9F70Z6"));
             playlistSongsList.add(new PlaylistSongs("Todo De Ti", "ZOFD6BIO"));
             tvtPlaylistSinger.setText("Nhạc Latin");
         }
@@ -462,13 +462,13 @@ public class PlayListScreenActivity extends AppCompatActivity {
             playlistSongsList.add(new PlaylistSongs("Bi Hài", "ZUB7U9Z9"));
             playlistSongsList.add(new PlaylistSongs("Phản Bội Chính Mình", "ZUBU607A"));
             playlistSongsList.add(new PlaylistSongs("Ái Nộ", "ZUAE700W"));
-            playlistSongsList.add(new PlaylistSongs("3 1 0 7 7 - W/N ft. ( titie,Duongg )	", "ZUAUDZCC\n"));
+//            playlistSongsList.add(new PlaylistSongs("3 1 0 7 7 - W/N ft. ( titie,Duongg )	", "ZUAUDZCC\n"));
             playlistSongsList.add(new PlaylistSongs("Cảm Ơn Em Đã Đến", "ZUAW0F0A"));
             playlistSongsList.add(new PlaylistSongs("Mùa Hè Bất Tận", "ZUAOUO09"));
             playlistSongsList.add(new PlaylistSongs("Phai Nhòa Cảm Xúc", "ZUAOZFA7"));
             playlistSongsList.add(new PlaylistSongs("Anh Đưa Em Đi", "ZU98DB06"));
-            playlistSongsList.add(new PlaylistSongs("Tan Vỡ\n", "ZU96I8D9\n"));
-            playlistSongsList.add(new PlaylistSongs("Anh Lại Làm Em Khóc", "ZU99FBUW\n"));
+            playlistSongsList.add(new PlaylistSongs("Tan Vỡ", "ZU96I8D9"));
+            playlistSongsList.add(new PlaylistSongs("Anh Lại Làm Em Khóc", "ZU99FBUW"));
             tvtPlaylistSinger.setText("Nhạc Việt Nam");
         }
         //28.Nhạc Âu Mỹ
@@ -478,7 +478,7 @@ public class PlayListScreenActivity extends AppCompatActivity {
             playlistSongsList.add(new PlaylistSongs("I Will Always Love You\n", "ZWZCZIFW"));
             playlistSongsList.add(new PlaylistSongs("My Heart Will Go On (Love Theme from \"Titanic\")", "ZW9CD9C9"));
             playlistSongsList.add(new PlaylistSongs("Beauty and the Beast (from the Soundtrack \"Beauty and the Beast\")", "ZWA7ZCA9"));
-            playlistSongsList.add(new PlaylistSongs("Circle of Life (From \"The Lion King\"/Soundtrack Version)", "ZWZA0DBE"));
+//            playlistSongsList.add(new PlaylistSongs("Circle of Life (From \"The Lion King\"/Soundtrack Version)", "ZWZA0DBE"));
             playlistSongsList.add(new PlaylistSongs("I Have Nothing (Film Version)", "ZW8W7706"));
             playlistSongsList.add(new PlaylistSongs("Take My Breath Away", "ZW60DZFB"));
             playlistSongsList.add(new PlaylistSongs("She's Like the Wind (From \"Dirty Dancing\" Soundtrack)", "ZWA76OC9"));
@@ -491,14 +491,14 @@ public class PlayListScreenActivity extends AppCompatActivity {
             playlistSongsList = new ArrayList<>();
             playlistSongsList.add(new PlaylistSongs("No (Galantis Remix)", "ZUBOAW8Z"));
             playlistSongsList.add(new PlaylistSongs("In My Mind (Joel Corry Remix)", "ZU798FOW"));
-            playlistSongsList.add(new PlaylistSongs("Cold Heart (PNAU Remix)", "ZUU7FI78"));
-            playlistSongsList.add(new PlaylistSongs("Equal in the Darkness (Steve Aoki Character X Version)", "ZUA89IO8"));
+//            playlistSongsList.add(new PlaylistSongs("Cold Heart (PNAU Remix)", "ZUU7FI78"));
+//            playlistSongsList.add(new PlaylistSongs("Equal in the Darkness (Steve Aoki Character X Version)", "ZUA89IO8"));
             playlistSongsList.add(new PlaylistSongs("Pick Me Up (Billen Ted Remix)", "ZU0BZWAC"));
             playlistSongsList.add(new PlaylistSongs("September (CORSAK Remix)", "ZUUWF98D"));
-            playlistSongsList.add(new PlaylistSongs("Giants (Sam Feldt Remix)", "ZODE7I8U"));
+//            playlistSongsList.add(new PlaylistSongs("Giants (Sam Feldt Remix)", "ZODE7I8U"));
             playlistSongsList.add(new PlaylistSongs("You (Topic Remix)", "ZOF9B7Z6"));
             playlistSongsList.add(new PlaylistSongs("Sweet Dreams (DES3ETT Remix)", "ZUODB6FA"));
-            playlistSongsList.add(new PlaylistSongs("Chasing Stars (VIP Mix)", "ZU7CIUB8"));
+//            playlistSongsList.add(new PlaylistSongs("Chasing Stars (VIP Mix)", "ZU7CIUB8"));
             tvtPlaylistSinger.setText("Nhạc Tiếng Anh");
         }
         //30.Nhạc Nhật
@@ -549,7 +549,7 @@ public class PlayListScreenActivity extends AppCompatActivity {
         //33.Nhạc Tập Gym
         if (from.equalsIgnoreCase("Nhạc Tập Gym")) {
             playlistSongsList = new ArrayList<>();
-            playlistSongsList.add(new PlaylistSongs("One Touch ", "ZWAD9O8B"));
+//            playlistSongsList.add(new PlaylistSongs("One Touch ", "ZWAD9O8B"));
             playlistSongsList.add(new PlaylistSongs("Higher", "ZWAE69BF"));
             playlistSongsList.add(new PlaylistSongs("Starsigns", "ZWAEI8F6"));
             playlistSongsList.add(new PlaylistSongs("Takeaway", "ZWAEOZO9"));
@@ -557,14 +557,14 @@ public class PlayListScreenActivity extends AppCompatActivity {
             playlistSongsList.add(new PlaylistSongs(" Power is Power", "ZWADUCU6"));
             playlistSongsList.add(new PlaylistSongs("Woman Like Me", "ZWAC9ZEU"));
             playlistSongsList.add(new PlaylistSongs("High On Life", "ZW9DIFFZ"));
-            playlistSongsList.add(new PlaylistSongs(" Sorry Not Sorry", "ZW807B9D"));
-            playlistSongsList.add(new PlaylistSongs("All The Stars", "ZW9A9BD6"));
+//            playlistSongsList.add(new PlaylistSongs(" Sorry Not Sorry", "ZW807B9D"));
+//            playlistSongsList.add(new PlaylistSongs("All The Stars", "ZW9A9BD6"));
             tvtPlaylistSinger.setText("Nhạc Tập Gym");
         }
         //34.Nhạc Quán Cà Phê
         if (from.equalsIgnoreCase("Nhạc Quán Cà Phê")) {
             playlistSongsList = new ArrayList<>();
-            playlistSongsList.add(new PlaylistSongs("River Flows in You (Orchestra Version)", "ZOA976OZ"));
+//            playlistSongsList.add(new PlaylistSongs("River Flows in You (Orchestra Version)", "ZOA976OZ"));
             playlistSongsList.add(new PlaylistSongs("Dreamland", "ZWAF9W6I"));
             playlistSongsList.add(new PlaylistSongs("The Moment", "ZWZ9ADUA"));
             playlistSongsList.add(new PlaylistSongs("Kiss The Rain", "ZWZD909W"));
@@ -640,13 +640,13 @@ public class PlayListScreenActivity extends AppCompatActivity {
         if (from.equalsIgnoreCase("Nhạc Hàn")) {
             playlistSongsList = new ArrayList<>();
             playlistSongsList.add(new PlaylistSongs("Day And Night / Love All", "ZW6WWUZB"));
-            playlistSongsList.add(new PlaylistSongs("Day By Day", "ZW60FF9E"));
+            playlistSongsList.add(new PlaylistSongs("DDU_DU DDU_DU", "ZW9C9AZ0"));
             playlistSongsList.add(new PlaylistSongs("Roly Poly", "ZWZC7D0C"));
             playlistSongsList.add(new PlaylistSongs("TTL (Time To Love)", "ZWZ9FC60"));
             playlistSongsList.add(new PlaylistSongs("We Were In Love", "ZWZEC687"));
             playlistSongsList.add(new PlaylistSongs("Cry Cry", "ZW6WWUZ9"));
-            playlistSongsList.add(new PlaylistSongs("Sexy Love", "ZW6WWUZ9"));
-            playlistSongsList.add(new PlaylistSongs("We Were In Love", "ZWZED7EA"));
+            playlistSongsList.add(new PlaylistSongs("Round And Round", "ZW78F8ZF"));
+            playlistSongsList.add(new PlaylistSongs("How You Like That", "ZWBU778A"));
             playlistSongsList.add(new PlaylistSongs("Lovey Dovey", "ZWZED7E9"));
             tvtPlaylistSinger.setText("Nhạc Hàn");
         }
@@ -660,7 +660,7 @@ public class PlayListScreenActivity extends AppCompatActivity {
             playlistSongsList.add(new PlaylistSongs("Sign", "ZW9ABBFZ"));
             playlistSongsList.add(new PlaylistSongs("On My Way", "ZWABOA0F"));
             playlistSongsList.add(new PlaylistSongs("Follow Me (Shaun Frank Remix)", "ZWA7ZZWA"));
-            playlistSongsList.add(new PlaylistSongs("Let Me Love You (Zedd Remix)", "ZW78BAZE"));
+//            playlistSongsList.add(new PlaylistSongs("Let Me Love You (Zedd Remix)", "ZW78BAZE"));
             playlistSongsList.add(new PlaylistSongs("Lily", "ZWA0OA6F"));
             playlistSongsList.add(new PlaylistSongs("The River", "ZW9AE770"));
             tvtPlaylistSinger.setText("Nhạc Game");
@@ -669,11 +669,11 @@ public class PlayListScreenActivity extends AppCompatActivity {
         if (from.equalsIgnoreCase("Nhạc Acoustic")) {
             playlistSongsList = new ArrayList<>();
             playlistSongsList.add(new PlaylistSongs("Nothing Breaks Like a Heart (Acoustic Version)", "ZWAWZ9ZI"));
-            playlistSongsList.add(new PlaylistSongs("Diamonds (Acoustic)", "ZOFDUAZD"));
+//            playlistSongsList.add(new PlaylistSongs("Diamonds (Acoustic)", "ZOFDUAZD"));
             playlistSongsList.add(new PlaylistSongs("Break Up Song (Acoustic Version)", "ZWBW8B8Z"));
             playlistSongsList.add(new PlaylistSongs("The Man Who Can't Be Moved (Acoustic)", "ZW9BDBU0"));
             playlistSongsList.add(new PlaylistSongs("Lullaby (Acoustic)", "ZW9BBO69"));
-            playlistSongsList.add(new PlaylistSongs("Slow Hands (Acoustic)", "ZW800IZ8"));
+//            playlistSongsList.add(new PlaylistSongs("Slow Hands (Acoustic)", "ZW800IZ8"));
             playlistSongsList.add(new PlaylistSongs("I Learned My Lesson (acoustic)", "ZW9CO0E9"));
             playlistSongsList.add(new PlaylistSongs("Naked (Acoustic Version)", "ZW9FO789"));
             playlistSongsList.add(new PlaylistSongs("If You Wanna Love Somebody (Acoustic)", "ZW9CEAF8"));
@@ -684,7 +684,7 @@ public class PlayListScreenActivity extends AppCompatActivity {
         if (from.equalsIgnoreCase("Nhạc Rap")) {
             playlistSongsList = new ArrayList<>();
             playlistSongsList.add(new PlaylistSongs("Phi Hành Gia", "ZU9CE99E"));
-            playlistSongsList.add(new PlaylistSongs("Nghe Như Tình Yêu", "ZUWW8WCA"));
+//            playlistSongsList.add(new PlaylistSongs("Nghe Như Tình Yêu", "ZUWW8WCA"));
             playlistSongsList.add(new PlaylistSongs("Lạc", "ZW67D8W6"));
             playlistSongsList.add(new PlaylistSongs("Bật Nhạc Lên (feat. Harmonie)", "ZU06CBOI"));
             playlistSongsList.add(new PlaylistSongs("BlackJack", "ZOW0OBU8"));
@@ -700,7 +700,7 @@ public class PlayListScreenActivity extends AppCompatActivity {
             playlistSongsList = new ArrayList<>();
             playlistSongsList.add(new PlaylistSongs("Chào Năm Con Trâu", "ZO8ZU9UD"));
             playlistSongsList.add(new PlaylistSongs("Như Hoa Mùa Xuân", "ZW69EIBU"));
-            playlistSongsList.add(new PlaylistSongs("Thì Thầm Mùa Xuân", "ZO77ADEA"));
+//            playlistSongsList.add(new PlaylistSongs("Thì Thầm Mùa Xuân", "ZO77ADEA"));
             playlistSongsList.add(new PlaylistSongs("Xuân Ơi Ở Lại Chơi", "ZW7O6EE6"));
             playlistSongsList.add(new PlaylistSongs("Hoa cỏ mùa xuân", "ZW789EFE"));
             playlistSongsList.add(new PlaylistSongs("Đoản Xuân Ca", "ZO8AFA6I"));
