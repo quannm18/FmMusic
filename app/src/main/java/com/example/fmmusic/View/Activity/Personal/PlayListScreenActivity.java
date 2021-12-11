@@ -332,7 +332,7 @@ public class PlayListScreenActivity extends AppCompatActivity {
 //            playlistSongsList.add(new PlaylistSongs("Cold Heart (PNAU Remix)", "ZUU7FI78"));
 //            playlistSongsList.add(new PlaylistSongs("Ghost", "ZOAZZBZB"));
 //            playlistSongsList.add(new PlaylistSongs("Angel Baby", "ZU6ZBZ78"));
-            playlistSongsList.add(new PlaylistSongs("One Right Now", "ZUAEZ7AO"));
+//            playlistSongsList.add(new PlaylistSongs("One Right Now", "ZUAEZ7AO"));
             playlistSongsList.add(new PlaylistSongs("Need to Know", "ZU0BUO8W"));
             tvtPlaylistSinger.setText("Nhạc Pop");
         }
