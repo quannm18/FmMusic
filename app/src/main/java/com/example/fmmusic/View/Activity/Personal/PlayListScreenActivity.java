@@ -250,15 +250,15 @@ public class PlayListScreenActivity extends AppCompatActivity {
         if (from.equalsIgnoreCase("Nhạc Hiphop")) {
             playlistSongsList = new ArrayList<>();
             playlistSongsList.add(new PlaylistSongs("Alright", "ZUW0UUOO"));
-//            playlistSongsList.add(new PlaylistSongs("Team", "ZW7OEIUF"));
-//            playlistSongsList.add(new PlaylistSongs("Better Now", "ZW9C07C6"));
+            playlistSongsList.add(new PlaylistSongs("Lemon", "ZW8WUIIB"));
+            playlistSongsList.add(new PlaylistSongs("MONTERO (Call Me By Your Name)", "ZOA8669D"));
             playlistSongsList.add(new PlaylistSongs("Give It To Me", "ZW60D7WD"));
-//            playlistSongsList.add(new PlaylistSongs("Godzilla", "ZOAZWCEZ"));
-//            playlistSongsList.add(new PlaylistSongs("LLC", "ZW9DUUCO"));
+            playlistSongsList.add(new PlaylistSongs("Taste", "ZW9CO60D"));
+            playlistSongsList.add(new PlaylistSongs("Move Ya Hips", "ZWCIBB66"));
             playlistSongsList.add(new PlaylistSongs("No Limit", "ZWAA7IO7"));
-//            playlistSongsList.add(new PlaylistSongs("Twerkulator", "ZOFDEBE9"));
+            playlistSongsList.add(new PlaylistSongs("11-Jul", "ZW6EABCA"));
             playlistSongsList.add(new PlaylistSongs("Wobble Up", "ZWAD0E8U"));
-//            playlistSongsList.add(new PlaylistSongs("ATM", "ZOE790UC"));
+            playlistSongsList.add(new PlaylistSongs("No Brainer", "ZW9DIDZC"));
             tvtPlaylistSinger.setText("Nhạc Hiphop");
         }
         //14.Nhạc Dance
@@ -328,11 +328,11 @@ public class PlayListScreenActivity extends AppCompatActivity {
             playlistSongsList.add(new PlaylistSongs("Easy On Me", "ZU9IDI0E"));
             playlistSongsList.add(new PlaylistSongs("STAY", "ZUWIB0AW"));
             playlistSongsList.add(new PlaylistSongs("THATS WHAT I WANT", "ZU6BI00F"));
-//            playlistSongsList.add(new PlaylistSongs("Telepath", "ZUAIB0I6"));
-//            playlistSongsList.add(new PlaylistSongs("Cold Heart (PNAU Remix)", "ZUU7FI78"));
-//            playlistSongsList.add(new PlaylistSongs("Ghost", "ZOAZZBZB"));
-//            playlistSongsList.add(new PlaylistSongs("Angel Baby", "ZU6ZBZ78"));
-//            playlistSongsList.add(new PlaylistSongs("One Right Now", "ZUAEZ7AO"));
+            playlistSongsList.add(new PlaylistSongs("Working", "ZUIIU7W7"));
+            playlistSongsList.add(new PlaylistSongs("Hi-Lo", "ZU80I0IC"));
+            playlistSongsList.add(new PlaylistSongs("No", "ZUBOFZ9C"));
+            playlistSongsList.add(new PlaylistSongs("Hopeless Romantic", "ZU9IZOC0"));
+            playlistSongsList.add(new PlaylistSongs("Don't Go Yet", "ZUWDAF0Z"));
             playlistSongsList.add(new PlaylistSongs("Need to Know", "ZU0BUO8W"));
             tvtPlaylistSinger.setText("Nhạc Pop");
         }
