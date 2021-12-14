@@ -1,8 +1,5 @@
 package com.example.fmmusic.View.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -12,8 +9,10 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+
 import com.example.fmmusic.DAO.UserDAO;
-import com.example.fmmusic.Database.FMMusicDatabase;
 import com.example.fmmusic.Model.Users;
 import com.example.fmmusic.R;
 import com.google.android.material.textfield.TextInputLayout;
@@ -75,33 +74,33 @@ public class SignUpActivity extends AppCompatActivity {
                 String password = tilUserPass.getEditText().getText().toString();
                 String rePassword = tilRePass.getEditText().getText().toString();
 
-                if (fullname.trim().length() == 0) {
-                    tilFullName.setError("Không được để trống");
+                if (fullname.trim().length() < 6) {
+                    tilFullName.setError("Không được để trống và số kí tự lớn hơn 6!");
                     return;
                 }
-                tilFullName.setErrorEnabled(false);
-                if (username.trim().length() == 0) {
-                    tilUserName.setError("Không được để trống");
+                tilFullName.setError("");
+                if (username.trim().length() < 6) {
+                    tilUserName.setError("Không được để trống và số kí tự lớn hơn 6!");
                     return;
                 }
-                tilUserName.setErrorEnabled(false);
+                tilUserName.setError("");
 
-                if (password.trim().length() == 0) {
-                    tilUserPass.setError("Không được để trống");
+                if (password.trim().length() < 6) {
+                    tilUserPass.setError("Không được để trống và số kí tự lớn hơn 6!");
                     return;
                 }
-                tilUserPass.setErrorEnabled(false);
+                tilUserPass.setError("");
 
-                if (rePassword.trim().length() == 0) {
-                    tilRePass.setError("Không được để trống");
+                if (rePassword.trim().length() < 6) {
+                    tilRePass.setError("Không được để trống và số kí tự lớn hơn 6!");
                     return;
                 }
-                tilRePass.setErrorEnabled(false);
+                tilRePass.setError("");
                 if (rePassword.equals(password) == false) {
                     tilRePass.setError("Nhập lại mật khẩu không trùng khớp");
                     return;
                 }
-                tilRePass.setErrorEnabled(false);
+                tilRePass.setError("");
 
                 Users users = new Users();
                 users.setUserName(username);
