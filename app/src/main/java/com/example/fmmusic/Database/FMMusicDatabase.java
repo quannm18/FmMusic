@@ -21,7 +21,7 @@ public class FMMusicDatabase extends SQLiteOpenHelper {
 
         // table Playlist
         String TABLE_PLL = "CREATE TABLE PLL(IDPLL INTEGER PRIMARY KEY AUTOINCREMENT, NamePLL TEXT NOT NULL," +
-                " IDUser TEXT REFERENCES USER(IDUser))";
+                " UserName TEXT REFERENCES USER(UserName))";
         db.execSQL(TABLE_PLL);
         // table PLL_Song
         String TABLE_PLL_SONG = "CREATE TABLE PLLSONG(IDPLLSong INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -45,7 +45,7 @@ public class FMMusicDatabase extends SQLiteOpenHelper {
 
         // table favorite
         String TABLE_FAVORITE = "CREATE TABLE FAVORITE(IDFavorite INTEGER PRIMARY KEY AUTOINCREMENT, "+
-                "IDSong TEXT UNIQUE REFERENCES SONG(IDSong), SongName TEXT,Thumbnail TEXT,Duration INTEGER, IDSinger TEXT, SingerName TEXT,"+
+                "IDSong TEXT REFERENCES SONG(IDSong), SongName TEXT,Thumbnail TEXT,Duration INTEGER, IDSinger TEXT, SingerName TEXT,"+
                 "UserName TEXT REFERENCES USER(UserName))";
         db.execSQL(TABLE_FAVORITE);
 
@@ -54,6 +54,12 @@ public class FMMusicDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS TABLE_FAVORITE");
+        db.execSQL("DROP TABLE IF EXISTS TABLE_SONG");
+        db.execSQL("DROP TABLE IF EXISTS TABLE_PLL_SONG");
+        db.execSQL("DROP TABLE IF EXISTS TABLE_PLL");
+        db.execSQL("DROP TABLE IF EXISTS TABLE_SINGER");
+        db.execSQL("DROP TABLE IF EXISTS TABLE_GENRES");
+        onCreate(db);
     }
 }

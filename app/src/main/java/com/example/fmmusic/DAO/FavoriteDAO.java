@@ -66,7 +66,7 @@ public class FavoriteDAO {
 
     public int deleteFV(Favorite fvr){
         SQLiteDatabase sqLiteDatabase = fmMusicDatabase.getWritableDatabase();
-        int row = sqLiteDatabase.delete("FAVORITE","IDFavorite=?",new String[]{String.valueOf(fvr.getIdfv())});
+        int row = sqLiteDatabase.delete("FAVORITE","UserName=? AND IDSong=?",new String[]{fvr.getUseName(),(fvr.getSong().getId())});
         return row;
     }
     public List<Favorite> getFvrFromUsername(String username){

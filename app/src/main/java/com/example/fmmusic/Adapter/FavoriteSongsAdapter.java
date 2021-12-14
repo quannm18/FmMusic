@@ -1,5 +1,6 @@
 package com.example.fmmusic.Adapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,13 +18,14 @@ import com.example.fmmusic.Model.Favorite;
 import com.example.fmmusic.Model.Songs.Top;
 import com.example.fmmusic.R;
 import com.example.fmmusic.View.Activity.MusicPlayingActivity;
+import com.example.fmmusic.View.Activity.Personal.FavoritesLibActivity;
 import com.example.fmmusic.View.Fragment.SongsPlayingFragment;
 
 import java.util.List;
 
 public class FavoriteSongsAdapter extends RecyclerView.Adapter<FavoriteSongsAdapter.FavoriteSongHolder> {
     public static List<Favorite> favoriteListAdapter;
-
+    public Context context;
     public FavoriteSongsAdapter(List<Favorite> favoriteListAdapter) {
         this.favoriteListAdapter = favoriteListAdapter;
     }
@@ -32,9 +34,10 @@ public class FavoriteSongsAdapter extends RecyclerView.Adapter<FavoriteSongsAdap
     @Override
     public FavoriteSongHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_suggested_song,parent,false);
+        context = parent.getContext();
         return new FavoriteSongHolder(view);
     }
-
+    FavoritesLibActivity favoritesLibActivity = new FavoritesLibActivity();
     @Override
     public void onBindViewHolder(@NonNull FavoriteSongHolder holder, int position) {
         final Favorite favorite = favoriteListAdapter.get(position);
@@ -66,7 +69,6 @@ public class FavoriteSongsAdapter extends RecyclerView.Adapter<FavoriteSongsAdap
             }
         });
     }
-
     @Override
     public int getItemCount() {
         return favoriteListAdapter.size();

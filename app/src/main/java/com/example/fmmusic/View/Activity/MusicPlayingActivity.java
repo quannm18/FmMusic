@@ -10,6 +10,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -64,6 +67,7 @@ public class MusicPlayingActivity extends AppCompatActivity
     public static Uri uri;
 
     public static Context context;
+    public static MusicService musicService;
     public int position;
     public String from;
     public String id;
@@ -74,7 +78,6 @@ public class MusicPlayingActivity extends AppCompatActivity
     public String duration;
     public Handler handler = new Handler();
     public String[] art;
-    public static MusicService musicService;
     MediaSessionCompat mediaSessionCompat;
     private ViewPager viewPager;
     private ViewPagerAdapterMusicPlaying viewPagerAdapterMusicPlaying;
@@ -92,8 +95,16 @@ public class MusicPlayingActivity extends AppCompatActivity
     private FavoriteDAO favoriteDAO;
     private Thread playThread, prevThread, nextThread;
 
+    private List<Favorite> checkFavList;
+
     public static List<AudioModel> getAudios() {
         return audios;
+    }
+
+    public static void pause() {
+        if (musicService.isPlaying()) {
+            musicService.pause();
+        }
     }
 
     @Override
@@ -125,32 +136,39 @@ public class MusicPlayingActivity extends AppCompatActivity
 
         viewPagerAdapterMusicPlaying = new ViewPagerAdapterMusicPlaying(getSupportFragmentManager(), fragmentList);
         viewPager.setAdapter(viewPagerAdapterMusicPlaying);
+
+        SharedPreferences sdf = getSharedPreferences("USER_CURRENT", MODE_PRIVATE);
+        favoriteDAO = new FavoriteDAO(MusicPlayingActivity.this);
+        checkFavorite();
         //TODO : thêm animation quay 360 cho imageview
+        favorite = null;
         imbFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!from.equals("SongLibsAdapter")){
-                    favorite = new Favorite();
-                    Song song = new Song();
-                    favoriteDAO = new FavoriteDAO(MusicPlayingActivity.this);
-                    song.setId(id);
-                    song.setName(nameSong);
-                    song.setThumbnail(thumbnail);
-                    song.setDuration(Integer.parseInt(duration));
-                    Singer singer = new Singer("abcxyz", artist_name);
-                    song.setSinger(singer);
-                    favorite.setSong(song);
+                favorite = new Favorite();
+                Song song = new Song();
+                song.setId(id);
+                song.setName(nameSong);
+                song.setThumbnail(thumbnail);
+                song.setDuration(Integer.parseInt(duration));
+                favorite.setUseName(sdf.getString("USERNAME", ""));
+                Singer singer = new Singer("abcxyz", artist_name);
+                song.setSinger(singer);
+                favorite.setSong(song);
 
-                    SharedPreferences sdf = getSharedPreferences("USER_CURRENT", MODE_PRIVATE);
-                    favorite.setUseName(sdf.getString("USERNAME", ""));
+                Bitmap imgImb = ((BitmapDrawable)imbFavorite.getDrawable()).getBitmap();
+                Drawable drawableCompare = getResources().getDrawable(R.drawable.heart_like);
+                Bitmap bitmapCompare = ((BitmapDrawable) drawableCompare).getBitmap();
+
+                if (imgImb.sameAs(bitmapCompare)){
                     long kq = favoriteDAO.insertFV(favorite);
                     if (kq > 0) {
-                        Toast.makeText(MusicPlayingActivity.this, "Thêm thành công ", Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(MusicPlayingActivity.this, "Thêm không thành công ", Toast.LENGTH_LONG).show();
+                        imbFavorite.setImageResource(R.drawable.heart_red);
                     }
-                }else {
-                    Toast.makeText(MusicPlayingActivity.this, "Không thể thêm bài hát offline vào yêu thích!", Toast.LENGTH_SHORT).show();
+                }
+                if (!imgImb.sameAs(bitmapCompare)){
+                    int delete = favoriteDAO.deleteFV(favorite);
+                    imbFavorite.setImageResource(R.drawable.heart_like);
                 }
             }
         });
@@ -158,16 +176,16 @@ public class MusicPlayingActivity extends AppCompatActivity
         imbLoop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!from.equals("SongLibsAdapter")){
-                    String link = nameSong+" "+artist_name+"/"+id+".html";
-                    String convertLink = VNCharacterUtils.removeAccent(link.replace(" ","-"));
-                    Log.e("link",DOMAIN_SHARE+convertLink);
+                if (!from.equals("SongLibsAdapter")) {
+                    String link = nameSong + " " + artist_name + "/" + id + ".html";
+                    String convertLink = VNCharacterUtils.removeAccent(link.replace(" ", "-"));
+                    Log.e("link", DOMAIN_SHARE + convertLink);
                     Intent i = new Intent(Intent.ACTION_SEND);
                     i.setType("text/plain");
                     i.putExtra(Intent.EXTRA_SUBJECT, "Sharing URL");
-                    i.putExtra(Intent.EXTRA_TEXT, DOMAIN_SHARE+convertLink+"");
+                    i.putExtra(Intent.EXTRA_TEXT, DOMAIN_SHARE + convertLink + "");
                     startActivity(Intent.createChooser(i, "This is so nice!"));
-                }else {
+                } else {
                     Toast.makeText(MusicPlayingActivity.this, "Không thể chia sẻ bài hát offline!", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -207,6 +225,22 @@ public class MusicPlayingActivity extends AppCompatActivity
 
     }
 
+    public void checkFavorite(){
+        SharedPreferences sdf = getSharedPreferences("USER_CURRENT", MODE_PRIVATE);
+        checkFavList = favoriteDAO.getFvrFromUsername(sdf.getString("USERNAME", ""));
+        if (checkFavList.size() > 0) {
+            int pos = -1;
+            for (int i = 0; i < checkFavList.size(); i++) {
+                if (id.equals(checkFavList.get(i).getSong().getId())) {
+                    imbFavorite.setImageResource(R.drawable.heart_red);
+                    pos = 0;
+                }
+            }
+            if (pos==-1){
+                imbFavorite.setImageResource(R.drawable.heart_like);
+            }
+        }
+    }
     void getIntentData() {
         Intent intent = getIntent();
         bundle = intent.getBundleExtra("song_suggested");
@@ -309,7 +343,7 @@ public class MusicPlayingActivity extends AppCompatActivity
             audios = SongsLibActivity.audioModelList;
 
             if (!audios.isEmpty()) {
-                
+
                 btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
                 uri = Uri.parse(audios.get(position).getPath());
             }
@@ -338,6 +372,7 @@ public class MusicPlayingActivity extends AppCompatActivity
         playThreadBtn();
         nextThreadBtn();
         prevThreadBtn();
+        checkFavorite();
         super.onResume();
     }
 
@@ -727,6 +762,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                 btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
                 musicService.start();
             }
+            checkFavorite();
         } else {
             musicService.stop();
             musicService.release();
@@ -1087,6 +1123,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                 musicService.onCompleted();
                 btnPlay.setImageResource(R.drawable.play_button_musicplayer);
             }
+            checkFavorite();
         }
     }
 
@@ -1112,7 +1149,7 @@ public class MusicPlayingActivity extends AppCompatActivity
             musicService.release();
             if (from.equals("TopAdapter")) {
                 tops = RankingsFragment.topList;
-                if (position < tops.size()-1) {
+                if (position < tops.size() - 1) {
                     position++;
                 } else {
                     position = 0;
@@ -1149,7 +1186,7 @@ public class MusicPlayingActivity extends AppCompatActivity
             }
             if (from.equals("NewSongHomeAdapter")) {
                 songNewsList = HomeFragment.songNewList;
-                if (position < songNewsList.size()-1) {
+                if (position < songNewsList.size() - 1) {
                     position++;
                 } else {
                     position = 0;
@@ -1186,7 +1223,7 @@ public class MusicPlayingActivity extends AppCompatActivity
             }
             if (from.equals("SongsOfSingerFavoriteAdapter")) {
                 songs = songOfSinger;
-                if (position < songs.size()-1) {
+                if (position < songs.size() - 1) {
                     position++;
                 } else {
                     position = 0;
@@ -1223,7 +1260,7 @@ public class MusicPlayingActivity extends AppCompatActivity
             }
             if (from.equals("FVRSongAdapter")) {
                 favoriteList = favoriteListAdapter;
-                if (position < favoriteList.size()-1) {
+                if (position < favoriteList.size() - 1) {
                     position++;
                 } else {
                     position = 0;
@@ -1260,7 +1297,7 @@ public class MusicPlayingActivity extends AppCompatActivity
             }
             if (from.equals("PLLSongAdapter")) {
                 pllSongs = pllSongList;
-                if (position < pllSongs.size()-1) {
+                if (position < pllSongs.size() - 1) {
                     position++;
                 } else {
                     position = 0;
@@ -1297,7 +1334,7 @@ public class MusicPlayingActivity extends AppCompatActivity
             }
             if (from.equals("PlayListSongAdapter")) {
                 songs = PlayListScreenActivity.songPList;
-                if (position < songs.size()-1) {
+                if (position < songs.size() - 1) {
                     position++;
                 } else {
                     position = 0;
@@ -1450,7 +1487,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                     position = 0;
                 }
                 uri = Uri.parse(audios.get(position).getPath());
-                Log.e("uri", "nextBtnClicked: "+uri );
+                Log.e("uri", "nextBtnClicked: " + uri);
                 musicService.createMediaPlayer(position);
                 from = "SongLibsAdapter";
                 position = position;
@@ -1479,6 +1516,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                 btnPlay.setImageResource(R.drawable.pause_button_musicplayer);
                 musicService.start();
             }
+            checkFavorite();
         } else {
             musicService.stop();
             musicService.release();
@@ -1841,6 +1879,7 @@ public class MusicPlayingActivity extends AppCompatActivity
                 musicService.onCompleted();
 //                btnPlay.setImageResource(R.drawable.play_button_musicplayer);
             }
+            checkFavorite();
         }
 
     }
@@ -1900,24 +1939,21 @@ public class MusicPlayingActivity extends AppCompatActivity
         MusicService.MyBinder myBinder = (MusicService.MyBinder) service;
         musicService = myBinder.getService();
         musicService.setCallback(this);
-        Log.e("COnnecTSeRvice","CoNNecTeD");
+        checkFavorite();
+        Log.e("COnnecTSeRvice", "CoNNecTeD");
         seekBar.setMax(musicService.getDuration() / 1000);
         tvMinutePerSong.setText(convertFormat(musicService.getDuration() / 1000));
         musicService.onCompleted();
     }
 
-    public static void pause(){
-        if (musicService.isPlaying()) {
-            musicService.pause();
-        }
-    }
     @Override
     public void onServiceDisconnected(ComponentName name) {
         musicService = null;
     }
+
     @Override
     public void onBackPressed() {
-        if (musicService.isPlaying()){
+        if (musicService.isPlaying()) {
             pauseBtnClicked();
             finish();
         }

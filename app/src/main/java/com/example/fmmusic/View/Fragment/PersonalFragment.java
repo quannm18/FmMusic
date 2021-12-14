@@ -1,12 +1,19 @@
 package com.example.fmmusic.View.Fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -33,6 +40,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.fmmusic.Adapter.SuggestedAdapter;
+import com.example.fmmusic.DAO.FavoriteDAO;
+import com.example.fmmusic.Model.Favorite;
 import com.example.fmmusic.Model.SingerModel.Singer;
 import com.example.fmmusic.Model.Songs.Top;
 import com.example.fmmusic.R;
@@ -58,7 +67,12 @@ public class PersonalFragment extends Fragment {
     private CardView cvSingerLib;
     private SuggestedAdapter suggestedAdapter;
     public static List<Top> suggestedList;
+    private FavoriteDAO favoriteDAO;
+    private List<Favorite> favoriteList;
 
+
+    private AppCompatButton btnCancelDelete;
+    private AppCompatButton btnYesDelete;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -80,11 +94,13 @@ public class PersonalFragment extends Fragment {
         suggestedAdapter = new SuggestedAdapter(suggestedList);
         rcvSongsLibGoiY.setAdapter(suggestedAdapter);
         rcvSongsLibGoiY.setLayoutManager(new LinearLayoutManager(getContext()));
+        SharedPreferences sdf = getActivity().getSharedPreferences("USER_CURRENT", MODE_PRIVATE);
+        String username = sdf.getString("USERNAME","");
         cvSongsLib.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isPermissionsGranted()){
-                    Toast.makeText(v.getContext(), "Permission already granted", Toast.LENGTH_SHORT).show();
+                    Log.e("permission", "Permission already granted");
                 }else {
                     takePermission();
                 }
@@ -95,15 +111,48 @@ public class PersonalFragment extends Fragment {
         cvFavotitesLib.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), FavoritesLibActivity.class));
+                favoriteList = new ArrayList<>();
+                favoriteDAO = new FavoriteDAO(getContext());
+                favoriteList = favoriteDAO.getFvrFromUsername(username);
+                if (favoriteList.size()>0){
+                    startActivity(new Intent(getContext(), FavoritesLibActivity.class));
+                }else {
+                    Dialog dialog = new Dialog(getContext());
+                    dialog.setContentView(R.layout.check_emty_dialog);
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    btnYesDelete = (AppCompatButton) dialog.findViewById(R.id.btnYesDelete);
+                    btnYesDelete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+                    dialog.show();
 
+                }
             }
         });
         cvSingerLib.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), SingerFavoriteActivity.class));
-
+                favoriteList = new ArrayList<>();
+                favoriteDAO = new FavoriteDAO(getContext());
+                favoriteList = favoriteDAO.getFvrFromUsername(username);
+                if (favoriteList.size()>0){
+                    startActivity(new Intent(getContext(), SingerFavoriteActivity.class));
+                }else {
+                    Dialog dialog = new Dialog(getContext());
+                    dialog.setContentView(R.layout.check_emty_dialog);
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    btnYesDelete = (AppCompatButton) dialog.findViewById(R.id.btnYesDelete);
+                    btnYesDelete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+                    dialog.show();
+                }
             }
         });
         cvPlaylistLibLib.setOnClickListener(new View.OnClickListener() {

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -38,7 +39,9 @@ public class SingerFavoriteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_singer_favorite);
         rcvSingerFavorite = (RecyclerView) findViewById(R.id.rcvSingerFavorite);
         favoriteDAO = new FavoriteDAO(SingerFavoriteActivity.this);
-        favoriteList = favoriteDAO.getAllFVR();
+        SharedPreferences sdf = getSharedPreferences("USER_CURRENT", MODE_PRIVATE);
+        String username = sdf.getString("USERNAME","");
+        favoriteList = favoriteDAO.getFvrFromUsername(username);
         singerList = new ArrayList<>();
         getDataAnyID();
         singerListAdapter = new SingerListAdapter(singerList);

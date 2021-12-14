@@ -45,7 +45,6 @@ public class FavoritesLibActivity extends AppCompatActivity {
     private FavoriteSongsAdapter favoriteSongsAdapter;
     private List<Singer> singerList;
     private SingerFavoriteAdapter singerFavoriteAdapter;
-
     private List<Favorite> findList;
 
     @Override
@@ -87,6 +86,24 @@ public class FavoritesLibActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        SharedPreferences sdf = getSharedPreferences("USER_CURRENT", MODE_PRIVATE);
+        String username = sdf.getString("USERNAME", "");
+        favoriteList = new ArrayList<>();
+        favoriteList = favoriteDAO.getFvrFromUsername(username);
+        favoriteSongsAdapter = new FavoriteSongsAdapter(favoriteList);
+        singerList = new ArrayList<>();
+        getDataAnyID();
+        singerFavoriteAdapter = new SingerFavoriteAdapter(singerList);
+        rcvListFavoriteSong.setAdapter(favoriteSongsAdapter);
+        rcvListFavoriteSong.setLayoutManager(new LinearLayoutManager(FavoritesLibActivity.this));
+
+        rcvlistArtits.setAdapter(singerFavoriteAdapter);
+        rcvlistArtits.setLayoutManager(new LinearLayoutManager(FavoritesLibActivity.this, RecyclerView.HORIZONTAL, false));
+    }
+
     private void findSong() {
         findList = new ArrayList<>();
         int pos = -1;
@@ -97,55 +114,56 @@ public class FavoritesLibActivity extends AppCompatActivity {
                 pos++;
             }
         }
-        if (pos!=-1){
+        if (pos != -1) {
             favoriteSongsAdapter = new FavoriteSongsAdapter(findList);
-            Toast.makeText(FavoritesLibActivity.this, "Đã tìm thấy "+find, Toast.LENGTH_SHORT).show();
-        }else {
+            Toast.makeText(FavoritesLibActivity.this, "Đã tìm thấy " + find, Toast.LENGTH_SHORT).show();
+        } else {
             favoriteSongsAdapter = new FavoriteSongsAdapter(favoriteList);
-            Toast.makeText(FavoritesLibActivity.this, "Không tìm thấy "+find, Toast.LENGTH_SHORT).show();
+            Toast.makeText(FavoritesLibActivity.this, "Không tìm thấy " + find, Toast.LENGTH_SHORT).show();
         }
         rcvListFavoriteSong.setAdapter(favoriteSongsAdapter);
         rcvListFavoriteSong.setLayoutManager(new LinearLayoutManager(FavoritesLibActivity.this));
     }
 
-        void getDataAnyID () {
-            for (int i = 0; i < favoriteList.size(); i++) {
-                getInfoFromAPI(favoriteList.get(i));
-            }
-        }
-
-        void getInfoFromAPI (Favorite favorite){
-            RequestQueue requestQueue = Volley.newRequestQueue(FavoritesLibActivity.this);
-            String url = "https://mp3.zing.vn/xhr/media/get-info?type=audio&id=" + favorite.getSong().getId();
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            try {
-                                Genres genres;
-                                JSONObject data = response.getJSONObject("data");
-                                JSONArray items = data.getJSONArray("artists");
-                                JSONObject obOfItems = (JSONObject) items.get(0);
-                                String id_artist = obOfItems.getString("id");
-                                String name_artist = obOfItems.getString("name");
-                                String thumbnail = obOfItems.getString("thumbnail");
-//                            Log.e("Huy Len", thumbnail_0);
-//                            thumbnail = thumbnail_0.substring(0, 33) + ((thumbnail_0.substring(48, thumbnail_0.length())));
-                                Log.e("Huy Ngu", thumbnail);
-
-                                singerList.add(new Singer(thumbnail, name_artist));
-                                singerFavoriteAdapter.notifyDataSetChanged();
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(FavoritesLibActivity.this, "Loi" + error.toString(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-            requestQueue.add(jsonObjectRequest);
+    void getDataAnyID() {
+        for (int i = 0; i < favoriteList.size(); i++) {
+            getInfoFromAPI(favoriteList.get(i));
         }
     }
+
+    void getInfoFromAPI(Favorite favorite) {
+        RequestQueue requestQueue = Volley.newRequestQueue(FavoritesLibActivity.this);
+        String url = "https://mp3.zing.vn/xhr/media/get-info?type=audio&id=" + favorite.getSong().getId();
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            Genres genres;
+                            JSONObject data = response.getJSONObject("data");
+                            JSONArray items = data.getJSONArray("artists");
+                            JSONObject obOfItems = (JSONObject) items.get(0);
+                            String id_artist = obOfItems.getString("id");
+                            String name_artist = obOfItems.getString("name");
+                            String thumbnail = obOfItems.getString("thumbnail");
+//                            Log.e("Huy Len", thumbnail_0);
+//                            thumbnail = thumbnail_0.substring(0, 33) + ((thumbnail_0.substring(48, thumbnail_0.length())));
+                            Log.e("Huy Ngu", thumbnail);
+
+                            singerList.add(new Singer(thumbnail, name_artist));
+                            singerFavoriteAdapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(FavoritesLibActivity.this, "Loi" + error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+        requestQueue.add(jsonObjectRequest);
+    }
+
+}

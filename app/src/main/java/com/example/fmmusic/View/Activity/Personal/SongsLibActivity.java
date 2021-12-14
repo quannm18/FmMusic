@@ -60,7 +60,6 @@ public class SongsLibActivity extends AppCompatActivity {
         textView = (TextView) findViewById(R.id.textView);
 
         if (isPermissionsGranted()){
-            Toast.makeText(SongsLibActivity.this, "Permission already granted", Toast.LENGTH_SHORT).show();
             audioModelList = new ArrayList<>();
             audioModelList = loadAudio(this);
 
@@ -75,30 +74,6 @@ public class SongsLibActivity extends AppCompatActivity {
                         return true;
                     }
                     return false;
-                }
-            });
-            btnRandomplay.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int max = audioModelList.size()-1;
-                    int min = 0;
-                    int random = (int) ((Math.random()) * ((max - min) + 1) + min);
-                    Intent intent = new Intent(v.getContext(), MusicPlayingActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("position",random);
-                    bundle.putString("from","SongLibsAdapter");
-                    bundle.putString("id",audioModelList.get(random).getId());
-                    bundle.putString("name",audioModelList.get(random).getName());
-                    bundle.putString("artist_names",audioModelList.get(random).getArtist());
-                    bundle.putString("performer",audioModelList.get(random).getArtist());
-                    bundle.putString("thumbnail",audioModelList.get(random).getImgPath());
-                    bundle.putString("duration",audioModelList.get(random).getDuration()+"");
-
-                    intent.putExtra("song_suggested",bundle);
-                    SongsPlayingFragment songsPlayingFragment = SongsPlayingFragment.newInstance();
-                    songsPlayingFragment.setArguments(bundle);
-
-                    startActivity(intent);
                 }
             });
         }else {
@@ -120,6 +95,32 @@ public class SongsLibActivity extends AppCompatActivity {
             alertDialog = builder.create();
             alertDialog.show();
         }
+        btnRandomplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (audioModelList.size()>0){
+                    int max = audioModelList.size()-1;
+                    int min = 0;
+                    int random = (int) ((Math.random()) * ((max - min) + 1) + min);
+                    Intent intent = new Intent(v.getContext(), MusicPlayingActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("position",random);
+                    bundle.putString("from","SongLibsAdapter");
+                    bundle.putString("id",audioModelList.get(random).getId());
+                    bundle.putString("name",audioModelList.get(random).getName());
+                    bundle.putString("artist_names",audioModelList.get(random).getArtist());
+                    bundle.putString("performer",audioModelList.get(random).getArtist());
+                    bundle.putString("thumbnail",audioModelList.get(random).getImgPath());
+                    bundle.putString("duration",audioModelList.get(random).getDuration()+"");
+
+                    intent.putExtra("song_suggested",bundle);
+                    SongsPlayingFragment songsPlayingFragment = SongsPlayingFragment.newInstance();
+                    songsPlayingFragment.setArguments(bundle);
+
+                    startActivity(intent);
+                }
+            }
+        });
     }
     AlertDialog alertDialog;
     void findSong(){
