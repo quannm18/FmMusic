@@ -44,7 +44,7 @@
         <entry key="..\:/AndroidStudio/FileSave/PRO1121_DuAn1/Test/FmMusic/app/src/main/res/layout/activity_down_load.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudio/FileSave/PRO1121_DuAn1/Test/FmMusic/app/src/main/res/layout/activity_favorites_lib.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudio/FileSave/PRO1121_DuAn1/Test/FmMusic/app/src/main/res/layout/activity_finding_music.xml" value="0.1" />
-        <entry key="..\:/AndroidStudio/FileSave/PRO1121_DuAn1/Test/FmMusic/app/src/main/res/layout/activity_home.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudio/FileSave/PRO1121_DuAn1/Test/FmMusic/app/src/main/res/layout/activity_home.xml" value="0.4" />
         <entry key="..\:/AndroidStudio/FileSave/PRO1121_DuAn1/Test/FmMusic/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/AndroidStudio/FileSave/PRO1121_DuAn1/Test/FmMusic/app/src/main/res/layout/activity_main.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudio/FileSave/PRO1121_DuAn1/Test/FmMusic/app/src/main/res/layout/activity_music_playing.xml" value="0.20854700854700856" />
@@ -62,12 +62,14 @@
         <entry key="..\:/AndroidStudio/FileSave/PRO1121_DuAn1/Test/FmMusic/app/src/main/res/layout/add_playlist_dialog.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudio/FileSave/PRO1121_DuAn1/Test/FmMusic/app/src/main/res/layout/addtoplaylist_dialog.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudio/FileSave/PRO1121_DuAn1/Test/FmMusic/app/src/main/res/layout/change_pass_dialog.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudio/FileSave/PRO1121_DuAn1/Test/FmMusic/app/src/main/res/layout/check_emty_dialog.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudio/FileSave/PRO1121_DuAn1/Test/FmMusic/app/src/main/res/layout/delete_account_dialog.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudio/FileSave/PRO1121_DuAn1/Test/FmMusic/app/src/main/res/layout/fragment_home.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudio/FileSave/PRO1121_DuAn1/Test/FmMusic/app/src/main/res/layout/fragment_personal.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudio/FileSave/PRO1121_DuAn1/Test/FmMusic/app/src/main/res/layout/fragment_rankings.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudio/FileSave/PRO1121_DuAn1/Test/FmMusic/app/src/main/res/layout/fragment_songs_detail.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudio/FileSave/PRO1121_DuAn1/Test/FmMusic/app/src/main/res/layout/fragment_songs_playing.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudio/FileSave/PRO1121_DuAn1/Test/FmMusic/app/src/main/res/layout/playlist.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudio/FileSave/PRO1121_DuAn1/Test/FmMusic/app/src/main/res/layout/row_singer.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudio/FileSave/PRO1121_DuAn1/Test/FmMusic/app/src/main/res/layout/row_suggested_song.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudio/FileSave/PRO1121_DuAn1/Test/FmMusic/app/src/main/res/layout/skiplogin_dialog.xml" value="0.20854700854700856" />

@@ -1,67 +1,61 @@
 package com.example.fmmusic.View.Fragment;
 
+import static android.content.Context.MODE_PRIVATE;
 import static com.example.fmmusic.View.Activity.MusicPlayingActivity.pause;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.fragment.app.Fragment;
+
 import com.bumptech.glide.Glide;
 import com.example.fmmusic.Adapter.CustomSpinerAdapter;
-import com.example.fmmusic.DAO.FavoriteDAO;
 import com.example.fmmusic.DAO.PLLDAO;
 import com.example.fmmusic.DAO.PLLSongDAO;
-import com.example.fmmusic.Model.Favorite;
 import com.example.fmmusic.Model.PLL;
 import com.example.fmmusic.Model.PLLSong;
 import com.example.fmmusic.Model.SingerModel.Singer;
 import com.example.fmmusic.Model.Songs.Song;
 import com.example.fmmusic.R;
-import com.example.fmmusic.View.Activity.FindingMusicActivity;
-import com.example.fmmusic.View.Activity.HomeActivity;
-import com.example.fmmusic.View.Activity.LoginActivity;
 import com.example.fmmusic.View.Activity.MusicPlayingActivity;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SongsPlayingFragment extends Fragment {
+    public static SongsPlayingFragment songsPlaying = new SongsPlayingFragment();
     private ImageView imbBack;
     private ImageView imgThumbnailPlaying;
     private TextView tvTitlePlaying;
     private ImageView imgAddtoPlaylist;
     private Dialog dialog;
-
+    private AppCompatButton btnCancelLogin;
+    private AppCompatButton btnYesLogIn;
     private PLLDAO plldao;
     private PLLSongDAO pllSongDAO;
     private CustomSpinerAdapter customSpinerAdapter;
-    private  List<PLL> pllList;
-
-
-    public static SongsPlayingFragment songsPlaying = new SongsPlayingFragment();
-
+    private List<PLL> pllList;
+    private List<PLL> checkList;
+    private Spinner spnAddtpPL;
+    private MaterialButton btnAddSongToPlaylist;
+    private Dialog dialogAddNewPlaylist;
     public static SongsPlayingFragment newInstance() {
         return songsPlaying;
     }
@@ -80,13 +74,61 @@ public class SongsPlayingFragment extends Fragment {
         tvTitlePlaying = (TextView) view.findViewById(R.id.tvTitlePlaying);
         imgAddtoPlaylist = (ImageView) view.findViewById(R.id.imgAddtoPlaylist);
 
-        if (((MusicPlayingActivity)getActivity()).from.equals("SongLibsAdapter")){
+        SharedPreferences sdf = view.getContext().getSharedPreferences("USER_CURRENT", MODE_PRIVATE);
+        if (((MusicPlayingActivity) getActivity()).from.equals("SongLibsAdapter")) {
             imgAddtoPlaylist.setVisibility(View.GONE);
         }
         imgAddtoPlaylist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openAddSongtoPlaylistDialog();
+                checkList = new PLLDAO(getContext()).getDataUser(sdf.getString("USERNAME",""));
+                if (checkList.size() > 0) {
+                    openAddSongtoPlaylistDialog();
+                } else {
+                    dialog = new Dialog(getActivity());
+                    dialog.setContentView(R.layout.playlist_dialog);
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    btnCancelLogin = (AppCompatButton) dialog.findViewById(R.id.btnCancelLogin);
+                    btnYesLogIn = (AppCompatButton) dialog.findViewById(R.id.btnYesLogIn);
+                    btnCancelLogin.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+                    btnYesLogIn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            dialogAddNewPlaylist = new Dialog(v.getContext());
+                            dialogAddNewPlaylist = new Dialog(v.getContext());
+                            dialogAddNewPlaylist.setContentView(R.layout.add_playlist_dialog);
+                            dialogAddNewPlaylist.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                            TextInputLayout tilNamePlaylist = (TextInputLayout) dialogAddNewPlaylist.findViewById(R.id.tilNamePlaylist);
+                            MaterialButton btnAdd = dialogAddNewPlaylist.findViewById(R.id.btnAdd);
+                            btnAdd.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    String namePlaylist = tilNamePlaylist.getEditText().getText().toString();
+                                    PLL pll1 = new PLL();
+                                    pll1.setNamePll(namePlaylist);
+                                    pll1.setIdUser(sdf.getString("USERNAME", ""));
+                                    PLLDAO plldao = new PLLDAO(v.getContext());
+
+                                    long checking = plldao.insertPLL(pll1);
+                                    if (checking > 0) {
+                                        Toast.makeText(v.getContext(), "Thêm thành công!", Toast.LENGTH_SHORT).show();
+                                        dialogAddNewPlaylist.dismiss();
+                                    } else {
+                                        Toast.makeText(v.getContext(), "Thêm thất bại!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                            dialogAddNewPlaylist.show();
+                        }
+                    });
+                    dialog.show();
+                }
             }
         });
         imbBack.setOnClickListener(new View.OnClickListener() {
@@ -98,14 +140,14 @@ public class SongsPlayingFragment extends Fragment {
         });
         String title = ((MusicPlayingActivity) getActivity()).nameSong + " - " + ((MusicPlayingActivity) getActivity()).artist_name;
         if (title.length() > 35) {
-            if (((MusicPlayingActivity) getActivity()).nameSong.length()>10&&((MusicPlayingActivity) getActivity()).artist_name.length()<15){
-                tvTitlePlaying.setText(((MusicPlayingActivity) getActivity()).nameSong.substring(0,10)+"... - "+((MusicPlayingActivity) getActivity()).artist_name);
+            if (((MusicPlayingActivity) getActivity()).nameSong.length() > 10 && ((MusicPlayingActivity) getActivity()).artist_name.length() < 15) {
+                tvTitlePlaying.setText(((MusicPlayingActivity) getActivity()).nameSong.substring(0, 10) + "... - " + ((MusicPlayingActivity) getActivity()).artist_name);
             }
-            if (((MusicPlayingActivity) getActivity()).nameSong.length()<15&&((MusicPlayingActivity) getActivity()).artist_name.length()>10){
-                tvTitlePlaying.setText(((MusicPlayingActivity) getActivity()).nameSong.substring(0,10)+" - "+((MusicPlayingActivity) getActivity()).artist_name+"...");
+            if (((MusicPlayingActivity) getActivity()).nameSong.length() < 15 && ((MusicPlayingActivity) getActivity()).artist_name.length() > 10) {
+                tvTitlePlaying.setText(((MusicPlayingActivity) getActivity()).nameSong.substring(0, 10) + " - " + ((MusicPlayingActivity) getActivity()).artist_name + "...");
             }
-            if (((MusicPlayingActivity) getActivity()).nameSong.length()>10&&((MusicPlayingActivity) getActivity()).artist_name.length()>10){
-                tvTitlePlaying.setText(((MusicPlayingActivity) getActivity()).nameSong.substring(0,10)+"... - "+((MusicPlayingActivity) getActivity()).artist_name+"...");
+            if (((MusicPlayingActivity) getActivity()).nameSong.length() > 10 && ((MusicPlayingActivity) getActivity()).artist_name.length() > 10) {
+                tvTitlePlaying.setText(((MusicPlayingActivity) getActivity()).nameSong.substring(0, 10) + "... - " + ((MusicPlayingActivity) getActivity()).artist_name + "...");
             }
         } else {
             tvTitlePlaying.setText(title);
@@ -120,11 +162,9 @@ public class SongsPlayingFragment extends Fragment {
         String url = ((MusicPlayingActivity) getActivity()).thumbnail;
     }
 
-    private Spinner spnAddtpPL;
-    private MaterialButton btnAddSongToPlaylist;
     public void openAddSongtoPlaylistDialog() {
         SharedPreferences sdf = getContext().getSharedPreferences("USER_CURRENT", Context.MODE_PRIVATE);
-        String userName =sdf.getString("USERNAME","");
+        String userName = sdf.getString("USERNAME", "");
         dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.addtoplaylist_dialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -135,7 +175,7 @@ public class SongsPlayingFragment extends Fragment {
         pllList = new ArrayList<>();
         pllList = plldao.getDataUser(userName);
 
-        customSpinerAdapter = new CustomSpinerAdapter(getContext(),pllList);
+        customSpinerAdapter = new CustomSpinerAdapter(getContext(), pllList);
         spnAddtpPL.setAdapter(customSpinerAdapter);
 
 
@@ -143,7 +183,7 @@ public class SongsPlayingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 PLLSong pllSong = new PLLSong();
-                Song song =  new Song();
+                Song song = new Song();
 
                 String id = ((MusicPlayingActivity) getActivity()).id;
                 String nameSong = ((MusicPlayingActivity) getActivity()).nameSong;
@@ -156,18 +196,18 @@ public class SongsPlayingFragment extends Fragment {
                 song.setName(nameSong);
                 song.setThumbnail(thumbnail);
                 song.setDuration(Integer.parseInt(duration));
-                Singer singer = new Singer("abcxyz",artist_name);
+                Singer singer = new Singer("abcxyz", artist_name);
                 song.setSinger(singer);
 
                 pllSong.setIdPll(idPLL);
                 pllSong.setSong(song);
 
                 long kq = pllSongDAO.insertPllSong(pllSong);
-                if (kq>0){
-                    Toast.makeText(getContext(),"Thêm thành công ",Toast.LENGTH_LONG).show();
+                if (kq > 0) {
+                    Toast.makeText(getContext(), "Thêm thành công ", Toast.LENGTH_LONG).show();
                     dialog.dismiss();
-                }else{
-                    Toast.makeText(getContext(),"Thêm không thành công ",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getContext(), "Thêm không thành công ", Toast.LENGTH_LONG).show();
                 }
             }
         });
