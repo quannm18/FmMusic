@@ -11,7 +11,7 @@
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/cvBottomPlayBars"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,12 +74,12 @@
                 app:suffixTextColor="#CF40E8">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:inputType="text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/corner_searchbar"
                     android:hint="Tìm kiếm bài hát, bảng..."
                     android:imeOptions="actionSearch"
+                    android:inputType="text"
                     android:textColor="@color/black"
                     app:textInputLayoutFocusedRectEnabled="false" />
             </com.google.android.material.textfield.TextInputLayout>

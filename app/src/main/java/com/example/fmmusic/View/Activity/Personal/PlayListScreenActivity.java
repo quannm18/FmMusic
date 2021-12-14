@@ -686,7 +686,7 @@ public class PlayListScreenActivity extends AppCompatActivity {
             playlistSongsList.add(new PlaylistSongs("Phi Hành Gia", "ZU9CE99E"));
 //            playlistSongsList.add(new PlaylistSongs("Nghe Như Tình Yêu", "ZUWW8WCA"));
             playlistSongsList.add(new PlaylistSongs("Lạc", "ZW67D8W6"));
-            playlistSongsList.add(new PlaylistSongs("Bật Nhạc Lên (feat. Harmonie)", "ZU06CBOI"));
+//            playlistSongsList.add(new PlaylistSongs("Bật Nhạc Lên (feat. Harmonie)", "ZU06CBOI"));
             playlistSongsList.add(new PlaylistSongs("BlackJack", "ZOW0OBU8"));
             playlistSongsList.add(new PlaylistSongs("Tay To", "ZUI7WC8C"));
             playlistSongsList.add(new PlaylistSongs("Chưa Từng Vì Nhau", "ZUU9I9F6"));

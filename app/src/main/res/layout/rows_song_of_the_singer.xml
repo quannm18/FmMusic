@@ -25,7 +25,7 @@
 
         <TextView
             android:id="@+id/tvNameSongInRow"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:text="Một cú lừa"
             android:textColor="#000000"
@@ -52,7 +52,7 @@
 
         <TextView
             android:id="@+id/tvNameSingerInRow"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:text="Bích phương"
             android:textSize="12sp"

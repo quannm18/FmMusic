@@ -1,7 +1,10 @@
 package com.example.fmmusic.Adapter;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -18,7 +21,9 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fmmusic.DAO.PLLDAO;
+import com.example.fmmusic.DAO.PLLSongDAO;
 import com.example.fmmusic.Model.PLL;
+import com.example.fmmusic.Model.PLLSong;
 import com.example.fmmusic.R;
 import com.example.fmmusic.View.Activity.MySongPlaylist_Activity;
 
@@ -27,8 +32,9 @@ import java.util.List;
 public class MyPlaylistAdapter extends RecyclerView.Adapter<MyPlaylistAdapter.MyPlaylistViewHolder> {
     List<PLL> pllList;
     private Dialog dialog;
-    private ViewGroup viewGroup;
-
+    private PLLSongDAO pllSongDAO;
+    private List<PLLSong> pllSongList;
+    private AppCompatButton btnYesDelete;
 
     public MyPlaylistAdapter(List<PLL> pllList) {
         this.pllList = pllList;
@@ -48,13 +54,32 @@ public class MyPlaylistAdapter extends RecyclerView.Adapter<MyPlaylistAdapter.My
         holder.imgThumbnailPlaylist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("pllAdapter", ""+pll.getIdPLL() );
-                Intent intent = new Intent(holder.itemView.getContext(), MySongPlaylist_Activity.class);
-                Bundle bundle  = new Bundle();
-                bundle.putInt("MyPlayListAdapter",pll.getIdPLL());
-                bundle.putString("namePLL",""+pll.getNamePll());
-                intent.putExtra("idPLLFromMyPlaylistAdapter",bundle);
-                v.getContext().startActivity(intent);
+                pllSongDAO = new PLLSongDAO(v.getContext());
+                pllSongList = pllSongDAO.getSongFromPLL(pll.getIdPLL());
+                if (!pllSongList.isEmpty()){
+                    Log.e("pllAdapter", ""+pll.getIdPLL() );
+                    Intent intent = new Intent(holder.itemView.getContext(), MySongPlaylist_Activity.class);
+                    Bundle bundle  = new Bundle();
+                    bundle.putInt("MyPlayListAdapter",pll.getIdPLL());
+                    bundle.putString("namePLL",""+pll.getNamePll());
+                    intent.putExtra("idPLLFromMyPlaylistAdapter",bundle);
+                    v.getContext().startActivity(intent);
+                }else {
+                    dialog = new Dialog(v.getContext());
+                    dialog.setContentView(R.layout.playlist_empty_dialog);
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    SharedPreferences sdf = v.getContext().getSharedPreferences("USER_CURRENT", MODE_PRIVATE);
+                    btnYesDelete = (AppCompatButton) dialog.findViewById(R.id.btnYesDelete);
+
+                    btnYesDelete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+
+                    });
+                    dialog.show();
+                }
             }
         });
 

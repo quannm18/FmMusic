@@ -145,30 +145,34 @@ public class MusicPlayingActivity extends AppCompatActivity
         imbFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                favorite = new Favorite();
-                Song song = new Song();
-                song.setId(id);
-                song.setName(nameSong);
-                song.setThumbnail(thumbnail);
-                song.setDuration(Integer.parseInt(duration));
-                favorite.setUseName(sdf.getString("USERNAME", ""));
-                Singer singer = new Singer("abcxyz", artist_name);
-                song.setSinger(singer);
-                favorite.setSong(song);
+                if (!from.equals("SongLibsAdapter")) {
+                    favorite = new Favorite();
+                    Song song = new Song();
+                    song.setId(id);
+                    song.setName(nameSong);
+                    song.setThumbnail(thumbnail);
+                    song.setDuration(Integer.parseInt(duration));
+                    favorite.setUseName(sdf.getString("USERNAME", ""));
+                    Singer singer = new Singer("abcxyz", artist_name);
+                    song.setSinger(singer);
+                    favorite.setSong(song);
 
-                Bitmap imgImb = ((BitmapDrawable)imbFavorite.getDrawable()).getBitmap();
-                Drawable drawableCompare = getResources().getDrawable(R.drawable.heart_like);
-                Bitmap bitmapCompare = ((BitmapDrawable) drawableCompare).getBitmap();
+                    Bitmap imgImb = ((BitmapDrawable)imbFavorite.getDrawable()).getBitmap();
+                    Drawable drawableCompare = getResources().getDrawable(R.drawable.heart_like);
+                    Bitmap bitmapCompare = ((BitmapDrawable) drawableCompare).getBitmap();
 
-                if (imgImb.sameAs(bitmapCompare)){
-                    long kq = favoriteDAO.insertFV(favorite);
-                    if (kq > 0) {
-                        imbFavorite.setImageResource(R.drawable.heart_red);
+                    if (imgImb.sameAs(bitmapCompare)){
+                        long kq = favoriteDAO.insertFV(favorite);
+                        if (kq > 0) {
+                            imbFavorite.setImageResource(R.drawable.heart_red);
+                        }
                     }
-                }
-                if (!imgImb.sameAs(bitmapCompare)){
-                    int delete = favoriteDAO.deleteFV(favorite);
-                    imbFavorite.setImageResource(R.drawable.heart_like);
+                    if (!imgImb.sameAs(bitmapCompare)){
+                        int delete = favoriteDAO.deleteFV(favorite);
+                        imbFavorite.setImageResource(R.drawable.heart_like);
+                    }
+                } else {
+                    Toast.makeText(MusicPlayingActivity.this, "Không thể chia sẻ bài hát offline!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
